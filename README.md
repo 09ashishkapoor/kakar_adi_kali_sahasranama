@@ -13,6 +13,7 @@ elaboration.
 | `scripts/check-links.mjs` | Post-build guard: broken links and forbidden file types |
 | `design.md` | The design system — The Pothi, adapted for this text |
 | `techstack.md` | Stack, routes, search, SEO and publishing decisions |
+| `domain-seo.md` | Domain research: competitors, keywords, which domain to buy and why |
 | `public/img/` | Deity plate, Open Graph card and icons |
 | `assets/source/` | Original deity photograph. Not shipped |
 | `output_names/` | 1,000 Markdown source entries, `NNNN-slug.md`. Local only — git-ignored, not in history. |
