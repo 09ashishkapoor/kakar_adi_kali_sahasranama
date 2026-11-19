@@ -3,7 +3,7 @@
 Project instructions for AI coding agents. Loaded automatically at the start of
 every session. Keep it accurate, short, and free of private data.
 
-**Last updated:** 2026-11-18
+**Last updated:** 2026-11-19
 
 ---
 
@@ -85,6 +85,15 @@ git-ignored and uploaded, never committed; the Markdown itself never ships.
   directory verbatim, not Git history, and not `.gitignore` rules.
 - Copying by readers is expected and accepted: the text is public once the site
   is. Do not add right-click blocking, text selection tricks or image-only text.
+- **1,000 positions, 965 names.** 32 names repeat, holding 35 extra positions
+  (`kali` sits at 2, 551 and 588). Pages are keyed by slug and list every
+  position. Never switch to one page per position — that ships 35 near-duplicates.
+- **The source says "Kakaradi"; the site says "Kakar Adi".** The substitution
+  lives in `displayName()` in `src/lib/text.js`. Never edit the 1,000 source
+  files to fix it, and never drop the substitution.
+- **The Sanskrit source is cited, never republished.** It is
+  `sanskritdocuments.org/doc_devii/kaaliisahasra.html`; its terms forbid copying,
+  reposting and bulk ingestion. Link to it. Do not paste its verses in.
 
 **Guards.** `.gitignore` alone is not a promise — `git add -f` bypasses it.
 `.githooks/pre-commit` refuses to stage the vault, `output_names/` or any
@@ -113,11 +122,12 @@ Every `TBD` must be replaced only with a verified fact.
 
 | Item | Value |
 |---|---|
-| Stack | Astro 6.4.8, static output, one hand-written stylesheet, no UI framework, no client framework |
-| Build | `npm run build` → `dist/`; 986 pages in ~4 s (verified) |
+| Stack | Astro 6.4.8, static output, hand-written CSS, no UI framework, no client framework |
+| Build | `npm run build` → `dist/`; 986 pages (985 routes + `404.html`) in ~4 s |
 | Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
 | Design | The Pothi system, in `design.md` |
 | Deploy target | Cloudflare Pages, Direct Upload |
+| Placeholders | `/the-book/` and `/kali-sahasranama-pdf/` are `noindex` "under construction" pages. Do not invent the book or the PDF |
 | Custom domain | TBD |
 
 ## 4. Commands
@@ -125,7 +135,7 @@ Every `TBD` must be replaced only with a verified fact.
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server with hot reload |
-| `npm run build` | Parse `output_names/` → 985 pages in `dist/` |
+| `npm run build` | Parse `output_names/` → 986 pages in `dist/` |
 | `npm run preview` | Serve the built `dist/` |
 | `npm run check` | Build, then verify file types and all internal links |
 
@@ -135,20 +145,12 @@ reached the output.
 
 ## 5. Repository layout
 
-| Path | Purpose |
-|---|---|
-| `design.md` | The design system to implement |
-| `techstack.md` | Stack, routes, search, SEO and publishing decisions |
-| `src/` | Astro pages, components, layout, styles, parser, search |
-| `public/` | Fonts, images, `robots.txt`, `llms.txt`, `_headers`, `_redirects` |
-| `scripts/check-links.mjs` | Post-build guard |
-| `public/img/` | Deity plate, OG card and icons (optimized AVIF/WebP/PNG) |
-| `assets/source/` | Original `1111.jpg`. Not shipped |
-| `output_names/` | The 1,000 Markdown entries, `NNNN-slug.md`. Source; local only |
-| `all_1000_meanings.txt` | One-line meaning per name. Source; local only |
-| `private/` | Vault. Local only |
-
+`src/` holds the Astro pages, components, layout, CSS, parser and search.
+`public/` holds fonts, images, `robots.txt`, `llms.txt`, `manifest.webmanifest`,
+`version.json`, `_headers` and `_redirects`. `scripts/check-links.mjs` is the
+build guard; `assets/source/` keeps the original photograph out of the build.
 `dist/` is generated; everything in `src/` and `public/` is committed.
+`design.md` and `techstack.md` carry the rationale and the full route map.
 
 ## 6. Deployment notes
 
@@ -190,6 +192,7 @@ stale.
 Before any commit:
 
 - [ ] `git status` shows only intended files
+- [ ] `npm run check` passes (986 pages, no broken links, no forbidden files)
 - [ ] hooks are active: `git config core.hooksPath` returns `.githooks`
 - [ ] nothing from `private/`, `output_names/` or any `.txt` data file is staged
 - [ ] `git check-ignore -v <file>` confirms new data files are ignored
