@@ -63,7 +63,7 @@ be found through search.
 | | |
 |---|---|
 | Owner | `09ashishkapoor` (personal GitHub account) |
-| Remote | `github.com/09ashishkapoor/kakar_adi_kali_sahasranama` — private; `main` tracks `origin/main` |
+| Remote | `github.com/09ashishkapoor/kakar_adi_kali_sahasranama` — public; `main` tracks `origin/main` |
 | Live site | Not deployed |
 
 ## 2. Content and private data
@@ -185,6 +185,7 @@ Append-only, newest last. Never rewrite past entries.
 | 2026-11-19 | The PDF landing page is a real indexable page; `/the-book/` is the only placeholder | The 43-page PDF exists and is linked; only the book is still unwritten |
 | 2026-11-19 | Canonical is `kakaradikalisahasranama.com`; `kakaradikali.com` is optional and 301s to it | The long name states the text and its purpose; the short is an ambiguous phrase on its own. Supersedes the earlier short-canonical decision |
 | 2026-11-19 | One page per position: 1,000 name pages, not 965 | 32 English titles repeat, but 4 differ in Sanskrit form and 23 in meaning; only 5 are exact duplicates. Grouping by title dropped content |
+| 2026-11-19 | The GitHub repository is public; Cloudflare stays Direct Upload | The 1,000 source Markdown files remain local-only, so a Git-integration build would have no data; publishing the repo does not publish the source corpus |
 
 ## 8. How to maintain this file
 

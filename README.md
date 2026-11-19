@@ -29,7 +29,7 @@ root, and needs the owner's approval each time.
 
 ## Private data
 
-This repository is private, but **not everything local belongs in Git**. See
+This repository is public, but **not everything local belongs in Git**. See
 [`.gitignore`](.gitignore). In short:
 
 - Anything in `private/` is never committed, whatever the file type.
