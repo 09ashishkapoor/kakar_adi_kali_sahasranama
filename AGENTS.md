@@ -70,8 +70,8 @@ be found through search.
 
 The 1,000-name text is authored as Markdown in `output_names/` on the owner's
 machine. **That Markdown is source, not a deliverable**: it is never committed
-and never published. The website is generated from it into a dedicated output
-directory that is committed and deployed; the Markdown itself never ships.
+and never published. The website is generated from it into `dist/`, which is
+git-ignored and uploaded, never committed; the Markdown itself never ships.
 
 - **`*.txt` is ignored by default**, repo-wide; `.gitignore` allows the public
   web-standard files back in (`robots.txt`, `ai.txt`, `llms.txt`,
@@ -113,32 +113,37 @@ Every `TBD` must be replaced only with a verified fact.
 
 | Item | Value |
 |---|---|
-| Stack | TBD |
-| Build | TBD |
-| Output directory | TBD — a dedicated folder, never the repository root. Not `dist/`, `build/`, `out/` or `.pages/`: git ignores those, so a committed output directory could not live there |
+| Stack | Astro 6, static output, plain CSS, no UI framework — decided in `techstack.md`, **not scaffolded yet** |
+| Build | `npm run build` → `dist/` (planned; `package.json` does not exist yet) |
+| Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
+| Design | The Pothi system, in `design.md` |
 | Deploy target | Cloudflare Pages, Direct Upload |
 | Custom domain | TBD |
 
 ## 4. Commands
 
-TBD — list only commands that actually run in this repository. There is no
-generator, no `package.json` and no test suite yet.
+TBD — no `package.json` yet, so no command actually runs. The planned set is in
+`techstack.md` §7 and must be replaced with verified commands once scaffolding
+lands.
 
 ## 5. Repository layout
 
 | Path | Purpose |
 |---|---|
+| `design.md` | The design system to implement |
+| `techstack.md` | Stack, routes, search, SEO and publishing decisions |
+| `public/img/` | Deity plate, OG card and icons (optimized AVIF/WebP/PNG) |
+| `assets/source/` | Original `1111.jpg`. Not shipped |
 | `output_names/` | The 1,000 Markdown entries, `NNNN-slug.md`. Source; local only |
 | `all_1000_meanings.txt` | One-line meaning per name. Source; local only |
 | `private/` | Vault. Local only |
 
-The output directory does not exist yet.
+`src/` and `dist/` do not exist yet.
 
 ## 6. Deployment notes
 
-- Deploy the generated output directory, never the repository root. `private/`,
-  `output_names/` and `all_1000_meanings.txt` sit at the root and would become
-  public downloads.
+- Deploy `dist/`, never the repository root. `private/`, `output_names/` and
+  `all_1000_meanings.txt` sit at the root and would become public downloads.
 - The published directory must contain no Markdown, no `private/`, no
   `output_names/`, no `.txt` data files and no `AGENTS.md`.
 - Publication is a remote write in the sense of section 0. Deploying needs the

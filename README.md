@@ -9,16 +9,20 @@ elaboration.
 
 | Path | What it is |
 |---|---|
+| `design.md` | The design system — The Pothi, adapted for this text |
+| `techstack.md` | Stack, routes, search, SEO and publishing decisions |
+| `public/img/` | Deity plate, Open Graph card and icons |
+| `assets/source/` | Original deity photograph. Not shipped |
 | `output_names/` | 1,000 Markdown source entries, `NNNN-slug.md`. Local only — git-ignored, not in history. |
 | `all_1000_meanings.txt` | One-line meaning per name. Local only — see below. |
 | `AGENTS.md` | Project rules, current state and decision log for AI agents. |
 
 ## Status
 
-The site is generated from `output_names/` into a dedicated output directory
-that is **not the repository root**. That directory does not exist yet: there is
-no build step, no framework and no dependencies in the repository today.
-Cloudflare Pages is **not yet connected**.
+Design and technical direction are settled (`design.md`, `techstack.md`). The
+site itself is **not built** — there is no `src/`, no `package.json`, no `dist/`
+yet. It will be an Astro static build uploaded to Cloudflare Pages by Direct
+Upload; the deployed directory is `dist/`, never the repository root.
 
 ## Private data
 
