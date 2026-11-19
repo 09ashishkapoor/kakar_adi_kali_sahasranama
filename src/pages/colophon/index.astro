@@ -1,0 +1,136 @@
+---
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { getContent } from '../../lib/names.js';
+import { SITE_URL, IMAGE_CREDIT } from '../../lib/site.js';
+
+const canonical = `${SITE_URL}/colophon/`;
+const title = 'Colophon | Kakar Adi Kali Sahasranama';
+const description =
+	'How this edition of the Kakar Adi Kali Sahasranama was made: its edition, text, typography, production, credits and free-sharing terms.';
+
+const { total, pages, ranges } = getContent();
+const { version, buildDate } = JSON.parse(
+	readFileSync(join(process.cwd(), 'public', 'version.json'), 'utf8'),
+);
+const lastUpdated = new Intl.DateTimeFormat('en-US', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+	timeZone: 'UTC',
+}).format(new Date(`${buildDate}T00:00:00Z`));
+
+const source = 'https://sanskritdocuments.org/doc_devii/kaaliisahasra.html';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	'@id': `${canonical}#colophon`,
+	name: title,
+	description,
+	url: canonical,
+	inLanguage: 'en',
+};
+---
+
+<ReferenceLayout title={title} description={description} canonical={canonical} schema={schema}>
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">Colophon</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">Production notes</p>
+			<h1>Colophon</h1>
+
+			<section class="hero-panel">
+				<p class="intro">
+					This page records how this edition of the Kakar Adi Kali Sahasranama was made: the edition
+					itself, the text, the type, the production and the people it is dedicated to.
+				</p>
+				<nav class="page-nav" aria-label="Colophon navigation">
+					<ul>
+						<li><a href="/names/">All 1,000 names</a></li>
+						<li><a href="/sources/">Sources and editorial notes</a></li>
+						<li><a href="/about/">About the project</a></li>
+					</ul>
+				</nav>
+			</section>
+
+			<section class="source-notes">
+				<h2>Edition</h2>
+				<p>
+					The text is the Kakar Adi Kali Sahasranama: {total.toLocaleString('en-US')} positions in ten
+					sets of one hundred. Every position has its own page, with its own Devanagari, IAST, source
+					transliteration and meaning.
+				</p>
+				<p>
+					Thirty-two English titles repeat across thirty-five extra positions. Four differ in Sanskrit
+					form and twenty-three in meaning; five are exact duplicates. Each occurrence keeps its own page
+					and links to the other positions of the same title, so no occurrence is merged away.
+				</p>
+				<p>
+					Version V{version} · {lastUpdated}. The web edition is
+					{pages.length.toLocaleString('en-US')} name pages plus {ranges.length} range pages.
+				</p>
+			</section>
+
+			<section class="source-notes">
+				<h2>Text</h2>
+				<p>
+					The Devanagari follows the Kakar Adi Kali Sahasranama as compiled for this project, checked
+					against the Sanskrit edition hosted by
+					<a href={source} rel="noopener noreferrer">Sanskrit Documents</a>. The source is cited and
+					linked, not republished. The English meanings and elaborations are this edition's own
+					devotional study notes, not a translation of a single critical edition.
+				</p>
+				<p><a href="/sources/">Sources and editorial method →</a></p>
+			</section>
+
+			<section class="source-notes">
+				<h2>Typography and design</h2>
+				<p>
+					The Devanagari is set in Tiro Devanagari Sanskrit; the Latin text in Crimson Pro. The layout
+					follows The Pothi: a frontispiece, a measured reading column, running heads, folios, a cream
+					paper ground and cinnabar accents.
+				</p>
+			</section>
+
+			<section class="source-notes">
+				<h2>Production</h2>
+				<p>
+					The site is static HTML generated with Astro and hand-written CSS. It has no client-side
+					framework, no accounts and no paywall. Search runs on a prebuilt index; the printable edition is
+					a 43-page PDF generated from the same text.
+				</p>
+				<p>
+					The pages are generated at build time and served as plain HTML. There is no analytics, no tag
+					manager and no advertising code; see <a href="/privacy/">privacy</a>.
+				</p>
+			</section>
+
+			<section class="source-notes">
+				<h2>Credits</h2>
+				<p>
+					Compiled and maintained by <strong>KaliPutra-Ashish</strong>, and dedicated to
+					<strong>Shri Praveen Radhakrishnan</strong> and the <strong>Khyapa Parampara</strong>.
+				</p>
+				<p>Deity photograph: {IMAGE_CREDIT}.</p>
+				<p><a href="/about/">About the project and author →</a></p>
+			</section>
+
+			<section class="source-notes">
+				<h2>Rights</h2>
+				<p>
+					Free to read, print and share. The Sanskrit source is cited and linked, never republished. The
+					names, transliterations and English commentary on these pages are this edition's own. All
+					knowledge is forever free to share.
+				</p>
+			</section>
+		</div>
+	</div>
+</ReferenceLayout>

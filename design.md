@@ -265,7 +265,7 @@ Five templates carry the whole site.
 | **Range** | `/names/1-100/` | Breadcrumb → Devanagari numeral title → IAST → range tabs → 100 dense index rows → prev/next range |
 | **Hub** | `/names/` | Range page minus the rows: title, tabs, 10-range contents list with first/last name, "about these pages" panel |
 | **Guide** | `/the-book/`, `/kali-sahasranama-benefits/`, `/kali-sahasranama-lyrics/`, `/kali-sahasranama-pdf/` | Kicker, English `h1`, prose sections with Devanagari section labels, FAQ as `faq-list`, range list where relevant |
-| **Text** | `/about/`, `/sources/`, `/privacy/` | Single 62ch column, section heads, no images |
+| **Text** | `/about/`, `/sources/`, `/privacy/`, `/colophon/` | Single 62ch column, section heads, no images |
 
 This text has no 108-name or 1008-name recension, so those two reference pages
 have no counterpart here. Do not invent them.

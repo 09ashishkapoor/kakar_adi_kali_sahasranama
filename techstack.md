@@ -31,7 +31,7 @@ crawlable URL for 1,000 names — the exact failure this project must avoid).
 /names/                    hub — 10 ranges, contents list
 /names/1-100/ … /names/901-1000/     range index, 100 rows each
 /names/0001-krim/ …        one page per position (1,000)
-/about/  /sources/  /privacy/
+/about/  /sources/  /privacy/  /colophon/
 /404.html
 /sitemap.xml  /robots.txt  /llms.txt
 /search-index.json         generated, immutable-cached
@@ -199,7 +199,7 @@ not an aspiration.
 ```bash
 npm install
 npm run dev      # dev server with hot reload
-npm run build    # parses output_names/ → dist/, 1,022 pages in ~5–10 s
+npm run build    # parses output_names/ → dist/, 1,023 pages in ~5–10 s
 npm run preview  # serves dist/
 npm run check    # build + scripts/check-links.mjs
 ```

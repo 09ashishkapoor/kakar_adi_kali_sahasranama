@@ -197,7 +197,7 @@ When the canonical domain is live:
 - [ ] Update the PDF cover line (`src/pages/download/`) and regenerate it.
 - [ ] Update `AGENTS.md` §1 (`Live site`) and §3 (`Custom domain`).
 
-Verification after the switch: `npm run check` (1,022 pages, no broken links) plus a
+Verification after the switch: `npm run check` (1,023 pages, no broken links) plus a
 grep of `dist/` for the old host — it must return nothing.
 
 ---

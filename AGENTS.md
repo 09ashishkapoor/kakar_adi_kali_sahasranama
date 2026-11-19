@@ -124,7 +124,7 @@ Every `TBD` must be replaced only with a verified fact.
 | Item | Value |
 |---|---|
 | Stack | Astro 6.4.8, static output, hand-written CSS, no UI framework, no client framework |
-| Build | `npm run build` → `dist/`; 1,022 pages (1,021 routes + `404.html`) in ~5–10 s |
+| Build | `npm run build` → `dist/`; 1,023 pages (1,022 routes + `404.html`) in ~5–10 s |
 | Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
 | Design | The Pothi system, in `design.md` |
 | Deploy target | Cloudflare Pages, Direct Upload |
@@ -136,7 +136,7 @@ Every `TBD` must be replaced only with a verified fact.
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server with hot reload |
-| `npm run build` | Parse `output_names/` → 1,022 pages in `dist/` |
+| `npm run build` | Parse `output_names/` → 1,023 pages in `dist/` |
 | `npm run preview` | Serve the built `dist/` |
 | `npm run check` | Build, then verify file types and all internal links |
 
@@ -209,7 +209,7 @@ stale.
 Before any commit:
 
 - [ ] `git status` shows only intended files
-- [ ] `npm run check` passes (1,022 pages, no broken links, no forbidden files)
+- [ ] `npm run check` passes (1,023 pages, no broken links, no forbidden files)
 - [ ] hooks are active: `git config core.hooksPath` returns `.githooks`
 - [ ] nothing from `private/`, `output_names/` or any `.txt` data file is staged
 - [ ] `git check-ignore -v <file>` confirms new data files are ignored
