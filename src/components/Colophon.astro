@@ -1,14 +1,33 @@
 ---
+// The Pothi colophon — copied from the reference site's footer, with this
+// text's identity. The same closing page on every template.
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { getContent } from '../lib/names.js';
 import { IMAGE_CREDIT } from '../lib/site.js';
 
+const { version, buildDate } = JSON.parse(
+	readFileSync(join(process.cwd(), 'public', 'version.json'), 'utf8'),
+);
+
+// buildDate is a plain YYYY-MM-DD; format it as UTC so the label cannot slip
+// a day backwards in negative-offset timezones.
+const lastUpdated = new Intl.DateTimeFormat('en-US', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+	timeZone: 'UTC',
+}).format(new Date(`${buildDate}T00:00:00Z`));
+
+const { ranges, total } = getContent();
+
 const { label = 'The Pothi' } = Astro.props;
-const year = new Date().getFullYear();
 
 const links = [
 	{ label: 'The reader', href: '/' },
-	{ label: 'All 1,000 names', href: '/names/' },
+	{ label: 'Names hub', href: '/names/' },
 	{ label: 'The book', href: '/the-book/' },
-	{ label: 'Chanting', href: '/kali-sahasranama-lyrics/' },
+	{ label: 'Recitation', href: '/kali-sahasranama-lyrics/' },
 	{ label: 'Benefits', href: '/kali-sahasranama-benefits/' },
 	{ label: 'Print edition', href: '/kali-sahasranama-pdf/' },
 	{ label: 'Sources', href: '/sources/' },
@@ -19,14 +38,42 @@ const links = [
 
 <footer class="colophon">
 	<div class="om" lang="sa">ॐ</div>
-	<p class="ded">Dedicated to <strong>Maa Kali</strong></p>
-	<p class="mantra" lang="sa">ॐ क्रीं कालिकायै नमः</p>
+	<p class="ded">
+		Dedicated to <strong>Shri Praveen Radhakrishnan</strong> and <strong>Khyapa Parampara</strong>
+	</p>
+	<p class="mantra" lang="sa">Jai Ma Krishna<br />Jai Mā Kālikā<br />Jai Kālabhairava</p>
+	<p class="blessing">Om Shri Gurubhyo Namaha | Jai Khyapa Parampara</p>
+	<p class="blessing">May every word read here bring you closer to Maa Kali.</p>
 
 	<div class="links">
 		{links.map((link) => <a href={link.href}>{link.label}</a>)}
+		<a href="https://jaikhyapaparampara.com/" target="_blank" rel="noopener">Sister site ↗</a>
+		<a
+			href="https://jaikhyapaparampara.com/articles/kakaradi-kali-sahasranama-names-1-111-one-line-meanings/"
+			target="_blank"
+			rel="noopener">Names 1–111 explained ↗</a
+		>
+		<a href="https://mantrini.jaikhyapaparampara.com/" target="_blank" rel="noopener">MANTRINI japa app ↗</a>
+		<a href="https://github.com/09ashishkapoor/kakar_adi_kali_sahasranama" target="_blank" rel="noopener"
+			>Open source on GitHub</a
+		>
+		<a href="https://www.instagram.com/ashishkaliputra" target="_blank" rel="noopener">@ashishkaliputra</a>
 	</div>
 
-	<p class="fine">Kakar Adi Kali Sahasranama · 1,000 names · {label}</p>
+	<p class="fine ranges">
+		Browse names by range:
+		{ranges.map((range, index) => (
+			<>
+				{index > 0 && ' · '}
+				<a href={`/names/${range.slug}/`}>Names {range.start}–{range.end}</a>
+			</>
+		))}
+	</p>
+
+	<p class="fine">Kakar Adi Kali Sahasranama · {total.toLocaleString('en-US')} names · {label}</p>
 	<p class="fine">Deity photograph: {IMAGE_CREDIT}</p>
-	<p class="fine">&copy; {year} · All knowledge is forever free to share.</p>
+	<p class="fine">
+		&copy; <span data-current-year>2026</span> KaliPutra-Ashish. All knowledge is forever free to share.
+	</p>
+	<p class="fine">Version V{version} · Last updated {lastUpdated}</p>
 </footer>

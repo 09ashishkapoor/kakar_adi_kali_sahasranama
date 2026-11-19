@@ -21,6 +21,11 @@ Ten sets of one hundred, in order:
 - Names 1-100 through 901-1000: /names/1-100/ ... /names/901-1000/
 - One page per distinct name: /names/<slug>/
 
+## Related
+
+- [Names 1-111 with one-line meanings](https://jaikhyapaparampara.com/articles/kakaradi-kali-sahasranama-names-1-111-one-line-meanings/): the opening section, published by the same parampara.
+- [MANTRINI japa app](https://mantrini.jaikhyapaparampara.com/): free, offline, 108-bead japa counter with an Adya Mahakali altar; the record stays on the device.
+
 ## Notes
 
 - Text is public and free to copy; readers are expected to copy it.
