@@ -1,0 +1,211 @@
+---
+// Source for the downloadable PDF. Printed once with headless Chrome and
+// committed to public/downloads, so the artifact is reproducible but the site
+// never depends on a browser at build time.
+import { getContent } from '../../lib/names.js';
+import { SITE_URL } from '../../lib/site.js';
+
+const { ranges, total } = getContent();
+const host = SITE_URL.replace(/^https?:\/\//, '');
+
+const dig = (n) =>
+	String(n)
+		.split('')
+		.map((d) => '०१२३४५६७८९'[Number(d)] ?? d)
+		.join('');
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Kakar Adi Kali Sahasranama — 1,000 names, daily reading edition</title>
+		<meta name="robots" content="noindex,nofollow" />
+		<style is:inline>
+			@font-face {
+				font-family: 'Crimson Pro';
+				font-style: normal;
+				font-weight: 400;
+				src: url('/fonts/crimson-400-normal-latin.woff2') format('woff2');
+			}
+			@font-face {
+				font-family: 'Crimson Pro';
+				font-style: italic;
+				font-weight: 400;
+				src: url('/fonts/crimson-400-italic-latin.woff2') format('woff2');
+			}
+			@font-face {
+				font-family: 'Crimson Pro';
+				font-style: normal;
+				font-weight: 600;
+				src: url('/fonts/crimson-600-normal-latin.woff2') format('woff2');
+			}
+			@font-face {
+				font-family: 'Tiro Devanagari Sanskrit';
+				font-style: normal;
+				font-weight: 400;
+				src: url('/fonts/tiro-devanagari.woff2') format('woff2');
+			}
+
+			@page { size: A4; margin: 16mm 14mm 14mm; }
+			@page :first { margin: 0; }
+
+			:root {
+				--ink: #1b1510;
+				--ink-2: #4a3f31;
+				--ash: #5b5142;
+				--cinnabar: #9c2b1c;
+				--rule: #cdbc9c;
+				--paper: #faf3e3;
+			}
+
+			* { box-sizing: border-box; }
+
+			html, body {
+				margin: 0;
+				background: #fff;
+				color: var(--ink);
+				font-family: 'Crimson Pro', Georgia, serif;
+				font-size: 9.6pt;
+				line-height: 1.4;
+				-webkit-print-color-adjust: exact;
+				print-color-adjust: exact;
+			}
+
+			.cover { height: 297mm; display: flex; flex-direction: column; background: var(--paper); break-after: page; }
+			.cover .plate { height: 150mm; overflow: hidden; background: #0a0706; }
+			.cover .plate img { width: 100%; height: 100%; object-fit: cover; object-position: center 24%; }
+			.cover .text { padding: 16mm 18mm 0; }
+			.cover .kicker {
+				font-size: 8.5pt; letter-spacing: .2em; text-transform: uppercase; color: var(--cinnabar);
+				margin: 0 0 6mm;
+			}
+			.cover h1 {
+				font-family: 'Tiro Devanagari Sanskrit', serif; font-weight: 400;
+				font-size: 30pt; line-height: 1.25; margin: 0 0 3mm; color: var(--ink);
+			}
+			.cover .iast { font-style: italic; font-size: 15pt; color: var(--cinnabar); margin: 0 0 8mm; }
+			.cover .meta { font-size: 10pt; color: var(--ash); border-top: 1px solid var(--rule); padding-top: 4mm; }
+			.cover .foot { margin-top: auto; padding: 0 18mm 14mm; font-size: 8.5pt; color: var(--ash); font-style: italic; }
+
+			.intro { break-after: page; }
+			h2.sec {
+				font-family: 'Crimson Pro', serif; font-weight: 600; font-size: 15pt;
+				margin: 0 0 3mm; padding-bottom: 2mm; border-bottom: 1px solid var(--rule);
+			}
+			h2.sec .dev {
+				font-family: 'Tiro Devanagari Sanskrit', serif; font-weight: 400; font-size: 10pt;
+				color: var(--cinnabar); margin-right: 3mm;
+			}
+			p { margin: 0 0 3mm; }
+			p.lead { font-size: 11.5pt; color: var(--ink); }
+			.plan { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 4mm 0; margin: 5mm 0; }
+			.plan table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+			.plan td { padding: 1.4mm 0; border-bottom: 1px solid rgba(205, 188, 156, .45); vertical-align: top; }
+			.plan td:first-child { width: 26mm; color: var(--cinnabar); }
+			.plan td:last-child { width: 30mm; text-align: right; color: var(--ash); }
+			.note { font-size: 9pt; color: var(--ash); font-style: italic; }
+
+			.set { break-before: page; }
+			.set h2 {
+				font-family: 'Tiro Devanagari Sanskrit', serif; font-weight: 400;
+				font-size: 20pt; margin: 0 0 1mm; color: var(--ink);
+			}
+			.set .sub {
+				font-size: 8.5pt; letter-spacing: .16em; text-transform: uppercase; color: var(--cinnabar);
+				border-bottom: 1px solid var(--rule); padding-bottom: 2mm; margin-bottom: 4mm;
+			}
+
+			ol.names { list-style: none; margin: 0; padding: 0; column-count: 2; column-gap: 8mm; }
+			ol.names li {
+				break-inside: avoid; padding: 1.1mm 0 1.3mm;
+				border-bottom: 1px solid rgba(205, 188, 156, .5);
+				display: grid; grid-template-columns: 9mm 1fr; column-gap: 2mm;
+			}
+			ol.names .no { font-size: 7pt; color: var(--cinnabar); font-variant-numeric: tabular-nums; padding-top: 1.2mm; }
+			ol.names .dev { font-family: 'Tiro Devanagari Sanskrit', serif; font-size: 10.5pt; line-height: 1.2; display: block; }
+			ol.names .iast { display: block; font-style: italic; font-size: 8pt; line-height: 1.25; color: var(--cinnabar); }
+			ol.names .m { display: block; font-size: 7.7pt; line-height: 1.28; color: var(--ink-2); margin-top: .4mm; }
+
+			.end { break-before: page; }
+			.end .om { font-family: 'Tiro Devanagari Sanskrit', serif; font-size: 20pt; color: var(--cinnabar); margin-bottom: 4mm; }
+			.end .mono { font-family: 'Tiro Devanagari Sanskrit', serif; font-size: 11pt; line-height: 1.9; margin-bottom: 6mm; }
+			.end .fine { font-size: 8.5pt; color: var(--ash); font-style: italic; margin: 0 0 2mm; }
+		</style>
+	</head>
+	<body>
+		<section class="cover">
+			<div class="plate">
+				<img src="/img/deity-cover.jpg" alt="Four-armed murti of Maa Kali, red-lit against black" />
+			</div>
+			<div class="text">
+				<p class="kicker">Daily reading edition</p>
+				<h1 lang="sa">ककार आदि काली<br />सहस्रनाम</h1>
+				<p class="iast">Kakar Adi Kali Sahasranama</p>
+				<div class="meta">
+					{total.toLocaleString('en-US')} names · ten sets of one hundred · Devanagari, IAST and a
+					one-line meaning for each
+				</div>
+			</div>
+			<p class="foot">Free to print, carry and copy. · {host}</p>
+		</section>
+
+		<section class="intro">
+			<h2 class="sec"><span class="dev" lang="sa">पाठ</span> How to use this booklet</h2>
+			<p class="lead">
+				This is the full thousand names of the Kakar Adi Kali Sahasranama, printed so it can be read away
+				from a screen. The text is divided into ten sets of one hundred, and the sets are printed in the
+				order they are recited.
+			</p>
+			<p>
+				Read one set a day and you finish the thousand in ten days. Read ten names a day and it lasts a
+				hundred days. Neither is more correct than the other: the tradition values steadiness over volume,
+				so pick a portion you will actually return to tomorrow.
+			</p>
+			<div class="plan">
+				<table>
+					<tr><td>One set</td><td>names 1–100</td><td>about ten minutes</td></tr>
+					<tr><td>Ten names</td><td>names 1–10</td><td>about a minute</td></tr>
+					<tr><td>Full text</td><td>names 1–1000</td><td>about ninety minutes</td></tr>
+				</table>
+			</div>
+			<p class="note">
+				Pronunciation matters less than attention. If the Devanagari is unfamiliar, read the IAST line — it
+				marks the long vowels and nasal endings that English spelling drops.
+			</p>
+			<p class="note">
+				The one-line meanings under each name are commentary for study, not part of the recitation. Read
+				them if they help, skip them if they interrupt.
+			</p>
+			<p class="note">The full text, searchable and in both themes, is at {host}.</p>
+		</section>
+
+		{ranges.map((range, index) => (
+			<section class="set">
+				<h2 lang="sa">{dig(range.start)}–{dig(range.end)}</h2>
+				<p class="sub">Names {range.start}–{range.end} · set {index + 1} of 10</p>
+				<ol class="names">
+					{range.entries.map((entry) => (
+						<li>
+							<span class="no">{entry.position}</span>
+							<span>
+								<span class="dev" lang="sa">{entry.devanagari}</span>
+								<span class="iast">{entry.iast}</span>
+								<span class="m">{entry.meaning}</span>
+							</span>
+						</li>
+					))}
+				</ol>
+			</section>
+		))}
+
+		<section class="end">
+			<div class="om" lang="sa">ॐ</div>
+			<p class="mono" lang="sa">Jai Ma Krishna<br />Jai Mā Ādya Mahākālī<br />Jai Kālabhairava</p>
+			<p class="fine">Om Shri Gurubhyo Namaha | Jai Khyapa Parampara</p>
+			<p class="fine">May every word read here bring you closer to Ma Adya Mahakali.</p>
+			<p class="fine">Kakar Adi Kali Sahasranama · 1,000 names · daily reading edition · {host}</p>
+			<p class="fine">Free to read, print and share. All knowledge is forever free to share.</p>
+		</section>
+	</body>
+</html>

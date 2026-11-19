@@ -7,7 +7,7 @@ import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { join, extname } from 'node:path';
 
 const DIST = 'dist';
-const ALLOWED = new Set(['.html', '.css', '.js', '.json', '.xml', '.txt', '.webmanifest', '.webp', '.avif', '.png', '.svg', '.ico', '.woff2', '.pdf']);
+const ALLOWED = new Set(['.html', '.css', '.js', '.json', '.xml', '.txt', '.webmanifest', '.webp', '.avif', '.png', '.svg', '.ico', '.woff2', '.pdf', '.jpg']);
 const CLOUDFLARE = new Set(['_headers', '_redirects']);
 const FORBIDDEN = /(^|\/)(private|output_names)(\/|$)|\.(md|csv|tsv|dat)$/i;
 

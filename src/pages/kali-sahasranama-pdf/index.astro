@@ -1,37 +1,148 @@
 ---
 import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
-import UnderConstruction from '../../components/UnderConstruction.astro';
 import { SITE_URL } from '../../lib/site.js';
 
-const title = 'Print edition — coming later';
+const canonical = `${SITE_URL}/kali-sahasranama-pdf/`;
+const title = 'Kali Sahasranama PDF — 1,000 Names, Free Printable Edition | Kakar Adi Kali';
 const description =
-	'The downloadable print edition of the Kakar Adi Kali Sahasranama is in preparation. Every page already prints cleanly from the browser.';
+	'Download the Kakar Adi Kali Sahasranama as a free 43-page PDF: all 1,000 names with Devanagari, IAST and a one-line meaning, arranged as a ten-day reading guide. No sign-up.';
+
+const PDF = '/downloads/kakaradi-kali-sahasranama-1000-names.pdf';
 
 const schema = {
 	'@context': 'https://schema.org',
-	'@type': 'WebPage',
-	name: title,
-	url: `${SITE_URL}/kali-sahasranama-pdf/`,
-	inLanguage: 'en',
+	'@graph': [
+		{
+			'@type': 'WebPage',
+			'@id': `${canonical}#webpage`,
+			name: title,
+			description,
+			url: canonical,
+			inLanguage: 'en',
+		},
+		{
+			'@type': 'Book',
+			'@id': `${canonical}#book`,
+			name: 'Kakar Adi Kali Sahasranama — daily reading edition',
+			numberOfPages: 43,
+			bookFormat: 'https://schema.org/EBook',
+			inLanguage: 'sa',
+			about: 'The 1,000 names of Maa Kali',
+			url: `${SITE_URL}${PDF}`,
+		},
+		{
+			'@type': 'BreadcrumbList',
+			'@id': `${canonical}#breadcrumb`,
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+				{ '@type': 'ListItem', position: 2, name: 'PDF edition', item: canonical },
+			],
+		},
+	],
 };
 ---
 
-<ReferenceLayout
-	title={`${title} | Kakar Adi Kali Sahasranama`}
-	description={description}
-	canonical="/kali-sahasranama-pdf/"
-	schema={schema}
-	robots="noindex,follow"
-	colophonLabel="Print edition"
->
-	<UnderConstruction
-		kicker="Coming later"
-		heading="Print edition"
-		what="A typeset PDF of the whole thousand is planned but not produced yet. Until it exists, there is no download button here pretending to have one."
-		bullets={[
-			'Today, any name page or set prints on A4 with the night theme forced back to ink on cream — use your browser’s print command and choose “Save as PDF”.',
-			'A range page prints as a two-column index, which is the cheapest paper copy of a hundred names.',
-			'The ten-set contents prints as a one-page table of contents.',
-		]}
-	/>
+<ReferenceLayout title={title} description={description} canonical={canonical} schema={schema} colophonLabel="PDF edition">
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">PDF edition</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">Take it with you</p>
+			<h1>The PDF edition</h1>
+
+			<section class="hero-panel">
+				<p class="intro">
+					All <strong>1,000 names</strong> in a 43-page A4 booklet: Devanagari, IAST and a one-line meaning
+					for each, in the order the text is recited. Free, no sign-up, no email. Print it, keep it on a phone,
+					or read a set a day.
+				</p>
+				<nav class="page-nav" aria-label="Page navigation">
+					<ul>
+						<li><a href="#download">Download the PDF</a></li>
+						<li><a href="#how-to-use">How to use it as a daily reading</a></li>
+						<li><a href="/names/">Read it online instead</a></li>
+					</ul>
+				</nav>
+			</section>
+
+			<section class="landing-section" id="download" aria-labelledby="download-heading">
+				<h2 class="sec" id="download-heading"><span lang="sa">पत्र</span> Download</h2>
+				<p class="pdf-cta">
+					<a class="pdf-button" href={PDF} download>
+						Download the PDF <span aria-hidden="true">↓</span>
+					</a>
+					<span class="pdf-meta">43 pages · A4 · 1.2 MB · free to copy and share</span>
+				</p>
+				<p class="panel-note">
+					The file holds the name list, the transliterations and the meanings on this site. It does not
+					reproduce the Sanskrit edition hosted by Sanskrit Documents — see
+					<a class="u" href="/sources/">sources</a>.
+				</p>
+			</section>
+
+			<section class="landing-section" id="how-to-use" aria-labelledby="how-heading">
+				<h2 class="sec" id="how-heading"><span lang="sa">पाठ</span> How to use it as a daily reading</h2>
+				<p>
+					The booklet is divided into ten sets of one hundred, printed in recitation order. Pick the portion
+					you will actually return to tomorrow:
+				</p>
+				<table class="names-table">
+					<caption>Three workable rhythms</caption>
+					<thead>
+						<tr><th>Portion</th><th>Names</th><th>Finishes in</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>One set a day</td><td>1–100, 101–200, …</td><td>10 days</td></tr>
+						<tr><td>Ten names a day</td><td>1, 2, 3, …</td><td>100 days</td></tr>
+						<tr><td>The whole text</td><td>all 1,000</td><td>under two hours</td></tr>
+					</tbody>
+				</table>
+				<p>
+					Pronunciation matters less than attention. If the Devanagari is unfamiliar, read the IAST line:
+					it marks the long vowels and nasal endings that English spelling drops. The meanings are
+					commentary for study, not part of the recitation — read them if they help, skip them if they
+					interrupt.
+				</p>
+			</section>
+
+			<section class="landing-section" aria-labelledby="inside-heading">
+				<h2 class="sec" id="inside-heading"><span lang="sa">रचना</span> What is inside</h2>
+				<ul>
+					<li>A cover plate and one page of reading instructions.</li>
+					<li>Ten sets of one hundred names, two columns to a page.</li>
+					<li>Every name in Devanagari, with its IAST transliteration in cinnabar under it.</li>
+					<li>A one-line English meaning under each name, set small so the Devanagari stays the hero.</li>
+					<li>A closing page with the dedication and the invocation.</li>
+				</ul>
+			</section>
+
+			<section class="landing-section" aria-labelledby="print-heading">
+				<h2 class="sec" id="print-heading"><span lang="sa">मुद्रण</span> Printing notes</h2>
+				<p>
+					A4, portrait, 16 mm margins. The pages come out with the cream ground and the cinnabar accents
+					already in place, so print in colour if you can; in black and white the text still reads, the
+					accents simply turn to grey.
+				</p>
+				<p>
+					For a pocket copy, print at “two pages per sheet, double-sided” — the set boundaries still fall on
+					a spread.
+				</p>
+			</section>
+
+			<section class="landing-section">
+				<h2 class="sec"><span lang="sa">आगे</span> Continue reading</h2>
+				<ul>
+					<li><a href="/kakaradi-kali-sahasranama/">What Is the Kakar Adi Kali Sahasranama?</a></li>
+					<li><a href="/kali-sahasranama-benefits/">Benefits in the devotional tradition</a></li>
+					<li><a href="/kali-sahasranama-lyrics/">Chant order and lyrics</a></li>
+					<li><a href="/sources/">Sources and editorial notes</a></li>
+				</ul>
+			</section>
+		</div>
+	</div>
 </ReferenceLayout>

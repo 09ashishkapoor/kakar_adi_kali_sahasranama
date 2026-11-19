@@ -801,3 +801,38 @@ footer.colophon .fine { font-size: 12px; color: var(--ash); font-style: italic; 
 
 /* ---------- 20. iOS: never let a search field trigger zoom ---------- */
 .find input, .mfind input, .hits input { font-size: 16px; }
+
+/* ---------- 21. PDF download call to action ---------- */
+.pdf-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin: 14px 0 16px; }
+.landing-section a.pdf-button,
+a.pdf-button {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 48px;
+  padding: 12px 26px; text-decoration: none;
+  background: var(--cinnabar); color: var(--paper);
+  font-family: var(--serif); font-size: 17px; letter-spacing: .01em;
+  border: 1px solid var(--cinnabar);
+  transition: background .2s, color .2s;
+}
+.landing-section a.pdf-button:hover, a.pdf-button:hover,
+.landing-section a.pdf-button:focus-visible, a.pdf-button:focus-visible {
+  background: transparent; color: var(--cinnabar);
+}
+.pdf-meta { font-size: 13px; color: var(--ash); font-style: italic; }
+:root[data-theme="night"] .landing-section a.pdf-button,
+:root[data-theme="night"] a.pdf-button { color: #1a1410; }
+:root[data-theme="night"] .landing-section a.pdf-button:hover,
+:root[data-theme="night"] a.pdf-button:hover { background: transparent; color: var(--cinnabar); }
+
+/* ---------- 22. take-it-with-you band ---------- */
+.takeaway { border-top: 1px solid var(--rule); background: var(--paper-3); padding: clamp(30px, 4vw, 54px) var(--edge); }
+.takeaway-inner {
+  display: grid; grid-template-columns: minmax(0, .62fr) minmax(0, 1.38fr);
+  column-gap: clamp(24px, 4vw, 64px); align-items: start;
+}
+.takeaway h2 { font-family: var(--dev); font-weight: 400; font-size: clamp(26px, 3vw, 38px); line-height: 1.3; margin: 0 0 4px; }
+.takeaway .h-sub { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--cinnabar); margin: 0; }
+.takeaway p { max-width: 60ch; }
+.takeaway-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 6px; }
+@media (max-width: 760px) {
+  .takeaway-inner { grid-template-columns: 1fr; row-gap: 10px; }
+}
