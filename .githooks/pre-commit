@@ -1,0 +1,20 @@
+#!/bin/sh
+# Blocks the vault and plain-text source from entering a commit.
+# Git ignores .gitignore for `git add -f`; this does not.
+# Enable once per clone: git config core.hooksPath .githooks
+set -eu
+
+FORBIDDEN='(^|/)(private|_private|local-only|output_names)/|\.(txt|csv|tsv|dat)$'
+ALLOW='^([^/]*/)*(robots|ai|llms|security|humans|ads|sitemap|LICENSE|CHANGELOG|CMakeLists|requirements[^/]*)\.txt$'
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+bad=$(printf '%s\n' "$staged" | grep -E "$FORBIDDEN" | grep -Ev "$ALLOW" || true)
+
+if [ -n "$bad" ]; then
+  printf 'commit blocked — these paths must stay on this machine:\n' >&2
+  printf '%s\n' "$bad" | sed 's/^/  /' >&2
+  printf '\nSee AGENTS.md section 2. Unstage: git restore --staged <path>\n' >&2
+  exit 1
+fi
+
+exit 0

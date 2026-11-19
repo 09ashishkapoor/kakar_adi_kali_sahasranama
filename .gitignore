@@ -1,0 +1,118 @@
+# ============================================================================
+#  Kakar Adi Sahasranama Website — .gitignore
+#  Anything matched here stays on this machine and is NEVER committed.
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+#  1. PRIVATE SOURCE MATERIAL
+#  Put any file you do not want published or pushed into the private/ folder.
+#  That covers every file type (.txt, .pdf, .docx, .csv, images, scans, ...).
+# ----------------------------------------------------------------------------
+private/
+_private/
+local-only/
+
+# Long-form name content: the 1,000 Markdown entries stay on this machine.
+# Only the generated site output becomes public; that is the sole copy shipped.
+output_names/
+
+# Machine-local agent overlays: personal notes for one machine, never shared.
+# AGENTS.md stays committed; these stay local.
+AGENTS.local.md
+CLAUDE.local.md
+
+# ----------------------------------------------------------------------------
+#  2. PLAIN-TEXT DATA FILES
+#  All .txt files are ignored, anywhere in the repo, by default.
+#  The web-standard public txt files below are allowed back in on purpose.
+# ----------------------------------------------------------------------------
+*.txt
+!robots.txt
+!ai.txt
+!llms.txt
+!security.txt
+!humans.txt
+!ads.txt
+!sitemap.txt
+!requirements*.txt
+!LICENSE.txt
+!CHANGELOG.txt
+!CMakeLists.txt
+
+# Raw / source data exports
+*.csv
+*.tsv
+*.dat
+
+# ----------------------------------------------------------------------------
+#  3. SECRETS, KEYS AND CREDENTIALS
+#  Never commit these. Cloudflare/API tokens belong in GitHub secrets or the
+#  Cloudflare dashboard — not in a file in this repo.
+# ----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+secrets/
+.wrangler/
+.dev.vars
+
+# ----------------------------------------------------------------------------
+#  4. DEPENDENCIES
+# ----------------------------------------------------------------------------
+node_modules/
+.pnpm-store/
+bower_components/
+vendor/
+
+# ----------------------------------------------------------------------------
+#  5. BUILD OUTPUT AND CACHES
+#  These are generated. Cloudflare rebuilds them, so they do not belong in Git.
+# ----------------------------------------------------------------------------
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.astro/
+.vercel/
+.netlify/
+.pages/
+.cache/
+.parcel-cache/
+.turbo/
+coverage/
+
+# ----------------------------------------------------------------------------
+#  6. LOGS, TEMPORARY AND BACKUP FILES
+# ----------------------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+*.rej
+*.swp
+*~
+
+# ----------------------------------------------------------------------------
+#  7. OPERATING SYSTEM AND EDITOR CLUTTER
+# ----------------------------------------------------------------------------
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.sublime-workspace

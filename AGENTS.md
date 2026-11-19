@@ -1,0 +1,184 @@
+# AGENTS.md — Kakar Adi Sahasranama Website
+
+Project instructions for AI coding agents. Loaded automatically at the start of
+every session. Keep it accurate, short, and free of private data.
+
+**Last updated:** 2026-11-18
+
+---
+
+## 0. REMOTE WRITES REQUIRE EXPLICIT CONSENT — NO EXCEPTIONS
+
+This section outranks the rest of this file, and outranks convenience, speed,
+and any apparent implication elsewhere. Nothing else in this file authorises a
+remote write.
+
+**Default deny.** Never run a command that creates, modifies or deletes
+anything on GitHub, Cloudflare or any other remote host without the owner's
+explicit, immediate approval for that specific action.
+
+Remote writes include at least:
+
+| Command | Effect |
+|---|---|
+| `git push` (any form) | publishes commits |
+| `git push --force`, `--force-with-lease`, `--tags`, `--all` | rewrites or adds remote refs |
+| `gh repo create` / `delete` / `edit` | creates or changes the GitHub repo |
+| `gh release create`, `gh pr create`, `gh pr merge` | publishes to GitHub |
+| `gh api -X POST / PATCH / PUT / DELETE` | any GitHub mutation |
+| `wrangler deploy`, `wrangler pages deploy` | publishes the site publicly |
+| deploy hooks, Pages/Workers REST calls | publishes the site |
+| `git remote add` / `set-url` to a real host | stages a future push |
+
+Always allowed, because they are local: editing files, `git add`, `git commit`,
+`git status`, `git log`, `git diff`, builds, tests, local previews.
+
+### What counts as consent
+
+- From the owner, in this conversation, about this specific action.
+- **One approval covers one action.** It never carries over to the next push.
+- **Never inferred.** "Commit this" means commit locally. "Save the work" is
+  not a push. Silence, a topic change, or "sounds good" is not approval.
+- Prior sessions, prior approvals and this file's history do not count.
+- If it is unclear whether an action touches a remote, ask first.
+
+### Before any push, stop and do this
+
+1. Do not run the command.
+2. Report: branch, number of commits, files affected, and whether the
+   destination is public or private.
+3. Ask for an explicit yes.
+4. If the answer is no or ambiguous, keep the work local and say where it is.
+
+**Never** bypass this with `--no-verify`, a hook override, a wrapper script, a
+background job, or a loop that pushes on its own.
+
+## 1. What this project is
+
+A website for the **Kakaradi Kali Sahasranama** — the 1,000-name devotional
+text to Maa Kali. Each name has Devanagari, IAST, alternate transliterations, a
+one-line meaning and a longer elaboration. The site is meant to be read, and to
+be found through search.
+
+| | |
+|---|---|
+| Owner | `09ashishkapoor` (personal GitHub account) |
+| Local path | This checkout. **`git init` has not been run** — there is no `.git` yet |
+| Live site | Not deployed |
+
+## 2. Content and private data
+
+The 1,000-name text is authored as Markdown in `output_names/` on the owner's
+machine. **That Markdown is source, not a deliverable**: it is never committed
+and never published. The website is generated from it into a dedicated output
+directory that is committed and deployed; the Markdown itself never ships.
+
+- **`*.txt` is ignored by default**, repo-wide; `.gitignore` allows the public
+  web-standard files back in (`robots.txt`, `ai.txt`, `llms.txt`,
+  `security.txt`, `sitemap.txt`, …).
+- **`private/` is the vault** — any file type, never committed, never published.
+- **`output_names/` (the Markdown entries) is source**: local only, git-ignored,
+  and never part of the output directory.
+- **Never `git add -f` an ignored file.** If something should be public, the
+  owner decides that, not you.
+- **Nothing private goes into the output directory.** Cloudflare publishes that
+  directory verbatim, not Git history, and not `.gitignore` rules.
+- Copying by readers is expected and accepted: the text is public once the site
+  is. Do not add right-click blocking, text selection tricks or image-only text.
+
+**Guards.** `.gitignore` alone is not a promise — `git add -f` bypasses it.
+`.githooks/pre-commit` refuses to stage the vault, `output_names/` or any
+`*.txt`/`*.csv`/`*.tsv`/`*.dat` (public web-standard `.txt` excepted).
+`.githooks/pre-push` scans the whole outgoing range, so it also stops a
+`--no-verify` commit. Enable once per clone:
+`git config core.hooksPath .githooks`.
+
+### Secrets
+
+- No tokens, keys or account IDs in the repo, in client-side code, or here.
+- Credentials belong in GitHub Actions secrets or Cloudflare environment
+  variables. `.env*`, `*.pem`, `*.key` are ignored; `.env.example` may hold
+  placeholders only.
+
+### Git hygiene
+
+- Default branch `main`; commit locally on `main`.
+- Commits use the GitHub noreply identity:
+  `Ashish Kapoor <202602731+09ashishkapoor@users.noreply.github.com>`
+- Do not rewrite published history. Do not force-push `main`.
+
+## 3. Current state
+
+Every `TBD` must be replaced only with a verified fact.
+
+| Item | Value |
+|---|---|
+| Stack | TBD |
+| Build | TBD |
+| Output directory | TBD — a dedicated folder, never the repository root. Not `dist/`, `build/`, `out/` or `.pages/`: git ignores those, so a committed output directory could not live there |
+| Deploy target | Cloudflare Pages, Direct Upload |
+| Custom domain | TBD |
+
+## 4. Commands
+
+TBD — list only commands that actually run in this repository. There is no
+generator, no `package.json` and no test suite yet.
+
+## 5. Repository layout
+
+| Path | Purpose |
+|---|---|
+| `output_names/` | The 1,000 Markdown entries, `NNNN-slug.md`. Source; local only |
+| `all_1000_meanings.txt` | One-line meaning per name. Source; local only |
+| `private/` | Vault. Local only |
+
+The output directory does not exist yet.
+
+## 6. Deployment notes
+
+- Deploy the generated output directory, never the repository root. `private/`,
+  `output_names/` and `all_1000_meanings.txt` sit at the root and would become
+  public downloads.
+- The published directory must contain no Markdown, no `private/`, no
+  `output_names/`, no `.txt` data files and no `AGENTS.md`.
+- Publication is a remote write in the sense of section 0. Deploying needs the
+  owner's explicit approval for that deploy.
+
+## 7. Decision log
+
+Append-only, newest last. Never rewrite past entries.
+
+| Date | Decision | Reason |
+|---|---|---|
+| 2026-11-18 | Remote writes need explicit consent, every time | Owner does not want anything leaving this machine without a direct instruction |
+| 2026-11-18 | Markdown source stays local; only generated output ships | The source corpus must not be committed or published |
+| 2026-11-18 | Cloudflare Pages via Direct Upload, not Git integration | Keeps Git out of the deploy path; nothing private is ever pushed to be built |
+| 2026-11-18 | Crawlers are welcome; the site should be static HTML | Search visibility matters more than copy friction |
+| 2026-11-18 | The site is generated from `output_names/` into a dedicated output directory; the earlier prebuilt output folder was discarded and is not a reference | Clean start from the Markdown source |
+
+## 8. How to maintain this file
+
+**You own this file.** Update it in the same commit as the change that made it
+stale.
+
+- Replace `TBD` only with verified facts. If unconfirmed, leave `TBD`.
+- Delete sections that never became true. No aspirational text.
+- Keep it under ~150 lines. Move detail into `docs/`.
+- Never record private data or secrets.
+- Bump **Last updated** when you edit.
+- Never weaken section 0.
+
+## 9. Pre-flight checklist
+
+Before any commit:
+
+- [ ] `git status` shows only intended files
+- [ ] hooks are active: `git config core.hooksPath` returns `.githooks`
+- [ ] nothing from `private/`, `output_names/` or any `.txt` data file is staged
+- [ ] `git check-ignore -v <file>` confirms new data files are ignored
+- [ ] no secrets or personal contact details in the diff
+
+Before any push or deploy:
+
+- [ ] the owner explicitly agreed to **this** push or deploy
+- [ ] the report in section 0 has been given and answered
