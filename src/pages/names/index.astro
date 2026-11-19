@@ -3,7 +3,7 @@ import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
 import { getContent } from '../../lib/names.js';
 import { SITE_URL } from '../../lib/site.js';
 
-const { ranges, total, uniqueCount } = getContent();
+const { ranges, total, pages } = getContent();
 
 const title = 'All 1,000 names — Kakar Adi Kali Sahasranama (Kakaradi) index';
 const description =
@@ -34,7 +34,7 @@ const schema = {
 				</ol>
 			</nav>
 
-			<p class="page-kicker">The whole index · {total.toLocaleString('en-US')} names · {uniqueCount} pages</p>
+			<p class="page-kicker">The whole index · {total.toLocaleString('en-US')} names · {pages.length.toLocaleString('en-US')} pages</p>
 			<h1 class="dev-title" lang="sa" style="font-size: clamp(40px, 6.4vw, 84px);">सहस्रनाम</h1>
 			<p class="iast-title">The thousand names</p>
 
@@ -65,9 +65,10 @@ const schema = {
 				<h2 class="sec" id="about-index"><span lang="sa">परिचय</span> About these pages</h2>
 				<div class="prose">
 					<p>
-						Each name has its own page with the Devanagari, the IAST transliteration, the source
-						form, a one-line meaning and a longer reading. Names repeat: the same name can occupy
-						more than one position, and its page lists every position it holds.
+						Every position has its own page with the Devanagari, the IAST transliteration, the
+						source form, a one-line meaning and a longer reading. Some titles repeat, but the
+						Sanskrit form or the meaning can differ, so each occurrence keeps its own page and
+						links to the other positions of the same title.
 					</p>
 					<p>
 						The text is 1,000 names long, arranged in ten sets of one hundred. Start anywhere —

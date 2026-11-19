@@ -57,10 +57,12 @@ function parseFile(file) {
 		else blocks.push({ type: 'p', html: displayName(inline(text.replace(/\n/g, ' '))) });
 	}
 
+	const nameSlug = slugify(title);
 	return {
 		position,
 		title,
-		slug: slugify(title),
+		nameSlug,
+		slug: `${String(position).padStart(4, '0')}-${nameSlug}`,
 		devanagari,
 		iast,
 		source,
@@ -93,24 +95,33 @@ export function getContent() {
 	}
 	if (entries.length !== 1000) throw new Error(`expected 1000 entries, found ${entries.length}`);
 
-	// One page per unique name; the text repeats 35 of them.
-	const bySlug = new Map();
-	for (const entry of entries) {
-		const page = bySlug.get(entry.slug);
-		if (page) {
-			page.positions.push(entry.position);
-			page.occurrences.push(entry);
-		} else {
-			bySlug.set(entry.slug, {
-				...entry,
-				positions: [entry.position],
-				occurrences: [entry],
-			});
+	// One page per position: 1,000 pages. Repeated English titles can differ in
+	// Sanskrit form or meaning, so they are not merged; each page cross-links the
+	// other positions of the same title.
+	const pages = entries.map((entry) => ({ ...entry, alsoAt: [] }));
+
+	const byName = new Map();
+	for (const page of pages) {
+		const list = byName.get(page.nameSlug) ?? [];
+		list.push(page);
+		byName.set(page.nameSlug, list);
+	}
+	for (const list of byName.values()) {
+		if (list.length < 2) continue;
+		for (const page of list) {
+			page.alsoAt = list
+				.filter((other) => other !== page)
+				.map((other) => ({
+					position: other.position,
+					slug: other.slug,
+					title: other.title,
+					devanagari: other.devanagari,
+					iast: other.iast,
+				}));
 		}
 	}
 
-	const namePages = [...bySlug.values()].sort((a, b) => a.positions[0] - b.positions[0]);
-	const slugSet = new Set(namePages.map((p) => p.slug));
+	const slugSet = new Set(pages.map((p) => p.slug));
 
 	const ranges = [];
 	for (let start = 1; start <= 1000; start += 100) {
@@ -130,6 +141,6 @@ export function getContent() {
 		if (slugSet.has(r.slug)) throw new Error(`name slug collides with range slug: ${r.slug}`);
 	}
 
-	cache = { entries, namePages, ranges, total: entries.length, uniqueCount: namePages.length };
+	cache = { entries, pages, ranges, total: entries.length, pageCount: pages.length };
 	return cache;
 }

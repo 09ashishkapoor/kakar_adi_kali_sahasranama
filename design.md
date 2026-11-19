@@ -260,7 +260,7 @@ Five templates carry the whole site.
 
 | Template | Routes | Composition |
 |---|---|---|
-| **Reader** | `/` | Frontispiece plate left; right leaf = kicker, Devanagari title, IAST, three counts (1,000 / 10 sets / 965 pages), intro, `Open the book →`. The spread shows the opening eleven and one specimen name page, both server-rendered. Search jumps to any of the 1,000 |
+| **Reader** | `/` | Frontispiece plate left; right leaf = kicker, Devanagari title, IAST, three counts (1,000 names / 10 sets / 1,000 name pages), intro, `Open the book →`. The spread shows the opening eleven and one specimen name page, both server-rendered. Search jumps to any of the 1,000 |
 | **Name** | `/names/0001-krim/` ×1000 | Breadcrumb → kicker → Devanagari `h1` → IAST → also-written → "What it means" panel + spelling table → elaboration prose with section heads → pager → see-also |
 | **Range** | `/names/1-100/` | Breadcrumb → Devanagari numeral title → IAST → range tabs → 100 dense index rows → prev/next range |
 | **Hub** | `/names/` | Range page minus the rows: title, tabs, 10-range contents list with first/last name, "about these pages" panel |

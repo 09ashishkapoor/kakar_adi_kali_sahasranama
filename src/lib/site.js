@@ -1,9 +1,8 @@
 /**
- * Site constants. Change SITE_URL when the domain is registered — it is the
- * only place the canonical origin is defined. Until then the build defaults to
- * the Cloudflare Pages hostname.
+ * Site constants. SITE_URL is the only place the canonical origin is defined.
+ * The registered canonical host is the default; set SITE_URL to override it.
  */
-export const SITE_URL = (process.env.SITE_URL || 'https://kakar-adi-kali-sahasranama.pages.dev').replace(/\/+$/, '');
+export const SITE_URL = (process.env.SITE_URL || 'https://kakaradikalisahasranama.com').replace(/\/+$/, '');
 
 export const SITE_NAME = 'Kakar Adi Kali Sahasranama';
 export const SITE_DEV = 'ककार आदि काली सहस्रनाम';

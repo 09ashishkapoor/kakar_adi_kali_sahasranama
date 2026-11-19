@@ -6,13 +6,13 @@
 
 ## Main pages
 
-- [The reader](https://kakar-adi-kali-sahasranama.pages.dev/): frontispiece and the opening eleven names.
-- [All 1,000 names](https://kakar-adi-kali-sahasranama.pages.dev/names/): the full index, searchable.
-- [What it is](https://kakar-adi-kali-sahasranama.pages.dev/kakaradi-kali-sahasranama/): the text, why devotees read it, quick FAQ.
-- [Recitation](https://kakar-adi-kali-sahasranama.pages.dev/kali-sahasranama-lyrics/): the names in sequence.
-- [Practice](https://kakar-adi-kali-sahasranama.pages.dev/kali-sahasranama-benefits/): what a reading is for.
-- [Print](https://kakar-adi-kali-sahasranama.pages.dev/kali-sahasranama-pdf/): printing from the browser.
-- [Sources](https://kakar-adi-kali-sahasranama.pages.dev/sources/): transliteration and editorial method.
+- [The reader](https://kakaradikalisahasranama.com/): frontispiece and the opening eleven names.
+- [All 1,000 names](https://kakaradikalisahasranama.com/names/): the full index, searchable.
+- [What it is](https://kakaradikalisahasranama.com/kakaradi-kali-sahasranama/): the text, why devotees read it, quick FAQ.
+- [Recitation](https://kakaradikalisahasranama.com/kali-sahasranama-lyrics/): the names in sequence.
+- [Practice](https://kakaradikalisahasranama.com/kali-sahasranama-benefits/): what a reading is for.
+- [Print](https://kakaradikalisahasranama.com/kali-sahasranama-pdf/): printing from the browser.
+- [Sources](https://kakaradikalisahasranama.com/sources/): transliteration and editorial method.
 
 ## Structure
 

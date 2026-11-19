@@ -3,8 +3,9 @@
 Research date: **2026-11-19**. `.com` statuses come from Verisign RDAP
 (`rdap.verisign.com/com/v1/domain/<name>`), authoritative for `.com`; the `.org`
 status comes from PIR RDAP. Both are authoritative for their TLD; this is not DNS
-guessing, which only proves a domain resolves. **Purchase status:** neither
-recommended domain is registered yet.
+guessing, which only proves a domain resolves. **Purchase status:**
+`kakaradikalisahasranama.com` is registered at Cloudflare (2026-11-19);
+`kakaradikali.com` is not purchased.
 
 No keyword-volume tool was available. Volumes are therefore **unknown**; demand
 is inferred from what the SERPs contain. Treat every "why" below as reasoning
@@ -30,8 +31,9 @@ The text is not unpublished. Searching `kakaradi kali sahasranama` returns:
 | **jaikhyapaparampara.com** | **our nine article chunks** | names 1-111, 112-222, 223-333, 334-444, 445-555, 556-666, 667-777, 778-888, 889-1000 |
 
 **Conclusion:** "world first" holds only for *a complete structured English
-reference with a page per name, search and a PDF*. Nobody has 965 indexable name
-pages. The text itself, in several scripts, is already out there.
+reference with a page per name, search and a PDF*. Nobody has 1,000 position
+pages (965 distinct names). The text itself, in several scripts, is already out
+there.
 
 `1000namesofkali.com` was **unregistered** when checked (RDAP 404, no DNS), as
 were `1000namesofmakali.com`'s neighbours. `1000namesofmakali.com` is registered
@@ -48,10 +50,11 @@ addresses — no content to beat.
 | **Exact niche** | `kakaradi kali sahasranama` · `kakaaradi…` · `kakar adi…` | Stotra Nidhi, our articles, Scribd |
 | Modifier | `… in english`, `… pdf`, `… meaning`, `… lyrics`, `… names 1-111` | Tantra Sadhana, Scribd, our articles |
 | Language | `… in kannada` / `malayalam` / `tamil` / `sinhala` | Stotra Nidhi, Slokam, Great Indian |
-| **Long tail ×965** | `krim meaning`, `karali meaning`, `kamalakshi meaning` | **nobody** |
+| **Long tail ×965 names** | `krim meaning`, `karali meaning`, `kamalakshi meaning` | **nobody** |
 
-The long tail is the strategy. 965 name pages with no competitor beats the head
-term, which we cannot win against aggregators and audio listings in the short run.
+The long tail is the strategy. 1,000 position pages (965 names) with no competitor
+beats the head term, which we cannot win against aggregators and audio listings in
+the short run.
 
 **Spelling matters.** Every SERP result spells it `kakaradi` — one token. The site
 displays "Kakar Adi" by the owner's instruction, so titles carry both:
@@ -66,8 +69,8 @@ Correct exact match is `kakaradikalisahasranama` — *kali* + *sahasranama*.
 
 | Domain | RDAP status | Notes |
 |---|---|---|
-| `kakaradikali.com` | **available** | 16 chars |
-| `kakaradikalisahasranama.com` | **available** | 27 chars, exact match |
+| `kakaradikalisahasranama.com` | **registered** (Cloudflare, 2026-11-19) | 27 chars, exact match; **canonical** |
+| `kakaradikali.com` | available | 16 chars; not purchased, optional alias |
 | `kakaradikalisehasranama.com` | available | misspelling; optional typo insurance |
 | `kakaradikali.org` | available | not needed (PIR RDAP) |
 | `1000namesofkali.com` | available | belongs to neither site; do not use |
@@ -81,28 +84,29 @@ sahasranama on the same queries. A 301 alias would pass link equity, but it
 still blurs two separately named brands; the point is to keep them distinct,
 not to buy every generic phrase.
 
-**Decision:** register both `kakaradikali.com` and
-`kakaradikalisahasranama.com`. One serves, the other redirects.
+**Decision (owner, 2026-11-19):** `kakaradikalisahasranama.com` is the canonical
+domain. `kakaradikali.com` is optional; if bought, it 301s to the long name.
 
-**Status:** neither is registered yet; both were still available on RDAP on the
-research date. Buy them before pointing the build at a canonical host.
+**Status:** `kakaradikalisahasranama.com` is registered at Cloudflare
+(registration 2026-11-19, Cloudflare nameservers). `kakaradikali.com` is not
+purchased; it remains optional.
 
 ### Which one serves
 
-Recommended canonical: **`kakaradikali.com`**
+**Canonical: `kakaradikalisahasranama.com`.**
 
-- 16 characters — sayable, typeable, printable on a card, forwardable on WhatsApp.
-  Devotional material spreads by sharing, not by URL recall.
-- It appears on the PDF cover, which today reads
-  `kakar-adi-kali-sahasranama.pages.dev`.
-- Exact-match domains have carried little ranking weight since Google's 2012 EMD
-  update, which targeted low-quality exact-match sites. Keyword work is done by
-  titles, H1s and 965 name pages.
+- It names the text itself — the Kakaradi Kali Sahasranama, the 1,000 names of
+  Maa Adi Kali / Adya Mahakali. The URL states the purpose.
+- `kakaradikali.com` is a truncated phrase that could belong to anything on its
+  own; it does not say what the site is.
+- It matches the exact query, so the domain looks relevant in a SERP.
+- The cost is length: 27 characters, harder to say and print than the short form.
+  The PDF cover, search results and shares carry it; the display name "Kakar Adi"
+  carries the human-facing side.
 
-Tradeoff, stated plainly: `kakaradikalisahasranama.com` in a SERP looks precisely
-relevant and can lift click-through a few percent. If the owner prefers that,
-swap the two roles — the implementation is one constant plus the redirect
-direction.
+Exact-match domains have carried little ranking weight since Google's 2012 EMD
+update; the long domain's value is identity and URL relevance, not a ranking
+shortcut. The page title, H1, 1,000 position pages and links still do the work.
 
 ---
 
@@ -117,21 +121,22 @@ zone-level **Redirect Rule** (or Bulk Redirect) instead:
 
 | When the request host is | 301 to |
 |---|---|
-| `kakaradikalisahasranama.com` | `https://kakaradikali.com` + the original path and query |
-| `www.kakaradikali.com` | `https://kakaradikali.com` + the original path and query |
+| `kakaradikali.com` | `https://kakaradikalisahasranama.com` + the original path and query |
+| `www.kakaradikali.com` | `https://kakaradikalisahasranama.com` + the original path and query |
+| `www.kakaradikalisahasranama.com` | `https://kakaradikalisahasranama.com` + the original path and query |
 
 If you want the rule in the repository instead of the dashboard, give the alias
 its own Pages project, attach **only** the alias domain to it, and use a
 path-only `_redirects`:
 
 ```
-/*  https://kakaradikali.com/:splat  301
+/*  https://kakaradikalisahasranama.com/:splat  301
 ```
 
 Do not put a hostname in the source of `_redirects`; that form is ignored.
 
-If `kakaradikalisahasranama.com` is canonical instead, invert both targets;
-everything else stays the same.
+The short domain is not bought, so only the `www` → apex rule is needed. The
+canonical host is the long name; there is no second site to redirect.
 
 What this achieves:
 
@@ -145,7 +150,7 @@ winner instead of you.
 
 Also required on the primary host: `http` → `https` (Always Use HTTPS), HSTS,
 and one clean absolute URL in every canonical and `og:url`. Search Console:
-verify both properties, submit the sitemap only for the canonical host.
+verify the canonical property, submit the sitemap only for it.
 
 ---
 
@@ -154,7 +159,7 @@ verify both properties, submit the sitemap only for the canonical host.
 | Property | Text | Target queries | Rule |
 |---|---|---|---|
 | `1000namesofmakali.com` | Adya Mahakali, 1,072 names | `adya mahakali sahasranama`, `1000 names of maa kali` | keep separate; one cross-link each way |
-| `kakaradikali.com` (new) | Kakaradi Kali, 1,000 names | `kakaradi kali sahasranama` + 965 name queries | canonical for this text |
+| `kakaradikalisahasranama.com` (new) | Kakaradi Kali, 1,000 names | `kakaradi kali sahasranama` + 1,000 position queries | canonical for this text |
 | `jaikhyapaparampara.com` | parampara site, nine article chunks | `kakaradi kali sahasranama names 1-111` etc. | long-form; keep, link to the site |
 
 Two internal fixes that cost nothing:
@@ -175,22 +180,24 @@ frame and design language. Keeping the text name in every H1 and title
 
 ## 6. Implementation checklist
 
-When the domains are live:
+When the canonical domain is live:
 
-- [ ] `src/lib/site.js` → `SITE_URL` set to the canonical host (or build with
-      `SITE_URL=...`). It feeds canonical tags, OG URLs and `sitemap.xml`.
+- [ ] `src/lib/site.js` → `SITE_URL` set to `https://kakaradikalisahasranama.com`
+      (or build with `SITE_URL=...`). It feeds canonical tags, OG URLs and
+      `sitemap.xml`.
 - [ ] `public/robots.txt` → update the `Sitemap:` line by hand.
 - [ ] `public/llms.txt` → update its seven absolute URLs by hand.
-- [ ] Zone-level Redirect Rule (or Bulk Redirect): alias host → canonical host,
-      path and query preserved; `www` → apex on the canonical host.
+- [ ] Zone-level Redirect Rule (or Bulk Redirect): `www` → apex on the canonical
+      host; if the short domain is bought, `kakaradikali.com` → the long name,
+      path and query preserved.
 - [ ] Cloudflare: Always Use HTTPS on, HSTS enabled.
-- [ ] Search Console: verify both, submit `sitemap.xml` for the canonical only.
+- [ ] Search Console: verify the canonical property, submit `sitemap.xml` for it.
 - [ ] Rebuild and confirm every canonical and `og:url` is one clean absolute URL
       on the new host — not merely that the host string appears.
 - [ ] Update the PDF cover line (`src/pages/download/`) and regenerate it.
 - [ ] Update `AGENTS.md` §1 (`Live site`) and §3 (`Custom domain`).
 
-Verification after the switch: `npm run check` (987 pages, no broken links) plus a
+Verification after the switch: `npm run check` (1,022 pages, no broken links) plus a
 grep of `dist/` for the old host — it must return nothing.
 
 ---

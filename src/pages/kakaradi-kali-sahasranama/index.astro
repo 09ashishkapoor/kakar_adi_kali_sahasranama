@@ -3,8 +3,9 @@ import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
 import { getContent } from '../../lib/names.js';
 import { SITE_URL } from '../../lib/site.js';
 
-const { total, uniqueCount, ranges } = getContent();
+const { total, ranges } = getContent();
 const title = 'What Is the Kakar Adi Kali Sahasranama?';
+const seoTitle = 'Kakaradi Kali Sahasranama (Kakar Adi) — 1,000 Names, Meaning';
 const description =
 	'The Kakar Adi Kali Sahasranama is a 1,000-name hymn to Maa Kali arranged in ten sets of one hundred. What it is, why devotees read it, and how to read it.';
 
@@ -18,7 +19,7 @@ const schema = {
 };
 ---
 
-<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/kakaradi-kali-sahasranama/" schema={schema} colophonLabel="What it is">
+<ReferenceLayout title={seoTitle} description={description} canonical="/kakaradi-kali-sahasranama/" schema={schema} colophonLabel="What it is">
 	<div class="page">
 		<div class="narrow">
 			<nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -63,8 +64,9 @@ const schema = {
 						too, so the same name is findable as <em>Kali</em>, <em>Kālī</em> or <em>Kaali</em>.
 					</p>
 					<p>
-						Names repeat. {uniqueCount} distinct names occupy the {total.toLocaleString('en-US')}
-						positions, and a repeated name has one page listing every position it holds.
+						Every position has its own page. Some titles repeat — but the Sanskrit form or the
+						meaning can differ at each occurrence, so each page keeps its own Devanagari, IAST and
+						meaning, and links to the other positions of the same title.
 					</p>
 				</div>
 			</section>

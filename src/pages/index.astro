@@ -3,16 +3,15 @@ import ReferenceLayout from '../layouts/ReferenceLayout.astro';
 import { getContent } from '../lib/names.js';
 import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, IMAGE_CREDIT } from '../lib/site.js';
 
-const { ranges, namePages, total, uniqueCount } = getContent();
+const { ranges, pages, total } = getContent();
 const opening = ranges[0].entries.slice(0, 11);
-const specimen = namePages[0];
-const specimenEntry = specimen.occurrences[0];
+const specimen = pages[0];
 
 const schema = {
 	'@context': 'https://schema.org',
 	'@type': 'WebSite',
 	name: SITE_NAME,
-	alternateName: 'Kakar Adi Kali Sahasranama',
+	alternateName: ['Kakaradi Kali Sahasranama', 'Kakaradi Kali Sahasranama Stotram'],
 	url: `${SITE_URL}/`,
 	description: SITE_DESCRIPTION,
 	inLanguage: 'en',
@@ -58,11 +57,12 @@ const schema = {
 			<p class="kicker">The Sahasranāma, printed as a book</p>
 			<h1 lang="sa"><span class="lt">ककार आदि काली</span><span class="lt">सहस्रनाम</span></h1>
 			<p class="lat-title">Kakar Adi Kali Sahasranama</p>
+			<p class="lat-alt">Also written “Kakaradi Kali Sahasranama”</p>
 
 			<div class="stats-row">
 				<div><b>{total.toLocaleString('en-US')}</b>Names</div>
 				<div><b>10</b>Sets of 100</div>
-				<div><b>{uniqueCount}</b>Pages</div>
+				<div><b>{pages.length.toLocaleString('en-US')}</b>Name pages</div>
 			</div>
 
 			<p class="lede">
@@ -79,7 +79,7 @@ const schema = {
 	<section class="reader" aria-label="The opening spread">
 		<div class="spread-head">
 			<span>Set <b>I</b> · Names 1–100</span>
-			<span>{uniqueCount} name pages · {total.toLocaleString('en-US')} names</span>
+			<span>{pages.length.toLocaleString('en-US')} name pages · {total.toLocaleString('en-US')} names</span>
 		</div>
 
 		<div class="mindex">
@@ -137,17 +137,17 @@ const schema = {
 
 			<div class="leaf-right">
 				<div class="page-eyebrow">
-					<span>Name {specimen.positions[0]}</span>
+					<span>Name {specimen.position}</span>
 					<span>{specimen.meaning ? 'A specimen page' : ''}</span>
 				</div>
-				<h2 class="page-name" lang="sa">{specimenEntry.devanagari}</h2>
-				<p class="page-iast">{specimenEntry.iast}</p>
-				<p class="page-one">{specimenEntry.meaning}</p>
+				<h2 class="page-name" lang="sa">{specimen.devanagari}</h2>
+				<p class="page-iast">{specimen.iast}</p>
+				<p class="page-one">{specimen.meaning}</p>
 				<div class="page-rule"></div>
-				<div class="page-elab" set:html={specimenEntry.elaboration[0]?.html ?? ''}></div>
+				<div class="page-elab" set:html={specimen.elaboration[0]?.html ?? ''}></div>
 				<div class="page-foot">
-					<span class="src">Source form: {specimenEntry.source}</span>
-					<span class="folio" aria-hidden="true">{String(specimen.positions[0]).padStart(2, '0')}</span>
+					<span class="src">Source form: {specimen.source}</span>
+					<span class="folio" aria-hidden="true">{String(specimen.position).padStart(2, '0')}</span>
 				</div>
 			</div>
 		</div>
@@ -196,7 +196,7 @@ const schema = {
 					Every page here keeps three things together — the <strong>Devanagari</strong>, the
 					<strong>IAST transliteration</strong>, and the <strong>English meaning</strong> — because
 					Sanskrit reaches English through several romanizations. Whichever spelling you arrived
-					with, the page for that name lists it.
+					with, the page for that position keeps it.
 				</p>
 				<p>
 					There is nothing to sign up for and nothing to install. The whole book is here, in HTML,

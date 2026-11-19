@@ -22,7 +22,7 @@ elaboration.
 
 ## Status
 
-Built. `npm run dev` serves it locally; `npm run build` produces 987 static
+Built. `npm run dev` serves it locally; `npm run build` produces 1,022 static
 pages in `dist/`; `npm run check` verifies links and file types. Cloudflare
 Pages is **not yet connected** — deploying is `dist/`, never the repository
 root, and needs the owner's approval each time.

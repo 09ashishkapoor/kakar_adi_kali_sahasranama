@@ -85,9 +85,10 @@ git-ignored and uploaded, never committed; the Markdown itself never ships.
   directory verbatim, not Git history, and not `.gitignore` rules.
 - Copying by readers is expected and accepted: the text is public once the site
   is. Do not add right-click blocking, text selection tricks or image-only text.
-- **1,000 positions, 965 names.** 32 names repeat, holding 35 extra positions
-  (`kali` sits at 2, 551 and 588). Pages are keyed by slug and list every
-  position. Never switch to one page per position — that ships 35 near-duplicates.
+- **1,000 positions, 1,000 pages.** 32 English titles repeat across 35 extra
+  positions (`kali` at 2, 551, 588); only 5 are exact duplicates — 4 differ in
+  Sanskrit form and 23 in meaning. Every position has its own `NNNN-slug` page
+  and cross-links the other positions of the same title.
 - **The source says "Kakaradi"; the site says "Kakar Adi".** The substitution
   lives in `displayName()` in `src/lib/text.js`. Never edit the 1,000 source
   files to fix it, and never drop the substitution.
@@ -123,19 +124,19 @@ Every `TBD` must be replaced only with a verified fact.
 | Item | Value |
 |---|---|
 | Stack | Astro 6.4.8, static output, hand-written CSS, no UI framework, no client framework |
-| Build | `npm run build` → `dist/`; 987 pages (986 routes + `404.html`) in ~4 s |
+| Build | `npm run build` → `dist/`; 1,022 pages (1,021 routes + `404.html`) in ~5–10 s |
 | Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
 | Design | The Pothi system, in `design.md` |
 | Deploy target | Cloudflare Pages, Direct Upload |
 | Placeholders | `/the-book/` is a `noindex` "under construction" page. The PDF is real, at `public/downloads/` |
-| Custom domain | Not registered — planned: `kakaradikali.com` (canonical) and `kakaradikalisahasranama.com` (301 alias), per `domain-seo.md` §3 |
+| Custom domain | Registered at Cloudflare (2026-11-19) — canonical: `kakaradikalisahasranama.com`; `kakaradikali.com` not purchased |
 
 ## 4. Commands
 
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server with hot reload |
-| `npm run build` | Parse `output_names/` → 987 pages in `dist/` |
+| `npm run build` | Parse `output_names/` → 1,022 pages in `dist/` |
 | `npm run preview` | Serve the built `dist/` |
 | `npm run check` | Build, then verify file types and all internal links |
 
@@ -182,6 +183,8 @@ Append-only, newest last. Never rewrite past entries.
 | 2026-11-19 | The PDF edition carries names, transliterations and our meanings — not the source's Sanskrit | Sanskrit Documents asks that its files not be republished; this is our own study edition |
 | 2026-11-19 | Register `kakaradikali.com` (canonical) and `kakaradikalisahasranama.com` (301 to it); reject `kalisahasranama.com` | Short domain is shareable and printable; the generic one would compete with `1000namesofmakali.com`. Research in `domain-seo.md` |
 | 2026-11-19 | The PDF landing page is a real indexable page; `/the-book/` is the only placeholder | The 43-page PDF exists and is linked; only the book is still unwritten |
+| 2026-11-19 | Canonical is `kakaradikalisahasranama.com`; `kakaradikali.com` is optional and 301s to it | The long name states the text and its purpose; the short is an ambiguous phrase on its own. Supersedes the earlier short-canonical decision |
+| 2026-11-19 | One page per position: 1,000 name pages, not 965 | 32 English titles repeat, but 4 differ in Sanskrit form and 23 in meaning; only 5 are exact duplicates. Grouping by title dropped content |
 
 ## 8. How to maintain this file
 
@@ -206,7 +209,7 @@ stale.
 Before any commit:
 
 - [ ] `git status` shows only intended files
-- [ ] `npm run check` passes (987 pages, no broken links, no forbidden files)
+- [ ] `npm run check` passes (1,022 pages, no broken links, no forbidden files)
 - [ ] hooks are active: `git config core.hooksPath` returns `.githooks`
 - [ ] nothing from `private/`, `output_names/` or any `.txt` data file is staged
 - [ ] `git check-ignore -v <file>` confirms new data files are ignored

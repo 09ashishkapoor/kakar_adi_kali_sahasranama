@@ -1,20 +1,17 @@
 import { getContent } from '../lib/names.js';
 
-/** The prebuilt search index: one row per unique name page. */
+/** The prebuilt search index: one row per position page. */
 export function GET() {
-	const { namePages } = getContent();
-	const rows = namePages.map((page) => {
-		const first = page.occurrences[0];
-		return {
-			s: page.slug,
-			n: page.positions[0],
-			t: page.title,
-			d: first.devanagari,
-			i: first.iast,
-			m: first.meaning,
-			f: page.occurrences.map((o) => o.foldKey).join(' '),
-		};
-	});
+	const { pages } = getContent();
+	const rows = pages.map((page) => ({
+		s: page.slug,
+		n: page.position,
+		t: page.title,
+		d: page.devanagari,
+		i: page.iast,
+		m: page.meaning,
+		f: page.foldKey,
+	}));
 
 	return new Response(JSON.stringify(rows), {
 		headers: {
