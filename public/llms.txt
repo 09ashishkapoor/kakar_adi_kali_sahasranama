@@ -8,7 +8,7 @@
 
 - [The reader](https://kakar-adi-kali-sahasranama.pages.dev/): frontispiece and the opening eleven names.
 - [All 1,000 names](https://kakar-adi-kali-sahasranama.pages.dev/names/): the full index, searchable.
-- [The book](https://kakar-adi-kali-sahasranama.pages.dev/the-book/): what the text is and how to read it.
+- [What it is](https://kakar-adi-kali-sahasranama.pages.dev/kakaradi-kali-sahasranama/): the text, why devotees read it, quick FAQ.
 - [Recitation](https://kakar-adi-kali-sahasranama.pages.dev/kali-sahasranama-lyrics/): the names in sequence.
 - [Practice](https://kakar-adi-kali-sahasranama.pages.dev/kali-sahasranama-benefits/): what a reading is for.
 - [Print](https://kakar-adi-kali-sahasranama.pages.dev/kali-sahasranama-pdf/): printing from the browser.
@@ -20,6 +20,12 @@ Ten sets of one hundred, in order:
 
 - Names 1-100 through 901-1000: /names/1-100/ ... /names/901-1000/
 - One page per distinct name: /names/<slug>/
+
+## Source
+
+The Sanskrit text is the kakArAdi kAlI sahasranAma stotram (also kAlI medhAsAmrAjyaprada sahasranAma),
+hosted by Sanskrit Documents: https://sanskritdocuments.org/doc_devii/kaaliisahasra.html
+That edition is for personal study; it is cited and linked here, not republished.
 
 ## Related
 

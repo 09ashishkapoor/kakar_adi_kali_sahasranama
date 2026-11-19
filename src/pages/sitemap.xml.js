@@ -4,7 +4,7 @@ import { SITE_URL } from '../lib/site.js';
 export function GET() {
 	const { namePages, ranges } = getContent();
 
-	const staticPages = ['/', '/names/', '/the-book/', '/kali-sahasranama-lyrics/', '/kali-sahasranama-benefits/', '/kali-sahasranama-pdf/', '/about/', '/sources/', '/privacy/'];
+	const staticPages = ['/', '/names/', '/kakaradi-kali-sahasranama/', '/kali-sahasranama-lyrics/', '/kali-sahasranama-benefits/', '/kali-sahasranama-pdf/', '/about/', '/sources/', '/privacy/'];
 
 	const urls = [
 		...staticPages.map((path) => ({ loc: `${SITE_URL}${path}`, priority: path === '/' ? '1.0' : '0.8' })),

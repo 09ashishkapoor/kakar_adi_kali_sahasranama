@@ -114,7 +114,7 @@ Every `TBD` must be replaced only with a verified fact.
 | Item | Value |
 |---|---|
 | Stack | Astro 6.4.8, static output, one hand-written stylesheet, no UI framework, no client framework |
-| Build | `npm run build` → `dist/`; 985 pages in ~4 s (verified) |
+| Build | `npm run build` → `dist/`; 986 pages in ~4 s (verified) |
 | Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
 | Design | The Pothi system, in `design.md` |
 | Deploy target | Cloudflare Pages, Direct Upload |
@@ -170,6 +170,8 @@ Append-only, newest last. Never rewrite past entries.
 | 2026-11-18 | Cloudflare Pages via Direct Upload, not Git integration | Keeps Git out of the deploy path; nothing private is ever pushed to be built |
 | 2026-11-18 | Crawlers are welcome; the site should be static HTML | Search visibility matters more than copy friction |
 | 2026-11-18 | The site is generated from `output_names/` into a dedicated output directory; the earlier prebuilt output folder was discarded and is not a reference | Clean start from the Markdown source |
+| 2026-11-19 | The Sanskrit source is cited and linked, never republished | Sanskrit Documents asks that its files not be copied or reposted; the site's own names, transliterations and commentary ship instead |
+| 2026-11-19 | `/the-book/` and `/kali-sahasranama-pdf/` are `noindex` placeholders until written | Do not advertise an edition that does not exist |
 
 ## 8. How to maintain this file
 

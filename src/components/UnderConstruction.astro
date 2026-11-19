@@ -1,0 +1,34 @@
+---
+// Shared notice for routes whose content is not written yet.
+const { kicker = 'In preparation', heading, what, bullets = [], label = 'In preparation' } = Astro.props;
+---
+
+<div class="page">
+	<div class="narrow">
+		<nav class="breadcrumbs" aria-label="Breadcrumb">
+			<ol>
+				<li><a href="/">Home</a></li>
+				<li aria-current="page">{heading}</li>
+			</ol>
+		</nav>
+
+		<p class="page-kicker">{kicker}</p>
+		<h1>{heading}</h1>
+
+		<section class="landing-section" aria-labelledby="notice">
+			<h2 class="sec" id="notice"><span lang="sa">निर्माणाधीन</span> Under construction</h2>
+			<div class="prose">
+				<p class="drop">{what}</p>
+				{bullets.length > 0 && (
+					<ul>
+						{bullets.map((item) => <li set:html={item} />)}
+					</ul>
+				)}
+				<p>
+					Everything in the text itself is already readable: the
+					<a class="u" href="/names/">complete thousand names</a> are live, one page each.
+				</p>
+			</div>
+		</section>
+	</div>
+</div>
