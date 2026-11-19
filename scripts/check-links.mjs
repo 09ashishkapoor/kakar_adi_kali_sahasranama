@@ -9,6 +9,7 @@ import { join, extname } from 'node:path';
 const DIST = 'dist';
 const ALLOWED = new Set(['.html', '.css', '.js', '.json', '.xml', '.txt', '.webmanifest', '.webp', '.avif', '.png', '.svg', '.ico', '.woff2', '.pdf', '.jpg']);
 const CLOUDFLARE = new Set(['_headers', '_redirects']);
+const PUBLIC_TXT = /^(robots|ai|llms|security|humans|ads|sitemap|LICENSE|CHANGELOG|CMakeLists|requirements.*)\.txt$/;
 const FORBIDDEN = /(^|\/)(private|output_names)(\/|$)|\.(md|csv|tsv|dat)$/i;
 
 function walk(dir, out = []) {
@@ -34,6 +35,7 @@ for (const file of files) {
 	const ext = extname(file).toLowerCase();
 	const name = rel.split('/').pop();
 	if (!ALLOWED.has(ext) && !CLOUDFLARE.has(name)) problems.push(`unexpected file type in dist/: ${rel}`);
+	if (ext === '.txt' && (rel.includes('/') || !PUBLIC_TXT.test(name))) problems.push(`unexpected .txt in dist/: ${rel}`);
 }
 
 let links = 0;

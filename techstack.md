@@ -189,7 +189,7 @@ not an aspiration.
 ```bash
 npm install
 npm run dev      # dev server with hot reload
-npm run build    # parses output_names/ → dist/, 985 pages in ~4 s
+npm run build    # parses output_names/ → dist/, 987 pages in ~4 s
 npm run preview  # serves dist/
 npm run check    # build + scripts/check-links.mjs
 ```

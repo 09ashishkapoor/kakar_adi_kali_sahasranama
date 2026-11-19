@@ -123,19 +123,19 @@ Every `TBD` must be replaced only with a verified fact.
 | Item | Value |
 |---|---|
 | Stack | Astro 6.4.8, static output, hand-written CSS, no UI framework, no client framework |
-| Build | `npm run build` → `dist/`; 986 pages (985 routes + `404.html`) in ~4 s |
+| Build | `npm run build` → `dist/`; 987 pages (986 routes + `404.html`) in ~4 s |
 | Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
 | Design | The Pothi system, in `design.md` |
 | Deploy target | Cloudflare Pages, Direct Upload |
 | Placeholders | `/the-book/` is a `noindex` "under construction" page. The PDF is real, at `public/downloads/` |
-| Custom domain | TBD |
+| Custom domain | Not registered — planned: `kakaradikali.com` (canonical) and `kakaradikalisahasranama.com` (301 alias), per `domain-seo.md` §3 |
 
 ## 4. Commands
 
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server with hot reload |
-| `npm run build` | Parse `output_names/` → 986 pages in `dist/` |
+| `npm run build` | Parse `output_names/` → 987 pages in `dist/` |
 | `npm run preview` | Serve the built `dist/` |
 | `npm run check` | Build, then verify file types and all internal links |
 
@@ -181,19 +181,22 @@ Append-only, newest last. Never rewrite past entries.
 | 2026-11-19 | Guide, about, privacy and sources copy is ported from the reference site, not rewritten | Owner's words; paraphrasing them is a defect |
 | 2026-11-19 | The PDF edition carries names, transliterations and our meanings — not the source's Sanskrit | Sanskrit Documents asks that its files not be republished; this is our own study edition |
 | 2026-11-19 | Register `kakaradikali.com` (canonical) and `kakaradikalisahasranama.com` (301 to it); reject `kalisahasranama.com` | Short domain is shareable and printable; the generic one would compete with `1000namesofmakali.com`. Research in `domain-seo.md` |
+| 2026-11-19 | The PDF landing page is a real indexable page; `/the-book/` is the only placeholder | The 43-page PDF exists and is linked; only the book is still unwritten |
 
 ## 8. How to maintain this file
 
 **You own this file.** Update it in the same commit as the change that made it
 stale.
 
-- **The reference site is the copy source.** `productionwebsite/1000namesofmaadya`
-  supplies the footer, the guide pages and their wording. Port its text; change
-  only names, counts, URLs and facts that genuinely differ. Do not rewrite it in
-  your own words — a paraphrase is a defect, not an improvement.
+- **The reference site is the copy source.** `../productionwebsite/1000namesofmaadya`
+  (a sibling checkout, outside this repo) supplies the footer, the guide pages and
+  their wording. Port its text; change only names, counts, URLs and facts that
+  genuinely differ. Do not rewrite it in your own words — a paraphrase is a
+  defect, not an improvement.
 - Replace `TBD` only with verified facts. If unconfirmed, leave `TBD`.
 - Delete sections that never became true. No aspirational text.
-- Keep it under ~150 lines. Move detail into `docs/`.
+- Keep it under ~220 lines. If it grows past that, move detail into `docs/`
+  (create it) and leave a pointer.
 - Never record private data or secrets.
 - Bump **Last updated** when you edit.
 - Never weaken section 0.
@@ -203,7 +206,7 @@ stale.
 Before any commit:
 
 - [ ] `git status` shows only intended files
-- [ ] `npm run check` passes (986 pages, no broken links, no forbidden files)
+- [ ] `npm run check` passes (987 pages, no broken links, no forbidden files)
 - [ ] hooks are active: `git config core.hooksPath` returns `.githooks`
 - [ ] nothing from `private/`, `output_names/` or any `.txt` data file is staged
 - [ ] `git check-ignore -v <file>` confirms new data files are ignored

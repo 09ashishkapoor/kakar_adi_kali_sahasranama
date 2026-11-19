@@ -19,7 +19,7 @@ const {
 } = Astro.props;
 
 const fullTitle = title;
-const canonicalUrl = `${SITE_URL}${canonical}`;
+const canonicalUrl = /^https?:\/\//i.test(canonical) ? canonical : `${SITE_URL}${canonical}`;
 const ogImage = `${SITE_URL}${OG_IMAGE}`;
 ---
 
