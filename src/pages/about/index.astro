@@ -1,23 +1,26 @@
 ---
 import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
-import { getContent } from '../../lib/names.js';
-import { SITE_URL, IMAGE_CREDIT } from '../../lib/site.js';
+import { SITE_URL } from '../../lib/site.js';
 
-const { total, uniqueCount } = getContent();
-
-const title = 'About this edition';
+const canonical = `${SITE_URL}/about/`;
+const title = 'About the Project & Author | Kakar Adi Kali Sahasranama';
 const description =
-	'Who made the Kakar Adi Kali Sahasranama reading edition, what it contains, how it is built, and the terms it is shared under.';
+	'Kakar Adi Kali Sahasranama is a free devotional reference for the 1,000 names of Maa Kali, with English meanings, Devanagari spellings and transliteration.';
 
 const schema = {
 	'@context': 'https://schema.org',
 	'@type': 'AboutPage',
+	'@id': `${canonical}#about`,
 	name: title,
-	url: `${SITE_URL}/about/`,
+	description,
+	url: canonical,
+	inLanguage: 'en',
 };
+
+const repo = 'https://github.com/09ashishkapoor/kakar_adi_kali_sahasranama';
 ---
 
-<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/about/" schema={schema} colophonLabel="About">
+<ReferenceLayout title={title} description={description} canonical={canonical} schema={schema} colophonLabel="About">
 	<div class="page">
 		<div class="narrow">
 			<nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -27,58 +30,96 @@ const schema = {
 				</ol>
 			</nav>
 
-			<p class="page-kicker">The edition</p>
-			<h1>About this edition</h1>
+			<p class="page-kicker">About the project</p>
+			<h1>About Kakar Adi Kali Sahasranama</h1>
 
-			<section class="landing-section" aria-labelledby="what">
-				<h2 class="sec" id="what"><span lang="sa">स्वरूप</span> What this is</h2>
-				<div class="prose">
-					<p class="drop">
-						A free reading edition of the Kakar Adi Kali Sahasranama: {total.toLocaleString('en-US')} names
-						across {uniqueCount} pages, each with Devanagari, IAST, the source transliteration, alternate
-						spellings and a meaning.
-					</p>
-					<p>
-						It is a reading tool, not a ritual manual. Nothing here prescribes a procedure, sells an
-						initiation, or claims a spiritual result.
-					</p>
-				</div>
+			<figure class="page-figure">
+				<picture>
+					<source
+						type="image/avif"
+						srcset="/img/deity-480.avif 480w, /img/deity-800.avif 800w"
+						sizes="(max-width: 760px) 100vw, 640px"
+					/>
+					<img
+						src="/img/deity-800.webp"
+						srcset="/img/deity-480.webp 480w, /img/deity-800.webp 800w"
+						sizes="(max-width: 760px) 100vw, 640px"
+						width="602"
+						height="800"
+						alt="Four-armed murti of Maa Kali, red-lit against black, trident and severed head in her upper hands."
+						loading="lazy"
+						decoding="async"
+					/>
+				</picture>
+				<figcaption>Maa Kali — devotional image used on this site.</figcaption>
+			</figure>
+
+			<section class="hero-panel">
+				<p class="intro">
+					<strong>Kakar Adi Kali Sahasranama</strong> is a free devotional reference for the Kakar Adi Kali
+					Sahasranama: 1,000 names of Maa Kali with English meanings, Devanagari spellings, and transliteration.
+					It is maintained by <strong>Kaliputra Ashish</strong> and dedicated to
+					<strong>Shri Praveen Radhakrishnan</strong> and the <strong>Khyapa Parampara</strong>.
+				</p>
+				<nav class="page-nav" aria-label="About navigation">
+					<ul>
+						<li><a href="/names/">Browse all names</a></li>
+						<li><a href="/kakaradi-kali-sahasranama/">What this text is</a></li>
+						<li><a href="/sources/">Sources and editorial method</a></li>
+						<li><a href={repo} rel="noopener noreferrer">Repository</a></li>
+					</ul>
+				</nav>
 			</section>
 
-			<section class="landing-section" aria-labelledby="built">
-				<h2 class="sec" id="built"><span lang="sa">निर्माण</span> How it is built</h2>
-				<div class="prose">
-					<p>
-						The site is static HTML generated from a Markdown source corpus. Every name is a real page
-						with its own URL, rendered at build time — there is no client-side routing and no database.
-						The type and page design are set in the Pothi system: paper, ink, cinnabar and gold.
-					</p>
-					<p>
-						No analytics, no advertising, no third-party requests. Fonts are self-hosted; the only
-						thing stored on your device is your theme choice and your place in the book.
-					</p>
-				</div>
+			<section class="source-notes">
+				<h2>What this site is</h2>
+				<p>
+					The project exists to support devotional reading and study of the Kakar Adi Kali Sahasranama. It
+					presents the full name list with one-line meanings and longer explanatory notes, a searchable reader, a
+					static names hub, and a printable page. Everything is offered free, without registration.
+				</p>
+				<p>
+					The site is intentionally simple and open: it is a static website with no accounts and no paywall, and
+					its source code is public.
+				</p>
 			</section>
 
-			<section class="landing-section" aria-labelledby="image">
-				<h2 class="sec" id="image"><span lang="sa">चित्र</span> The image</h2>
-				<div class="prose">
-					<p>
-						The frontispiece is a photograph of a four-armed murti of Maa Kali, red-lit against black.
-						Credit: <strong>{IMAGE_CREDIT}</strong>. It is used with the owner's permission and appears
-						in every edition of this site.
-					</p>
-				</div>
+			<section class="source-notes">
+				<h2>How the text was compiled</h2>
+				<p>
+					The names follow the Kakar Adi Kali Sahasranama as compiled for this project, checked against the
+					Sanskrit edition hosted by Sanskrit Documents. Public reference material and the broader Shakta
+					devotional tradition informed the explanatory notes. The English meanings and elaborations are
+					interpretive study notes, not a translation of a single critical edition.
+				</p>
+				<p>
+					The source basis, editorial approach, and citation guidance are documented on the
+					<a href="/sources/">sources page</a>.
+				</p>
 			</section>
 
-			<section class="landing-section" aria-labelledby="terms">
-				<h2 class="sec" id="terms"><span lang="sa">शर्त</span> Reuse</h2>
-				<div class="prose">
-					<p>
-						The text is free to read, copy, print and share. Copying by readers is expected — there is
-						no right-click blocking, no selection trick and no image-only text anywhere on the site.
-					</p>
-				</div>
+			<section class="source-notes">
+				<h2>Transliteration approach</h2>
+				<p>
+					Sanskrit names reach English readers in several romanizations. Each name page shows a common English
+					spelling, the IAST form, the Devanagari form, and the source transliteration used by this project. The
+					mapping is generated from the site's data, so corrections are made once and applied across every page.
+				</p>
+				<p>
+					If a spelling matters for your practice or citation, use the IAST or Devanagari form on the individual
+					name page as the reference.
+				</p>
+			</section>
+
+			<section class="source-notes">
+				<h2>Open source and corrections</h2>
+				<p>
+					The site is open source. Spelling, meaning, formatting, attribution, and source issues can be reported
+					through the public repository, which keeps the correction reviewable.
+				</p>
+				<p>
+					<a href={repo} rel="noopener noreferrer">View the project repository</a>
+				</p>
 			</section>
 		</div>
 	</div>

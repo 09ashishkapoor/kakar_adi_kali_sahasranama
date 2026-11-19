@@ -4,78 +4,162 @@ import { getContent } from '../../lib/names.js';
 import { SITE_URL } from '../../lib/site.js';
 
 const { ranges } = getContent();
-const title = 'Reciting the 1,000 names — text in sequence';
+const openingNames = ranges[0].entries.slice(0, 27);
+
+const canonical = `${SITE_URL}/kali-sahasranama-lyrics/`;
+const title = 'Kali Sahasranama Lyrics — 1,000-Name Chant Text in English | Kakar Adi Kali';
 const description =
-	'The Kakar Adi Kali Sahasranama in sequence for recitation: all 1,000 names in ten sets of one hundred, with Devanagari and IAST for each, free to read aloud.';
+	'The "lyrics" of the Kali Sahasranama are the names of the Goddess recited in sequence. This page gives the chant order, the opening names, and links to the complete 1,000-name text in English, Devanagari and transliteration.';
+
+const faqs = [
+	{
+		question: 'What are the Kali Sahasranama lyrics?',
+		answer:
+			'The Kali Sahasranama is a sequence of names of the Goddess, not a metrical song. Its "lyrics" are the names themselves, recited in order. This page explains the order and links to the complete 1,000-name text and to the range pages for practice.',
+	},
+	{
+		question: 'Can I chant the full Kali Sahasranama?',
+		answer:
+			'Yes. The complete text is available online by range. Many devotees recite a shorter set, such as one hundred names, for daily practice and the full Sahasranama on special occasions.',
+	},
+	{
+		question: 'Where can I find the full lyrics with meanings?',
+		answer:
+			'Every one of the 1,000 names has its own page with Devanagari, transliteration, alternate spellings, and a full English meaning. The range pages list a hundred at a time in the recited order.',
+	},
+	{
+		question: 'Is there an audio version?',
+		answer:
+			'This site does not host an official recording. The chant order and text here are fixed, so you can follow the sequence with any recording of the Kali Sahasranama your tradition uses.',
+	},
+];
 
 const schema = {
 	'@context': 'https://schema.org',
-	'@type': 'Article',
-	headline: title,
-	url: `${SITE_URL}/kali-sahasranama-lyrics/`,
-	inLanguage: 'en',
+	'@graph': [
+		{
+			'@type': 'WebPage',
+			'@id': `${canonical}#webpage`,
+			name: title,
+			description,
+			url: canonical,
+			inLanguage: 'en',
+		},
+		{
+			'@type': 'BreadcrumbList',
+			'@id': `${canonical}#breadcrumb`,
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+				{ '@type': 'ListItem', position: 2, name: 'Kali Sahasranama Lyrics', item: canonical },
+			],
+		},
+		{
+			'@type': 'FAQPage',
+			'@id': `${canonical}#faq`,
+			mainEntity: faqs.map((faq) => ({
+				'@type': 'Question',
+				name: faq.question,
+				acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+			})),
+		},
+	],
 };
-
-const firstSet = ranges[0].entries.slice(0, 20);
 ---
 
-<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/kali-sahasranama-lyrics/" schema={schema} colophonLabel="Recitation">
+<ReferenceLayout title={title} description={description} canonical={canonical} schema={schema} colophonLabel="Lyrics">
 	<div class="page">
 		<div class="narrow">
 			<nav class="breadcrumbs" aria-label="Breadcrumb">
 				<ol>
 					<li><a href="/">Home</a></li>
-					<li aria-current="page">Recitation</li>
+					<li aria-current="page">Kali Sahasranama Lyrics</li>
 				</ol>
 			</nav>
 
-			<p class="page-kicker">The names in sequence</p>
-			<h1>The text for recitation</h1>
-			<p class="iast-title" lang="sa" style="font-size: clamp(18px, 2vw, 24px);">सहस्रनाम · sahasranāma</p>
+			<p class="page-kicker">Chant text</p>
+			<h1>Kali Sahasranama Lyrics — 1,000-Name Chant Text</h1>
 
-			<section class="landing-section" aria-labelledby="how">
-				<h2 class="sec" id="how"><span lang="sa">पाठ</span> Reading aloud</h2>
-				<div class="prose">
-					<p class="drop">
-						The hymn is a list, and it is meant to be sounded. Read the Devanagari if you read the
-						script; otherwise read the IAST, which marks long vowels and the nasal endings that a plain
-						English spelling drops. The one-line meaning under each name is commentary — it is not part
-						of the recitation.
-					</p>
-					<p>
-						Take a set of one hundred at a time. There is no prescribed pace on this page, and no audio:
-						the text is here so you can read it in your own voice.
-					</p>
-				</div>
+			<section class="hero-panel">
+				<p class="intro">
+					The "lyrics" of the Kali Sahasranama are the <strong>names of the Goddess recited in sequence</strong>.
+					This page gives the chant order, the opening names, and links to the complete 1,000-name text in English,
+					Devanagari and transliteration.
+				</p>
+				<nav class="page-nav" aria-label="Page navigation">
+					<ul>
+						<li><a href="#opening-lyrics">Read the opening names</a></li>
+						<li><a href="/kali-sahasranama-pdf/">How to print the text</a></li>
+						<li><a href="/names/">Open the full 1,000-name text</a></li>
+					</ul>
+				</nav>
 			</section>
 
-			<section class="landing-section" aria-labelledby="opening">
-				<h2 class="sec" id="opening"><span lang="sa">आरम्भ</span> The opening twenty</h2>
-				<div class="chanted-names">
-					{firstSet.map((entry) => (
-						<a class="chant-name" href={`/names/${entry.slug}/`}>
-							<span class="dev" lang="sa">{entry.devanagari}</span>
-							<span class="iast">{entry.iast}</span>
-						</a>
-					))}
-				</div>
-				<p class="panel-note" style="margin-top: 14px;">
-					Names 21–100 continue in the <a class="u" href="/names/1-100/">first set</a>.
+			<section class="landing-section">
+				<h2>How the Kali Sahasranama is structured</h2>
+				<p>
+					The Kakar Adi Kali Sahasranama on this site contains 1,000 names in a fixed sequence. The names are not
+					random epithets collected in a list; they are a continuous devotional stream, traditionally recited in
+					order from beginning to end. Because the list is long, it is organized here into ranges of one hundred
+					names so that a reader can start anywhere and still follow the same order.
+				</p>
+				<p>
+					For daily practice, many devotees use a shorter set — a hundred names, or a handful that stay with them.
+					For full recitation, follow the range pages one by one.
 				</p>
 			</section>
 
-			<section class="landing-section" aria-labelledby="sets">
-				<h2 class="sec" id="sets"><span lang="sa">दश</span> All ten sets</h2>
-				<ul class="range-list">
-					{ranges.map((range) => (
-						<li>
-							<a class="tl" href={`/names/${range.slug}/`}>
-								<span class="t">{range.start}–{range.end}</span>
-								<span class="d"></span>
-								<span class="p">{range.first.title} … {range.last.title}</span>
-							</a>
-						</li>
+			<section class="landing-section" id="opening-lyrics" aria-labelledby="opening-lyrics-heading">
+				<h2 id="opening-lyrics-heading">Opening 27 names (chant sample)</h2>
+				<p>
+					The following names open the Sahasranama. Each is shown in common English spelling and Devanagari; the
+					full page for each name includes the IAST transliteration and meaning. In recitation the names are
+					usually spoken as one continuous stream rather than as a bulleted list.
+				</p>
+				<p class="chanted-names">
+					{openingNames.map((entry, index) => (
+						<span class="chant-name">
+							{index > 0 ? ' · ' : ''}
+							<span title={entry.meaning}>{entry.title}</span>{' '}
+							<span class="dev" lang="sa">{entry.devanagari}</span>
+						</span>
 					))}
+				</p>
+				<p>
+					Continue with the <a href="/names/">complete list by range</a>, or read the
+					<a href="/names/1-100/">first hundred names</a> in full.
+				</p>
+			</section>
+
+			<section class="landing-section">
+				<h2>Tips for chanting the names</h2>
+				<ul>
+					<li><strong>Take the sequence as it comes.</strong> Keep the given order rather than rearranging names into a personal list.</li>
+					<li><strong>Choose a realistic pace.</strong> A slow, steady recitation of a shorter set is a better daily practice than an irregular full recitation.</li>
+					<li><strong>Use the transliteration.</strong> If the Devanagari is unfamiliar, follow the IAST form on each name page; it is the most predictable pronunciation guide on this site.</li>
+					<li><strong>Keep a printed copy.</strong> Any page or range prints on A4 — see the <a href="/kali-sahasranama-pdf/">print page</a>.</li>
+					<li><strong>Follow your tradition.</strong> Lineage instruction and local custom take precedence over any general guide, including this page.</li>
+				</ul>
+			</section>
+
+			<section class="landing-section">
+				<h2>Questions about the lyrics</h2>
+				<div class="faq-list">
+					{faqs.map((faq) => (
+						<div class="faq-item">
+							<h3>{faq.question}</h3>
+							<p>{faq.answer}</p>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<section class="landing-section">
+				<h2>Continue reading</h2>
+				<ul>
+					<li><a href="/kakaradi-kali-sahasranama/">What Is the Kakar Adi Kali Sahasranama?</a></li>
+					<li><a href="/kali-sahasranama-benefits/">Benefits in the devotional tradition</a></li>
+					<li><a href="/kali-sahasranama-pdf/">Printing the text</a></li>
+					<li><a href="/names/">Full names hub by range</a></li>
 				</ul>
 			</section>
 		</div>

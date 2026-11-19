@@ -2,20 +2,25 @@
 import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
 import { SITE_URL } from '../../lib/site.js';
 
-const title = 'Privacy';
+const canonical = `${SITE_URL}/privacy/`;
+const title = 'Privacy Policy | Kakar Adi Kali Sahasranama';
 const description =
-	'This site sets no cookies, runs no analytics and makes no third-party requests. The only data stored is your theme choice and reading position, on your own device.';
+	'This site has no accounts, no comments, no newsletter and no payments. What little data processing happens when you visit, explained plainly.';
 
 const schema = {
 	'@context': 'https://schema.org',
 	'@type': 'WebPage',
+	'@id': `${canonical}#privacy`,
 	name: title,
-	url: `${SITE_URL}/privacy/`,
+	description,
+	url: canonical,
 	inLanguage: 'en',
 };
+
+const repo = 'https://github.com/09ashishkapoor/kakar_adi_kali_sahasranama';
 ---
 
-<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/privacy/" schema={schema} colophonLabel="Privacy">
+<ReferenceLayout title={title} description={description} canonical={canonical} schema={schema} colophonLabel="Privacy">
 	<div class="page">
 		<div class="narrow">
 			<nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,53 +30,59 @@ const schema = {
 				</ol>
 			</nav>
 
-			<p class="page-kicker">What is stored, and where</p>
-			<h1>Privacy</h1>
+			<p class="page-kicker">Site policy</p>
+			<h1>Privacy Policy</h1>
 
-			<section class="landing-section" aria-labelledby="noth">
-				<h2 class="sec" id="noth"><span lang="sa">संक्षेप</span> In short</h2>
-				<div class="prose">
-					<p class="drop">
-						No cookies. No analytics. No advertising. No tracking pixels. No third-party requests — the
-						fonts and images are served from this domain.
-					</p>
-				</div>
+			<section class="hero-panel">
+				<p class="intro">
+					This is a static devotional reference site. There are no accounts, no comments, no newsletter, and no
+					payments. The information below explains the limited data processing that does happen when you visit.
+				</p>
+				<p class="intro">Last updated: 2026-11-19.</p>
 			</section>
 
-			<section class="landing-section" aria-labelledby="local">
-				<h2 class="sec" id="local"><span lang="sa">स्थानीय</span> Stored on your device</h2>
-				<div class="prose">
-					<p>
-						The site uses <code>localStorage</code> for one thing only:
-					</p>
-					<p>
-						<strong>Your theme</strong> — day or night reading, under the key <code>kks-theme</code>.
-					</p>
-					<p>
-						It stays in your browser. It is never sent anywhere, and clearing site data removes it.
-					</p>
-				</div>
+			<section class="source-notes">
+				<h2>Analytics</h2>
+				<p>
+					This site runs no analytics, no tag manager and no advertising code. No cookies are set by these pages,
+					and no advertising profiles are built.
+				</p>
 			</section>
 
-			<section class="landing-section" aria-labelledby="server">
-				<h2 class="sec" id="server"><span lang="sa">सेवक</span> What the server sees</h2>
-				<div class="prose">
-					<p>
-						The site is static files on a content delivery network. Like any web server, it receives the
-						IP address and user agent of each request in order to deliver the page. This edition adds no
-						logging of its own, no session, and no identifier.
-					</p>
-				</div>
+			<section class="source-notes">
+				<h2>Server logs and hosting</h2>
+				<p>
+					The site is hosted on Cloudflare Pages. Cloudflare processes standard request data (IP address, user
+					agent, requested URL, timestamps) to serve and protect the site. See Cloudflare's privacy documentation
+					for details of its processing.
+				</p>
 			</section>
 
-			<section class="landing-section" aria-labelledby="contact">
-				<h2 class="sec" id="contact"><span lang="sa">संपर्क</span> Questions</h2>
-				<div class="prose">
-					<p>
-						There is no contact form, because a form would mean collecting data. Corrections and
-						questions go through the project repository.
-					</p>
-				</div>
+			<section class="source-notes">
+				<h2>Third-party links</h2>
+				<p>
+					Some pages link to external services, including Sanskrit Documents, the Khyapa Parampara site, the
+					MANTRINI app, GitHub and Instagram. Those services have their own privacy policies once you leave this
+					site.
+				</p>
+			</section>
+
+			<section class="source-notes">
+				<h2>Local data</h2>
+				<p>
+					The only thing stored on your device is your reading theme, under the key <code>kks-theme</code>. It is
+					never sent anywhere. Browser caching keeps site files on your device for speed; clearing site data
+					removes both.
+				</p>
+			</section>
+
+			<section class="source-notes">
+				<h2>Questions</h2>
+				<p>
+					Privacy questions can be raised through the <a href={repo} rel="noopener noreferrer">public repository</a>,
+					preferably via a reviewable issue. If you are in a region with specific data-protection rights and need a
+					more detailed response, include that in your message.
+				</p>
 			</section>
 		</div>
 	</div>

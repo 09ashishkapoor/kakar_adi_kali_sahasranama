@@ -4,7 +4,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { getContent } from '../lib/names.js';
-import { IMAGE_CREDIT } from '../lib/site.js';
 
 const { version, buildDate } = JSON.parse(
 	readFileSync(join(process.cwd(), 'public', 'version.json'), 'utf8'),
@@ -27,7 +26,7 @@ const links = [
 	{ label: 'The reader', href: '/' },
 	{ label: 'Names hub', href: '/names/' },
 	{ label: 'What it is', href: '/kakaradi-kali-sahasranama/' },
-	{ label: 'Recitation', href: '/kali-sahasranama-lyrics/' },
+	{ label: 'Lyrics', href: '/kali-sahasranama-lyrics/' },
 	{ label: 'Benefits', href: '/kali-sahasranama-benefits/' },
 	{ label: 'Print edition', href: '/kali-sahasranama-pdf/' },
 	{ label: 'Sources', href: '/sources/' },
@@ -41,9 +40,9 @@ const links = [
 	<p class="ded">
 		Dedicated to <strong>Shri Praveen Radhakrishnan</strong> and <strong>Khyapa Parampara</strong>
 	</p>
-	<p class="mantra" lang="sa">Jai Ma Krishna<br />Jai Mā Kālikā<br />Jai Kālabhairava</p>
+	<p class="mantra" lang="sa">Jai Ma Krishna<br />Jai Mā Ādya Mahākālī<br />Jai Kālabhairava</p>
 	<p class="blessing">Om Shri Gurubhyo Namaha | Jai Khyapa Parampara</p>
-	<p class="blessing">May every word read here bring you closer to Maa Kali.</p>
+	<p class="blessing">May every word read here bring you closer to Ma Adya Mahakali.</p>
 
 	<div class="links">
 		{links.map((link) => <a href={link.href}>{link.label}</a>)}
@@ -71,14 +70,6 @@ const links = [
 	</p>
 
 	<p class="fine">Kakar Adi Kali Sahasranama · {total.toLocaleString('en-US')} names · {label}</p>
-	<p class="fine">
-		Sanskrit text: <a
-			href="https://sanskritdocuments.org/doc_devii/kaaliisahasra.html"
-			target="_blank"
-			rel="noopener">kakārādi kālī sahasranāma stotram ↗</a
-		> (Sanskrit Documents)
-	</p>
-	<p class="fine">Deity photograph: {IMAGE_CREDIT}</p>
 	<p class="fine">
 		&copy; <span data-current-year>2026</span> KaliPutra-Ashish. All knowledge is forever free to share.
 	</p>

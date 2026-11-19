@@ -2,20 +2,26 @@
 import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
 import { SITE_URL } from '../../lib/site.js';
 
-const title = 'Sources and editorial method';
+const canonical = `${SITE_URL}/sources/`;
+const title = 'Sources and Editorial Notes | Kakar Adi Kali Sahasranama';
 const description =
-	'The Sanskrit text of the Kakar Adi Kali Sahasranama and where it comes from: the kakārādi kālī sahasranāma stotram hosted by Sanskrit Documents, its provenance, and how this edition handles transliteration and meaning.';
+	'How the Kakar Adi Kali Sahasranama reference is presented, which public source material is acknowledged, and how corrections can be reported.';
 
 const schema = {
 	'@context': 'https://schema.org',
 	'@type': 'WebPage',
+	'@id': `${canonical}#sources`,
 	name: title,
-	url: `${SITE_URL}/sources/`,
+	description,
+	url: canonical,
 	inLanguage: 'en',
 };
+
+const repo = 'https://github.com/09ashishkapoor/kakar_adi_kali_sahasranama';
+const source = 'https://sanskritdocuments.org/doc_devii/kaaliisahasra.html';
 ---
 
-<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/sources/" schema={schema} colophonLabel="Sources">
+<ReferenceLayout title={title} description={description} canonical={canonical} schema={schema} colophonLabel="Sources">
 	<div class="page">
 		<div class="narrow">
 			<nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -25,89 +31,95 @@ const schema = {
 				</ol>
 			</nav>
 
-			<p class="page-kicker">Where the words come from</p>
-			<h1>Sources and method</h1>
+			<p class="page-kicker">Project notes</p>
+			<h1>Sources and Editorial Notes</h1>
 
-			<section class="landing-section" aria-labelledby="text">
-				<h2 class="sec" id="text"><span lang="sa">मूल</span> The source text</h2>
-				<div class="prose">
-					<p class="drop">
-						The thousand names are the <em>kakārādi kālī sahasranāma stotram</em>, also known as the
-						<em>kālī medhāsāmrājyaprada sahasranāma</em>. The text itself says it comes from the
-						<em>kālakālīkhaṇḍa</em> of the <em>mahākālasaṃhitā</em>.
-					</p>
-					<p>
-						The Sanskrit edition used to check this site is hosted by Sanskrit Documents:
-						<a class="u" href="https://sanskritdocuments.org/doc_devii/kaaliisahasra.html" target="_blank" rel="noopener"
-							>sanskritdocuments.org/doc_devii/kaaliisahasra.html ↗</a
-						>. That file was proofread by Ravin Bhalekar; the site credits the text to tradition.
-					</p>
-					<p>
-						Its opening line of names reads
-						<span lang="sa">ॐ क्रीं काली क्रूँ कराली च कल्याणी कमला कला</span> — the same order as
-						positions 1–7 here. The Devanagari on this site was checked against that edition.
-					</p>
-				</div>
-
-				<div class="callout">
-					<p>
-						<strong>Why the verses are not reproduced here.</strong> Sanskrit Documents publishes its
-						files for personal study and research, and asks that they not be copied or reposted, and
-						that bulk extraction into other sites be avoided. This site therefore links to the edition
-						and cites it, but does not republish its Sanskrit. The names, their transliterations and
-						the English commentary on these pages are this edition's own.
-					</p>
-				</div>
-			</section>
-
-			<section class="landing-section" aria-labelledby="spelling">
-				<h2 class="sec" id="spelling"><span lang="sa">वर्ण</span> Spelling and transliteration</h2>
-				<div class="prose">
-					<p>
-						Three forms are kept for every name. The <strong>Devanagari</strong> is the original script.
-						The <strong>IAST</strong> is the academic romanization with diacritics — <em>Kālī</em>, not
-						<em>Kali</em>. The <strong>source transliteration</strong> is the plain-ASCII form used in the
-						source corpus, which is what most readers will have seen elsewhere.
-					</p>
-					<p>
-						Alternate spellings are listed because English renders Sanskrit inconsistently:
-						<em>Kaali</em>, <em>Kalii</em> and <em>Kaalee</em> all point at the same name. Search on this
-						site folds diacritics, so any of them finds the page.
-					</p>
-				</div>
-			</section>
-
-			<section class="landing-section" aria-labelledby="editorial">
-				<h2 class="sec" id="editorial"><span lang="sa">टीका</span> Editorial</h2>
-				<div class="prose">
-					<p>
-						The one-line meanings and the longer elaborations are editorial commentary written for this
-						edition. They are aids to reading, not translations of a received commentary, and they carry
-						no authority beyond that.
-					</p>
-					<p>
-						Corrections are welcome. If a Devanagari form or a transliteration disagrees with the source
-						edition, say which name and which position.
-					</p>
-				</div>
-			</section>
-
-			<section class="landing-section" aria-labelledby="related">
-				<h2 class="sec" id="related"><span lang="sa">संबंध</span> Related</h2>
-				<div class="prose">
+			<section class="hero-panel">
+				<p class="intro">
+					This page explains how the Kakar Adi Kali Sahasranama reference is presented, what public source material
+					is acknowledged, and how corrections can be reported.
+				</p>
+				<nav class="page-nav" aria-label="Source notes navigation">
 					<ul>
-						<li>
-							<a class="u" href="https://jaikhyapaparampara.com/articles/kakaradi-kali-sahasranama-names-1-111-one-line-meanings/" target="_blank" rel="noopener"
-								>Names 1–111 with one-line meanings</a
-							> — the opening section, on the parampara site.
-						</li>
-						<li>
-							<a class="u" href="https://mantrini.jaikhyapaparampara.com/" target="_blank" rel="noopener">MANTRINI</a>
-							— the parampara's free japa app, with an Adya Mahakali altar. Offline; the count stays on
-							the device.
-						</li>
+						<li><a href="/">Open the interactive reader</a></li>
+						<li><a href="/names/">Browse the static names hub</a></li>
+						<li><a href="/kakaradi-kali-sahasranama/">What this text is</a></li>
 					</ul>
-				</div>
+				</nav>
+			</section>
+
+			<section class="source-notes" aria-labelledby="source-basis-heading">
+				<h2 id="source-basis-heading">Source basis</h2>
+				<p>
+					This project compiles devotional source material and explanatory meaning notes for spiritual study,
+					chanting support, and reference use.
+				</p>
+				<p>Primary public references used during compilation include:</p>
+				<ul>
+					<li><a href={source} rel="noopener noreferrer">SanskritDocuments.org — kakārādi kālī sahasranāma stotram</a></li>
+				</ul>
+				<p>
+					The site presents a reader-friendly English reference and does not claim to replace traditional
+					instruction, lineage guidance, or primary manuscript study.
+				</p>
+			</section>
+
+			<section class="source-notes" aria-labelledby="source-note-heading">
+				<h2 id="source-note-heading">About the Sanskrit edition</h2>
+				<p>
+					The text is the <em>kakārādi kālī sahasranāma stotram</em>, also known as the
+					<em>kālī medhāsāmrājyaprada sahasranāma</em>. The edition says it comes from the
+					<em>kālakālīkhaṇḍa</em> of the <em>mahākālasaṃhitā</em>; the Sanskrit Documents copy was proofread by
+					Ravin Bhalekar, and the text is credited to tradition.
+				</p>
+				<p>
+					Its opening line of names reads
+					<span lang="sa">ॐ क्रीं काली क्रूँ कराली च कल्याणी कमला कला</span> — the same order as positions 1–7
+					here.
+				</p>
+				<p class="callout">
+					Sanskrit Documents publishes its files for personal study and research and asks that they not be copied
+					or reposted. This site therefore links to the edition and cites it, but does not republish its Sanskrit.
+					The names, transliterations and English commentary on these pages are this edition's own.
+				</p>
+			</section>
+
+			<section class="source-notes" aria-labelledby="editorial-approach-heading">
+				<h2 id="editorial-approach-heading">Editorial approach</h2>
+				<ul>
+					<li>The names are organized into a searchable homepage reader and crawlable static range pages.</li>
+					<li>Each entry includes a short English meaning and a longer explanatory note where available.</li>
+					<li>Static range pages and individual name pages are intended for citation because their content is visible without JavaScript.</li>
+					<li>Spelling and transliteration choices are kept consistent within the project where possible.</li>
+				</ul>
+			</section>
+
+			<section class="source-notes" aria-labelledby="transliteration-method-heading">
+				<h2 id="transliteration-method-heading">Transliteration and name mapping</h2>
+				<p>
+					Every name is published with four forms: a common English spelling, an IAST transliteration, the
+					Devanagari form, and the source transliteration used by this project. The common spelling is the
+					romanization most readers type; alternate spellings are listed on each name page so the same name can be
+					found under the forms different readers use.
+				</p>
+				<p>
+					The spelling mapping is generated from the project data rather than hand-maintained per page. Repeated
+					names in the Sahasranama share one canonical page that lists every occurrence.
+				</p>
+			</section>
+
+			<section class="source-notes" aria-labelledby="corrections-heading">
+				<h2 id="corrections-heading">Corrections and attribution</h2>
+				<p>
+					If you notice a spelling, meaning, formatting, attribution, or source issue, please report it through the
+					open-source repository so the correction can be reviewed clearly.
+				</p>
+				<p>
+					When citing this site, please attribute the material to <strong>Kakar Adi Kali Sahasranama</strong> and
+					link to the relevant canonical page, such as the <a href="/names/">static names hub</a> or a specific
+					name-range page.
+				</p>
+				<p><a href={repo} rel="noopener noreferrer">View the open-source repository</a></p>
 			</section>
 		</div>
 	</div>

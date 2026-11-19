@@ -174,12 +174,17 @@ Append-only, newest last. Never rewrite past entries.
 | 2026-11-18 | The site is generated from `output_names/` into a dedicated output directory; the earlier prebuilt output folder was discarded and is not a reference | Clean start from the Markdown source |
 | 2026-11-19 | The Sanskrit source is cited and linked, never republished | Sanskrit Documents asks that its files not be copied or reposted; the site's own names, transliterations and commentary ship instead |
 | 2026-11-19 | `/the-book/` and `/kali-sahasranama-pdf/` are `noindex` placeholders until written | Do not advertise an edition that does not exist |
+| 2026-11-19 | Guide, about, privacy and sources copy is ported from the reference site, not rewritten | Owner's words; paraphrasing them is a defect |
 
 ## 8. How to maintain this file
 
 **You own this file.** Update it in the same commit as the change that made it
 stale.
 
+- **The reference site is the copy source.** `productionwebsite/1000namesofmaadya`
+  supplies the footer, the guide pages and their wording. Port its text; change
+  only names, counts, URLs and facts that genuinely differ. Do not rewrite it in
+  your own words — a paraphrase is a defect, not an improvement.
 - Replace `TBD` only with verified facts. If unconfirmed, leave `TBD`.
 - Delete sections that never became true. No aspirational text.
 - Keep it under ~150 lines. Move detail into `docs/`.
