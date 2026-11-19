@@ -1,0 +1,78 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { SITE_URL } from '../../lib/site.js';
+
+const title = 'Privacy';
+const description =
+	'This site sets no cookies, runs no analytics and makes no third-party requests. The only data stored is your theme choice and reading position, on your own device.';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	name: title,
+	url: `${SITE_URL}/privacy/`,
+	inLanguage: 'en',
+};
+---
+
+<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/privacy/" schema={schema} colophonLabel="Privacy">
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">Privacy</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">What is stored, and where</p>
+			<h1>Privacy</h1>
+
+			<section class="landing-section" aria-labelledby="noth">
+				<h2 class="sec" id="noth"><span lang="sa">संक्षेप</span> In short</h2>
+				<div class="prose">
+					<p class="drop">
+						No cookies. No analytics. No advertising. No tracking pixels. No third-party requests — the
+						fonts and images are served from this domain.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="local">
+				<h2 class="sec" id="local"><span lang="sa">स्थानीय</span> Stored on your device</h2>
+				<div class="prose">
+					<p>
+						The site uses <code>localStorage</code> for one thing only:
+					</p>
+					<p>
+						<strong>Your theme</strong> — day or night reading, under the key <code>kks-theme</code>.
+					</p>
+					<p>
+						It stays in your browser. It is never sent anywhere, and clearing site data removes it.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="server">
+				<h2 class="sec" id="server"><span lang="sa">सेवक</span> What the server sees</h2>
+				<div class="prose">
+					<p>
+						The site is static files on a content delivery network. Like any web server, it receives the
+						IP address and user agent of each request in order to deliver the page. This edition adds no
+						logging of its own, no session, and no identifier.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="contact">
+				<h2 class="sec" id="contact"><span lang="sa">संपर्क</span> Questions</h2>
+				<div class="prose">
+					<p>
+						There is no contact form, because a form would mean collecting data. Corrections and
+						questions go through the project repository.
+					</p>
+				</div>
+			</section>
+		</div>
+	</div>
+</ReferenceLayout>

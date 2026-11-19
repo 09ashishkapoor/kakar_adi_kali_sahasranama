@@ -1,0 +1,85 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { getContent } from '../../lib/names.js';
+import { SITE_URL, IMAGE_CREDIT } from '../../lib/site.js';
+
+const { total, uniqueCount } = getContent();
+
+const title = 'About this edition';
+const description =
+	'Who made the Kakar Adi Kali Sahasranama reading edition, what it contains, how it is built, and the terms it is shared under.';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'AboutPage',
+	name: title,
+	url: `${SITE_URL}/about/`,
+};
+---
+
+<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/about/" schema={schema} colophonLabel="About">
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">About</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">The edition</p>
+			<h1>About this edition</h1>
+
+			<section class="landing-section" aria-labelledby="what">
+				<h2 class="sec" id="what"><span lang="sa">स्वरूप</span> What this is</h2>
+				<div class="prose">
+					<p class="drop">
+						A free reading edition of the Kakar Adi Kali Sahasranama: {total.toLocaleString('en-US')} names
+						across {uniqueCount} pages, each with Devanagari, IAST, the source transliteration, alternate
+						spellings and a meaning.
+					</p>
+					<p>
+						It is a reading tool, not a ritual manual. Nothing here prescribes a procedure, sells an
+						initiation, or claims a spiritual result.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="built">
+				<h2 class="sec" id="built"><span lang="sa">निर्माण</span> How it is built</h2>
+				<div class="prose">
+					<p>
+						The site is static HTML generated from a Markdown source corpus. Every name is a real page
+						with its own URL, rendered at build time — there is no client-side routing and no database.
+						The type and page design are set in the Pothi system: paper, ink, cinnabar and gold.
+					</p>
+					<p>
+						No analytics, no advertising, no third-party requests. Fonts are self-hosted; the only
+						thing stored on your device is your theme choice and your place in the book.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="image">
+				<h2 class="sec" id="image"><span lang="sa">चित्र</span> The image</h2>
+				<div class="prose">
+					<p>
+						The frontispiece is a photograph of a four-armed murti of Maa Kali, red-lit against black.
+						Credit: <strong>{IMAGE_CREDIT}</strong>. It is used with the owner's permission and appears
+						in every edition of this site.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="terms">
+				<h2 class="sec" id="terms"><span lang="sa">शर्त</span> Reuse</h2>
+				<div class="prose">
+					<p>
+						The text is free to read, copy, print and share. Copying by readers is expected — there is
+						no right-click blocking, no selection trick and no image-only text anywhere on the site.
+					</p>
+				</div>
+			</section>
+		</div>
+	</div>
+</ReferenceLayout>

@@ -55,7 +55,7 @@ background job, or a loop that pushes on its own.
 
 ## 1. What this project is
 
-A website for the **Kakaradi Kali Sahasranama** — the 1,000-name devotional
+A website for the **Kakar Adi Kali Sahasranama** — the 1,000-name devotional
 text to Maa Kali. Each name has Devanagari, IAST, alternate transliterations, a
 one-line meaning and a longer elaboration. The site is meant to be read, and to
 be found through search.
@@ -113,8 +113,8 @@ Every `TBD` must be replaced only with a verified fact.
 
 | Item | Value |
 |---|---|
-| Stack | Astro 6, static output, plain CSS, no UI framework — decided in `techstack.md`, **not scaffolded yet** |
-| Build | `npm run build` → `dist/` (planned; `package.json` does not exist yet) |
+| Stack | Astro 6.4.8, static output, one hand-written stylesheet, no UI framework, no client framework |
+| Build | `npm run build` → `dist/`; 985 pages in ~4 s (verified) |
 | Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
 | Design | The Pothi system, in `design.md` |
 | Deploy target | Cloudflare Pages, Direct Upload |
@@ -122,9 +122,16 @@ Every `TBD` must be replaced only with a verified fact.
 
 ## 4. Commands
 
-TBD — no `package.json` yet, so no command actually runs. The planned set is in
-`techstack.md` §7 and must be replaced with verified commands once scaffolding
-lands.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server with hot reload |
+| `npm run build` | Parse `output_names/` → 985 pages in `dist/` |
+| `npm run preview` | Serve the built `dist/` |
+| `npm run check` | Build, then verify file types and all internal links |
+
+`npm run check` is the gate: it fails on a broken internal link, an unexpected
+file type in `dist/`, or any `private/`/`output_names/`/Markdown path that
+reached the output.
 
 ## 5. Repository layout
 
@@ -132,13 +139,16 @@ lands.
 |---|---|
 | `design.md` | The design system to implement |
 | `techstack.md` | Stack, routes, search, SEO and publishing decisions |
+| `src/` | Astro pages, components, layout, styles, parser, search |
+| `public/` | Fonts, images, `robots.txt`, `llms.txt`, `_headers`, `_redirects` |
+| `scripts/check-links.mjs` | Post-build guard |
 | `public/img/` | Deity plate, OG card and icons (optimized AVIF/WebP/PNG) |
 | `assets/source/` | Original `1111.jpg`. Not shipped |
 | `output_names/` | The 1,000 Markdown entries, `NNNN-slug.md`. Source; local only |
 | `all_1000_meanings.txt` | One-line meaning per name. Source; local only |
 | `private/` | Vault. Local only |
 
-`src/` and `dist/` do not exist yet.
+`dist/` is generated; everything in `src/` and `public/` is committed.
 
 ## 6. Deployment notes
 

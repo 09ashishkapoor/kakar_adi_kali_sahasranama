@@ -1,0 +1,110 @@
+---
+import { SITE_URL, SITE_NAME, OG_IMAGE, THEME_COLOR_LIGHT, THEME_COLOR_DARK } from '../lib/site.js';
+import RunningHead from '../components/RunningHead.astro';
+import Colophon from '../components/Colophon.astro';
+import '../styles/fonts.css';
+import '../styles/pothi.css';
+
+const {
+	title,
+	description,
+	canonical,
+	schema = null,
+	robots = 'index,follow,max-image-preview:large,max-snippet:-1',
+	ogType = 'article',
+	prevUrl = null,
+	nextUrl = null,
+	colophonLabel = 'The Pothi',
+	bodyClass = '',
+} = Astro.props;
+
+const fullTitle = title;
+const canonicalUrl = `${SITE_URL}${canonical}`;
+const ogImage = `${SITE_URL}${OG_IMAGE}`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content={robots} />
+		<meta name="google" content="notranslate" />
+		<meta name="theme-color" content={THEME_COLOR_LIGHT} media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content={THEME_COLOR_DARK} media="(prefers-color-scheme: dark)" />
+		<link rel="canonical" href={canonicalUrl} />
+		{prevUrl && <link rel="prev" href={prevUrl} />}
+		{nextUrl && <link rel="next" href={nextUrl} />}
+
+		<meta property="og:type" content={ogType} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:alt" content="Four-armed murti of Maa Kali, red-lit against black" />
+		<meta property="og:site_name" content={SITE_NAME} />
+		<meta property="og:locale" content="en_US" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+
+		<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<meta name="color-scheme" content="light dark" />
+
+		<link rel="preload" href="/fonts/tiro-devanagari.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/crimson-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+		<script is:inline>
+			(function () {
+				try {
+					var t = localStorage.getItem('kks-theme');
+					if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day';
+					if (t === 'night') document.documentElement.dataset.theme = 'night';
+				} catch (e) {}
+			})();
+		</script>
+
+		{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+	</head>
+	<body class={bodyClass}>
+		<a class="skip-link" href="#main">Skip to content</a>
+		<RunningHead />
+
+		<main id="main" tabindex="-1">
+			<slot />
+		</main>
+
+		<Colophon label={colophonLabel} />
+
+		<script is:inline>
+			(function () {
+				var root = document.documentElement;
+				var btn = document.querySelector('[data-theme-toggle]');
+				if (!btn) return;
+				var label = btn.querySelector('.lbl');
+				function sync() {
+					var night = root.dataset.theme === 'night';
+					btn.setAttribute('aria-pressed', night ? 'true' : 'false');
+					if (label) label.textContent = night ? 'Day' : 'Night';
+					btn.setAttribute('aria-label', night ? 'Switch to day reading' : 'Switch to night reading');
+				}
+				sync();
+				btn.addEventListener('click', function () {
+					var night = root.dataset.theme === 'night';
+					if (night) delete root.dataset.theme;
+					else root.dataset.theme = 'night';
+					try {
+						localStorage.setItem('kks-theme', night ? 'day' : 'night');
+					} catch (e) {}
+					sync();
+				});
+			})();
+		</script>
+	</body>
+</html>

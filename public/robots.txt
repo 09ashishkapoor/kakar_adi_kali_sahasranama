@@ -1,0 +1,5 @@
+# robots.txt — Kakar Adi Kali Sahasranama
+User-agent: *
+Allow: /
+
+Sitemap: https://kakar-adi-kali-sahasranama.pages.dev/sitemap.xml

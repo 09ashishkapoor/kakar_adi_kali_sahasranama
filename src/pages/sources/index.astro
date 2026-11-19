@@ -1,0 +1,79 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { SITE_URL } from '../../lib/site.js';
+
+const title = 'Sources and editorial method';
+const description =
+	'Where the text, transliterations and meanings on this site come from, and how spelling variants and diacritics are handled.';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	name: title,
+	url: `${SITE_URL}/sources/`,
+	inLanguage: 'en',
+};
+---
+
+<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/sources/" schema={schema} colophonLabel="Sources">
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">Sources</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">Where the words come from</p>
+			<h1>Sources and method</h1>
+
+			<section class="landing-section" aria-labelledby="text">
+				<h2 class="sec" id="text"><span lang="sa">मूल</span> The text</h2>
+				<div class="prose">
+					<p class="drop">
+						The thousand names are the Kakar Adi Kali Sahasranama, a Kali sahasranama whose names run in
+						alphabetical order from the letter <em>ka</em>. The sequence, the Devanagari forms and the
+						source transliterations come from the recension used to build this edition.
+					</p>
+					<p>
+						Where a name repeats, every position is recorded on one page rather than duplicated across
+						several.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="spelling">
+				<h2 class="sec" id="spelling"><span lang="sa">वर्ण</span> Spelling and transliteration</h2>
+				<div class="prose">
+					<p>
+						Three forms are kept for every name. The <strong>Devanagari</strong> is the original script.
+						The <strong>IAST</strong> is the academic romanization with diacritics — <em>Kālī</em>, not
+						<em>Kali</em>. The <strong>source transliteration</strong> is the plain-ASCII form used in the
+						source corpus, which is what most readers will have seen elsewhere.
+					</p>
+					<p>
+						Alternate spellings are listed because English renders Sanskrit inconsistently:
+						<em>Kaali</em>, <em>Kalii</em> and <em>Kaalee</em> all point at the same name. Search on this
+						site folds diacritics, so any of them finds the page.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="editorial">
+				<h2 class="sec" id="editorial"><span lang="sa">टीका</span> Editorial</h2>
+				<div class="prose">
+					<p>
+						The one-line meanings and the longer elaborations are editorial commentary written for this
+						edition. They are aids to reading, not translations of a received commentary, and they carry
+						no authority beyond that.
+					</p>
+					<p>
+						Corrections are welcome. If a Devanagari form or a transliteration is wrong, say which name
+						and which position.
+					</p>
+				</div>
+			</section>
+		</div>
+	</div>
+</ReferenceLayout>

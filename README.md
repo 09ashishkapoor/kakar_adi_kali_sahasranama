@@ -1,6 +1,6 @@
 # Kakar Adi Sahasranama Website
 
-The **Kakaradi Kali Sahasranama** — the 1,000-name devotional text to Maa Kali —
+The **Kakar Adi Kali Sahasranama** — the 1,000-name devotional text to Maa Kali —
 presented as a browsable, searchable website. Each entry carries Devanagari,
 IAST, alternate transliterations, a one-line meaning, and a three-part
 elaboration.
@@ -9,6 +9,8 @@ elaboration.
 
 | Path | What it is |
 |---|---|
+| `src/` | Astro pages, components, styles and the Markdown parser |
+| `scripts/check-links.mjs` | Post-build guard: broken links and forbidden file types |
 | `design.md` | The design system — The Pothi, adapted for this text |
 | `techstack.md` | Stack, routes, search, SEO and publishing decisions |
 | `public/img/` | Deity plate, Open Graph card and icons |
@@ -19,10 +21,10 @@ elaboration.
 
 ## Status
 
-Design and technical direction are settled (`design.md`, `techstack.md`). The
-site itself is **not built** — there is no `src/`, no `package.json`, no `dist/`
-yet. It will be an Astro static build uploaded to Cloudflare Pages by Direct
-Upload; the deployed directory is `dist/`, never the repository root.
+Built. `npm run dev` serves it locally; `npm run build` produces 985 static
+pages in `dist/`; `npm run check` verifies links and file types. Cloudflare
+Pages is **not yet connected** — deploying is `dist/`, never the repository
+root, and needs the owner's approval each time.
 
 ## Private data
 

@@ -1,0 +1,206 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { getContent } from '../../lib/names.js';
+import { SITE_URL, SITE_NAME } from '../../lib/site.js';
+
+export function getStaticPaths() {
+	const { namePages, ranges } = getContent();
+	return namePages.map((page, i) => ({
+		params: { name: page.slug },
+		props: {
+			page,
+			previous: namePages[i - 1] ?? null,
+			next: namePages[i + 1] ?? null,
+			total: namePages.length,
+			range: ranges.find((r) => r.slug === page.rangeSlug),
+			siteUrl: SITE_URL,
+		},
+	}));
+}
+
+const { page, previous, next, total, range, siteUrl } = Astro.props;
+const entry = page.occurrences[0];
+const position = page.positions[0];
+const isRepeated = page.positions.length > 1;
+
+const positionsText =
+	page.positions.length === 1
+		? String(position)
+		: `${page.positions.slice(0, -1).join(', ')} and ${page.positions[page.positions.length - 1]}`;
+
+const canonical = `/names/${page.slug}/`;
+const title = `${page.title} (${entry.devanagari}) — Name ${position} of the Kakar Adi Kali Sahasranama`;
+
+function truncate(text, max = 158) {
+	if (text.length <= max) return text;
+	return `${text.slice(0, max - 1).replace(/\s+\S*$/u, '')}…`;
+}
+
+const alsoSpelled = page.occurrences
+	.flatMap((o) => o.alternates)
+	.filter((value, index, all) => all.indexOf(value) === index && value !== page.title)
+	.slice(0, 4);
+
+const description = truncate(
+	`${page.title} (${entry.iast}) is ${isRepeated ? 'names' : 'name'} ${positionsText} of 1,000 in the Kakar Adi Kali Sahasranama: ${entry.meaning}${
+		alsoSpelled.length ? ` Also spelled ${alsoSpelled.join(', ')}.` : ''
+	}`,
+);
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'BreadcrumbList',
+			'@id': `${siteUrl}${canonical}#breadcrumb`,
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+				{ '@type': 'ListItem', position: 2, name: 'Names', item: `${siteUrl}/names/` },
+				{
+					'@type': 'ListItem',
+					position: 3,
+					name: `Names ${range.start}–${range.end}`,
+					item: `${siteUrl}/names/${range.slug}/`,
+				},
+				{ '@type': 'ListItem', position: 4, name: page.title, item: `${siteUrl}${canonical}` },
+			],
+		},
+		{
+			'@type': 'Article',
+			'@id': `${siteUrl}${canonical}#article`,
+			headline: title,
+			description,
+			url: `${siteUrl}${canonical}`,
+			mainEntityOfPage: `${siteUrl}${canonical}`,
+			isPartOf: { '@type': 'Book', name: SITE_NAME, numberOfPages: 1000, inLanguage: 'sa' },
+			about: { '@type': 'Thing', name: page.title, alternateName: [entry.iast, entry.devanagari, entry.source] },
+			inLanguage: 'en',
+		},
+	],
+};
+
+const prevUrl = previous ? `/names/${previous.slug}/` : null;
+const nextUrl = next ? `/names/${next.slug}/` : null;
+---
+
+<ReferenceLayout
+	title={title}
+	description={description}
+	canonical={canonical}
+	schema={schema}
+	prevUrl={prevUrl}
+	nextUrl={nextUrl}
+	colophonLabel={`Name ${position}`}
+>
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li><a href="/names/">Names</a></li>
+					<li><a href={`/names/${range.slug}/`}>{range.start}–{range.end}</a></li>
+					<li aria-current="page">{page.title}</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">
+				{isRepeated ? 'Positions' : 'Position'} {positionsText} of the 1,000 names
+			</p>
+
+			<h1 class="dev-title" lang="sa">{entry.devanagari}</h1>
+			<p class="iast-title">{entry.iast}</p>
+			<p class="common-title">Also written {page.title}</p>
+
+			<article class="sheet" aria-labelledby="what-means">
+				<span class="folio" aria-hidden="true">{position}</span>
+
+				<section class="panel" style="margin-top: 34px;">
+					<h2 class="sec" id="what-means">
+						<span lang="sa">अर्थ</span> What {page.title} means
+					</h2>
+					<div class="panel-grid">
+						<div class="prose" set:html={entry.intro}></div>
+						<div>
+							<dl class="spellings">
+								<dt>Devanagari</dt>
+								<dd lang="sa">{entry.devanagari}</dd>
+								<dt>IAST</dt>
+								<dd>{entry.iast}</dd>
+								<dt>Common spelling</dt>
+								<dd>{page.title}</dd>
+								<dt>Source form</dt>
+								<dd class="src">{entry.source}</dd>
+							</dl>
+							<p class="panel-note">
+								Sanskrit names reach English in several romanizations. This page keeps the common
+								spelling, the IAST form and the source transliteration together, so the same name is
+								findable under whichever spelling you arrived with.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<section aria-labelledby="elaboration" style="margin-top: clamp(30px, 4vw, 52px);">
+					<h2 class="sec" id="elaboration"><span lang="sa">विवरण</span> Meaning and elaboration</h2>
+					<p class="entry-meaning">Meaning — {entry.meaning}</p>
+					<div class="prose">
+						{entry.elaboration.map((block, index) =>
+							block.type === 'h3' ? (
+								<h3 set:html={block.html} />
+							) : (
+								<p class={index === 0 ? 'drop' : undefined} set:html={block.html} />
+							),
+						)}
+					</div>
+					{isRepeated && (
+						<p class="entry-meta">
+							This name appears at {page.positions.length} positions in the text:{' '}
+							{page.positions.join(', ')}.
+						</p>
+					)}
+				</section>
+
+				<nav class="pager" aria-label="Previous and next name" style="margin-top: clamp(34px, 4vw, 56px);">
+					{previous ? (
+						<a href={`/names/${previous.slug}/`} rel="prev">
+							<span class="lab">Previous</span>
+							<span class="dev" lang="sa">{previous.occurrences[0].devanagari}</span>
+							<span class="iast">{previous.title}</span>
+						</a>
+					) : (
+						<span></span>
+					)}
+					{next ? (
+						<a href={`/names/${next.slug}/`} rel="next">
+							<span class="lab">Next</span>
+							<span class="dev" lang="sa">{next.occurrences[0].devanagari}</span>
+							<span class="iast">{next.title}</span>
+						</a>
+					) : (
+						<span></span>
+					)}
+				</nav>
+
+				<section aria-labelledby="nearby" style="margin-top: clamp(30px, 4vw, 48px);">
+					<h2 class="sec" id="nearby"><span lang="sa">समीप</span> Nearby names</h2>
+					<div class="seealso">
+						{range.entries
+							.filter((e) => Math.abs(e.position - position) <= 3 && e.slug !== page.slug)
+							.map((e) => (
+								<a class="tl" href={`/names/${e.slug}/`}>
+									<span class="t" lang="sa">{e.devanagari}</span>
+									<span class="d"></span>
+									<span class="p">{e.position}</span>
+								</a>
+							))}
+						<a class="tl" href={`/names/${range.slug}/`}>
+							<span class="t">All of {range.start}–{range.end}</span>
+							<span class="d"></span>
+							<span class="p">Set</span>
+						</a>
+					</div>
+				</section>
+			</article>
+		</div>
+	</div>
+</ReferenceLayout>

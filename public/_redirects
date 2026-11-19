@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects.
+# Enable the www rule once the domain is registered — replace the host.
+# https://www.example.com/* https://example.com/:splat 301

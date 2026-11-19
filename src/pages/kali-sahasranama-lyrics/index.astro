@@ -1,0 +1,83 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { getContent } from '../../lib/names.js';
+import { SITE_URL } from '../../lib/site.js';
+
+const { ranges } = getContent();
+const title = 'Reciting the 1,000 names — text in sequence';
+const description =
+	'The Kakar Adi Kali Sahasranama in sequence for recitation: all 1,000 names in ten sets of one hundred, with Devanagari and IAST for each, free to read aloud.';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	headline: title,
+	url: `${SITE_URL}/kali-sahasranama-lyrics/`,
+	inLanguage: 'en',
+};
+
+const firstSet = ranges[0].entries.slice(0, 20);
+---
+
+<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/kali-sahasranama-lyrics/" schema={schema} colophonLabel="Recitation">
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">Recitation</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">The names in sequence</p>
+			<h1>The text for recitation</h1>
+			<p class="iast-title" lang="sa" style="font-size: clamp(18px, 2vw, 24px);">सहस्रनाम · sahasranāma</p>
+
+			<section class="landing-section" aria-labelledby="how">
+				<h2 class="sec" id="how"><span lang="sa">पाठ</span> Reading aloud</h2>
+				<div class="prose">
+					<p class="drop">
+						The hymn is a list, and it is meant to be sounded. Read the Devanagari if you read the
+						script; otherwise read the IAST, which marks long vowels and the nasal endings that a plain
+						English spelling drops. The one-line meaning under each name is commentary — it is not part
+						of the recitation.
+					</p>
+					<p>
+						Take a set of one hundred at a time. There is no prescribed pace on this page, and no audio:
+						the text is here so you can read it in your own voice.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="opening">
+				<h2 class="sec" id="opening"><span lang="sa">आरम्भ</span> The opening twenty</h2>
+				<div class="chanted-names">
+					{firstSet.map((entry) => (
+						<a class="chant-name" href={`/names/${entry.slug}/`}>
+							<span class="dev" lang="sa">{entry.devanagari}</span>
+							<span class="iast">{entry.iast}</span>
+						</a>
+					))}
+				</div>
+				<p class="panel-note" style="margin-top: 14px;">
+					Names 21–100 continue in the <a class="u" href="/names/1-100/">first set</a>.
+				</p>
+			</section>
+
+			<section class="landing-section" aria-labelledby="sets">
+				<h2 class="sec" id="sets"><span lang="sa">दश</span> All ten sets</h2>
+				<ul class="range-list">
+					{ranges.map((range) => (
+						<li>
+							<a class="tl" href={`/names/${range.slug}/`}>
+								<span class="t">{range.start}–{range.end}</span>
+								<span class="d"></span>
+								<span class="p">{range.first.title} … {range.last.title}</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		</div>
+	</div>
+</ReferenceLayout>

@@ -1,0 +1,127 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { getContent } from '../../lib/names.js';
+import { SITE_URL } from '../../lib/site.js';
+
+export function getStaticPaths() {
+	const { ranges } = getContent();
+	return ranges.map((range, i) => ({
+		params: { range: range.slug },
+		props: {
+			range,
+			previous: ranges[i - 1] ?? null,
+			next: ranges[i + 1] ?? null,
+			ranges,
+		},
+	}));
+}
+
+const { range, previous, next, ranges } = Astro.props;
+
+const devanagariDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+const toDev = (n) => String(n).split('').map((d) => devanagariDigits[Number(d)] ?? d).join('');
+
+const canonical = `/names/${range.slug}/`;
+const title = `Names ${range.start}–${range.end} of the Kakar Adi Kali Sahasranama`;
+const description = `Names ${range.start} to ${range.end} of the 1,000-name Kakar Adi Kali Sahasranama, from ${range.first.title} to ${range.last.title}, with Devanagari, IAST and meaning for each.`;
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'BreadcrumbList',
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+				{ '@type': 'ListItem', position: 2, name: 'Names', item: `${SITE_URL}/names/` },
+				{ '@type': 'ListItem', position: 3, name: `Names ${range.start}–${range.end}`, item: `${SITE_URL}${canonical}` },
+			],
+		},
+		{
+			'@type': 'ItemList',
+			name: title,
+			numberOfItems: range.entries.length,
+			itemListOrder: 'https://schema.org/ItemListOrderAscending',
+			itemListElement: range.entries.slice(0, 20).map((entry, index) => ({
+				'@type': 'ListItem',
+				position: index + 1,
+				name: entry.title,
+				url: `${SITE_URL}/names/${entry.slug}/`,
+			})),
+		},
+	],
+};
+---
+
+<ReferenceLayout
+	title={title}
+	description={description}
+	canonical={canonical}
+	schema={schema}
+	prevUrl={previous ? `/names/${previous.slug}/` : null}
+	nextUrl={next ? `/names/${next.slug}/` : null}
+	colophonLabel={`Names ${range.start}–${range.end}`}
+>
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li><a href="/names/">Names</a></li>
+					<li aria-current="page">{range.start}–{range.end}</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">Names {range.start}–{range.end} of 1,000</p>
+			<h1 class="num-title" lang="sa">
+				<span class="num">{toDev(range.start)}–{toDev(range.end)}</span>
+				<span class="iast">Names {range.start}–{range.end}</span>
+			</h1>
+
+			<nav class="rtabs" aria-label="Name ranges" style="margin: 18px 0 26px;">
+				{ranges.map((r) => (
+					<a href={`/names/${r.slug}/`} aria-current={r.slug === range.slug ? 'page' : undefined}>
+						{r.start}–{r.end}
+					</a>
+				))}
+			</nav>
+
+			<div class="index-cols">
+				<ol class="index-list">
+					{range.entries.map((entry) => (
+						<li>
+							<a class="nrow" href={`/names/${entry.slug}/`}>
+								<span class="no">{entry.position}</span>
+								<span>
+									<span class="dev" lang="sa">{entry.devanagari}</span>
+									<span class="iast">{entry.iast}</span>
+									<span class="one">{entry.meaning}</span>
+								</span>
+							</a>
+						</li>
+					))}
+				</ol>
+			</div>
+
+			<nav class="pager" aria-label="Previous and next range" style="margin-top: clamp(30px, 4vw, 48px);">
+				{previous ? (
+					<a href={`/names/${previous.slug}/`} rel="prev">
+						<span class="lab">Previous set</span>
+						<span class="dev" lang="sa">{toDev(previous.start)}–{toDev(previous.end)}</span>
+						<span class="iast">Names {previous.start}–{previous.end}</span>
+					</a>
+				) : (
+					<span></span>
+				)}
+				{next ? (
+					<a href={`/names/${next.slug}/`} rel="next">
+						<span class="lab">Next set</span>
+						<span class="dev" lang="sa">{toDev(next.start)}–{toDev(next.end)}</span>
+						<span class="iast">Names {next.start}–{next.end}</span>
+					</a>
+				) : (
+					<span></span>
+				)}
+			</nav>
+		</div>
+	</div>
+</ReferenceLayout>

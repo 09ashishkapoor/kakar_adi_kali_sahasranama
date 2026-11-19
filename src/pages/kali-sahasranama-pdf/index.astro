@@ -1,0 +1,75 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { SITE_URL } from '../../lib/site.js';
+
+const title = 'Print edition — the Kakar Adi Kali Sahasranama on paper';
+const description =
+	'How to print the Kakar Adi Kali Sahasranama: every name page prints on A4 with the paper theme forced, so a thousand names can be taken off the screen.';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	headline: title,
+	url: `${SITE_URL}/kali-sahasranama-pdf/`,
+	inLanguage: 'en',
+};
+---
+
+<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/kali-sahasranama-pdf/" schema={schema} colophonLabel="Print">
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">Print</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">On paper</p>
+			<h1>Print edition</h1>
+
+			<section class="landing-section" aria-labelledby="how">
+				<h2 class="sec" id="how"><span lang="sa">मुद्रण</span> Printing from this site</h2>
+				<div class="prose">
+					<p class="drop">
+						There is no downloadable PDF here. Every page is already set for paper: the night theme
+						forces itself back to ink on cream, navigation and the theme toggle disappear, and the
+						reading measure stays inside a printable column.
+					</p>
+					<p>
+						Open any name page or set, then use your browser's print command — <kbd>Ctrl</kbd>+<kbd>P</kbd>
+						on Windows and Linux, <kbd>⌘</kbd>+<kbd>P</kbd> on a Mac. Choose “Save as PDF” in the print
+						dialog if you want a file instead of paper.
+					</p>
+				</div>
+				<p class="promo-cta" style="margin-top: 20px;">
+					<button class="btn-print" type="button" data-print>Print this page</button>
+				</p>
+			</section>
+
+			<section class="landing-section" aria-labelledby="what">
+				<h2 class="sec" id="what"><span lang="sa">क्या</span> What prints well</h2>
+				<div class="prose">
+					<p><strong>One name per page</strong> — the Devanagari, IAST, spellings, meaning and elaboration, without chrome.</p>
+					<p><strong>One set of a hundred</strong> — a range page prints as a two-column index, which is the cheapest paper copy of the whole text.</p>
+					<p><strong>The ten-set contents</strong> — the <a class="u" href="/names/">index page</a> prints as a one-page table of contents.</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="limits">
+				<h2 class="sec" id="limits"><span lang="sa">सीमा</span> Limits</h2>
+				<div class="prose">
+					<p>
+						Printing the full thousand from a browser means printing a thousand pages. Most readers
+						print a set, or the handful of names they return to. If a proper bound edition is wanted,
+						it needs typesetting, not a browser print dialog.
+					</p>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<script is:inline>
+		document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
+	</script>
+</ReferenceLayout>

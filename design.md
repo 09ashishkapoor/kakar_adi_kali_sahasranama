@@ -1,8 +1,8 @@
 ---
-name: Kakaradi Kali Sahasranama
+name: Kakar Adi Kali Sahasranama
 status: proposed
 inheritsFrom: 1000namesofmaadya (The Pothi)
-description: A mobile-first devotional reading surface for the 1,000 names of Kakaradi Kali, built as a printed book rather than a web app.
+description: A mobile-first devotional reading surface for the 1,000 names of Kakar Adi Kali, built as a printed book rather than a web app.
 colors:
   desk: "#ddcfb2"
   paper: "#faf3e3"
@@ -30,7 +30,7 @@ typography:
 The reference site (`1000namesofmaadya`) settles its whole surface into one idea:
 **the names are a printed book, and the screen is paper.** Every page — home,
 name, range, guide, text — is the same book opened at a different leaf. This
-document is that system, restated for the Kakaradi text and adjusted in two
+document is that system, restated for the Kakar Adi text and adjusted in two
 places where this project's content differs.
 
 Sources of truth, in order: this file → the reference prototypes
@@ -120,7 +120,9 @@ and survives zoom.
 **Split from the reference.** The reference frontispiece is a light-background
 photograph, so its CSS duotone (`grayscale(1) sepia(.3)`) reads as an old plate
 on cream. This image is on black; a filter cannot lighten a black field, and
-multiplying it over paper gives a black rectangle. Do not try.
+multiplying it over paper gives a black rectangle. Do not try. Shipped: no
+filter, a 1px gold rule on the top edge, and a paper-coloured fade over the
+last 42% of the plate.
 
 **Treatment: the shrine niche.** The image is shipped as a dark plate, not a
 washed photograph:
@@ -258,11 +260,15 @@ Five templates carry the whole site.
 
 | Template | Routes | Composition |
 |---|---|---|
-| **Reader** | `/` | Frontispiece plate left; right leaf = kicker, Devanagari title, IAST, three counts (1,000 / 100 sets / pages), intro, `Open the book →`, first 11 names rendered server-side, contents of ranges |
+| **Reader** | `/` | Frontispiece plate left; right leaf = kicker, Devanagari title, IAST, three counts (1,000 / 10 sets / 965 pages), intro, `Open the book →`. The spread shows the opening eleven and one specimen name page, both server-rendered. Search jumps to any of the 1,000 |
 | **Name** | `/names/0001-krim/` ×1000 | Breadcrumb → kicker → Devanagari `h1` → IAST → also-written → "What it means" panel + spelling table → elaboration prose with section heads → pager → see-also |
 | **Range** | `/names/1-100/` | Breadcrumb → Devanagari numeral title → IAST → range tabs → 100 dense index rows → prev/next range |
 | **Hub** | `/names/` | Range page minus the rows: title, tabs, 10-range contents list with first/last name, "about these pages" panel |
-| **Text** | `/about/`, `/sources/`, `/privacy/` | Single 62ch column, section heads, no images except About (small plate) |
+| **Guide** | `/the-book/`, `/kali-sahasranama-benefits/`, `/kali-sahasranama-lyrics/`, `/kali-sahasranama-pdf/` | Kicker, English `h1`, prose sections with Devanagari section labels, FAQ as `faq-list`, range list where relevant |
+| **Text** | `/about/`, `/sources/`, `/privacy/` | Single 62ch column, section heads, no images |
+
+This text has no 108-name or 1008-name recension, so those two reference pages
+have no counterpart here. Do not invent them.
 
 **The one-book rule.** Every page opens with the same running head and closes
 with the same colophon. That is what makes 1,000 pages feel like one volume.
@@ -278,8 +284,10 @@ Phone is the primary surface, not the degraded one.
 - No horizontal scroll at 320px. Tables become stacked `dl`s.
 - The range index is one column below 640px; the mobile index is a 2-column grid.
 - Sticky running head is 56px tall, with `padding-top: env(safe-area-inset-top)`.
-- Frontispiece is `100vw` wide and capped at `56vh` on phone so the title stays
-  above the fold.
+- Frontispiece is `100vw` wide, `min(52vh, 460px)` tall on phone, so the title
+  stays close to the fold.
+- Below 400px the running head keeps three nav links (Names, The book, About);
+  the rest live in the colophon, and the nav row scrolls rather than clipping.
 - Search input is `type="search"`, `enterkeyhint="search"`, 16px minimum font
   size to stop iOS zoom.
 - `prefers-reduced-motion: reduce` disables the only transitions (border, color).

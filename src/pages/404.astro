@@ -1,0 +1,24 @@
+---
+import ReferenceLayout from '../layouts/ReferenceLayout.astro';
+
+const title = 'Page not found';
+const description = 'That page does not exist in this edition of the Kakar Adi Kali Sahasranama.';
+---
+
+<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/404/" robots="noindex,follow">
+	<div class="page">
+		<div class="narrow" style="text-align: center; padding: clamp(40px, 8vw, 96px) 0;">
+			<p class="page-kicker" style="margin-top: 0;">Not found</p>
+			<div style="font-family: var(--dev); font-size: clamp(56px, 10vw, 104px); color: var(--cinnabar); line-height: 1.1;" lang="sa">ॐ</div>
+			<h1 style="margin-top: 18px;">This leaf is missing</h1>
+			<p class="prose" style="margin: 0 auto 26px; max-width: 44ch;">
+				The page you asked for is not in this edition. The thousand names are all still here.
+			</p>
+			<p>
+				<a class="u" href="/names/">All 1,000 names</a> ·
+				<a class="u" href="/">The reader</a> ·
+				<a class="u" href="/the-book/">The book</a>
+			</p>
+		</div>
+	</div>
+</ReferenceLayout>

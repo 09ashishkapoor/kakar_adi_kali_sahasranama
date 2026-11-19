@@ -1,0 +1,13 @@
+{
+  "name": "Kakar Adi Kali Sahasranama",
+  "short_name": "Kakar Adi Kali",
+  "description": "The 1,000 names of Maa Kali, arranged as a book.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf3e3",
+  "theme_color": "#faf3e3",
+  "icons": [
+    { "src": "/img/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/img/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

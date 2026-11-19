@@ -1,0 +1,32 @@
+---
+import { IMAGE_CREDIT } from '../lib/site.js';
+
+const { label = 'The Pothi' } = Astro.props;
+const year = new Date().getFullYear();
+
+const links = [
+	{ label: 'The reader', href: '/' },
+	{ label: 'All 1,000 names', href: '/names/' },
+	{ label: 'The book', href: '/the-book/' },
+	{ label: 'Chanting', href: '/kali-sahasranama-lyrics/' },
+	{ label: 'Benefits', href: '/kali-sahasranama-benefits/' },
+	{ label: 'Print edition', href: '/kali-sahasranama-pdf/' },
+	{ label: 'Sources', href: '/sources/' },
+	{ label: 'About', href: '/about/' },
+	{ label: 'Privacy', href: '/privacy/' },
+];
+---
+
+<footer class="colophon">
+	<div class="om" lang="sa">ॐ</div>
+	<p class="ded">Dedicated to <strong>Maa Kali</strong></p>
+	<p class="mantra" lang="sa">ॐ क्रीं कालिकायै नमः</p>
+
+	<div class="links">
+		{links.map((link) => <a href={link.href}>{link.label}</a>)}
+	</div>
+
+	<p class="fine">Kakar Adi Kali Sahasranama · 1,000 names · {label}</p>
+	<p class="fine">Deity photograph: {IMAGE_CREDIT}</p>
+	<p class="fine">&copy; {year} · All knowledge is forever free to share.</p>
+</footer>

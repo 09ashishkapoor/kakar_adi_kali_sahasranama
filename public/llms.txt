@@ -1,0 +1,27 @@
+# Kakar Adi Kali Sahasranama
+
+> A free reading edition of the Kakar Adi Kali Sahasranama: 1,000 names of Maa Kali,
+> each with Devanagari, IAST, the source transliteration, alternate spellings and a meaning.
+> Arranged in ten sets of one hundred. Static HTML, no tracking, no paywall.
+
+## Main pages
+
+- [The reader](https://kakar-adi-kali-sahasranama.pages.dev/): frontispiece and the opening eleven names.
+- [All 1,000 names](https://kakar-adi-kali-sahasranama.pages.dev/names/): the full index, searchable.
+- [The book](https://kakar-adi-kali-sahasranama.pages.dev/the-book/): what the text is and how to read it.
+- [Recitation](https://kakar-adi-kali-sahasranama.pages.dev/kali-sahasranama-lyrics/): the names in sequence.
+- [Practice](https://kakar-adi-kali-sahasranama.pages.dev/kali-sahasranama-benefits/): what a reading is for.
+- [Print](https://kakar-adi-kali-sahasranama.pages.dev/kali-sahasranama-pdf/): printing from the browser.
+- [Sources](https://kakar-adi-kali-sahasranama.pages.dev/sources/): transliteration and editorial method.
+
+## Structure
+
+Ten sets of one hundred, in order:
+
+- Names 1-100 through 901-1000: /names/1-100/ ... /names/901-1000/
+- One page per distinct name: /names/<slug>/
+
+## Notes
+
+- Text is public and free to copy; readers are expected to copy it.
+- No analytics, no cookies, no third-party requests.

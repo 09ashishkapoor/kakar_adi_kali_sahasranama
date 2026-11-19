@@ -1,0 +1,230 @@
+---
+import ReferenceLayout from '../layouts/ReferenceLayout.astro';
+import { getContent } from '../lib/names.js';
+import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, IMAGE_CREDIT } from '../lib/site.js';
+
+const { ranges, namePages, total, uniqueCount } = getContent();
+const opening = ranges[0].entries.slice(0, 11);
+const specimen = namePages[0];
+const specimenEntry = specimen.occurrences[0];
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: SITE_NAME,
+	alternateName: 'Kakar Adi Kali Sahasranama',
+	url: `${SITE_URL}/`,
+	description: SITE_DESCRIPTION,
+	inLanguage: 'en',
+	potentialAction: {
+		'@type': 'SearchAction',
+		target: `${SITE_URL}/names/?q={search_term_string}`,
+		'query-input': 'required name=search_term_string',
+	},
+};
+---
+
+<ReferenceLayout
+	title={SITE_TITLE}
+	description={SITE_DESCRIPTION}
+	canonical="/"
+	ogType="website"
+	schema={schema}
+	colophonLabel="The Pothi"
+>
+	<section class="cover">
+		<div class="frontis">
+			<picture>
+				<source
+					type="image/avif"
+					srcset="/img/deity-480.avif 480w, /img/deity-800.avif 800w, /img/deity-1200.avif 1200w"
+					sizes="(max-width: 1080px) 100vw, 45vw"
+				/>
+				<img
+					src="/img/deity-800.webp"
+					srcset="/img/deity-480.webp 480w, /img/deity-800.webp 800w, /img/deity-1200.webp 1200w"
+					sizes="(max-width: 1080px) 100vw, 45vw"
+					width="1202"
+					height="1600"
+					alt="Four-armed murti of Maa Kali, red-lit against black, trident and severed head in her upper hands."
+					fetchpriority="high"
+					decoding="async"
+				/>
+			</picture>
+			<p class="plate">Frontispiece · Maa Kali</p>
+		</div>
+
+		<div class="cover-copy">
+			<p class="kicker">The Sahasranāma, printed as a book</p>
+			<h1 lang="sa"><span class="lt">ककार आदि काली</span><span class="lt">सहस्रनाम</span></h1>
+			<p class="lat-title">Kakar Adi Kali Sahasranama</p>
+
+			<div class="stats-row">
+				<div><b>{total.toLocaleString('en-US')}</b>Names</div>
+				<div><b>10</b>Sets of 100</div>
+				<div><b>{uniqueCount}</b>Pages</div>
+			</div>
+
+			<p class="lede">
+				The text is arranged in sets of one hundred so it is easier to read slowly. Open the book
+				anywhere; the names are read as they are written, with the <em>transliteration and meaning</em>
+				beside them.
+			</p>
+
+			<a class="open" href="/names/">Open the book <span class="ar" aria-hidden="true">→</span></a>
+			<p class="small">Every name has Devanagari, IAST, alternate spellings and a meaning.</p>
+		</div>
+	</section>
+
+	<section class="reader" aria-label="The opening spread">
+		<div class="spread-head">
+			<span>Set <b>I</b> · Names 1–100</span>
+			<span>{uniqueCount} name pages · {total.toLocaleString('en-US')} names</span>
+		</div>
+
+		<div class="mindex">
+			<label class="mfind">
+				<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+				<span class="sr-only">Find any of the 1,000 names</span>
+				<input id="m-jump" type="search" placeholder="Find any name…" autocomplete="off" spellcheck="false" enterkeyhint="search" aria-describedby="m-jump-status" />
+				<span class="mc" id="m-count" aria-hidden="true">1,000</span>
+			</label>
+			<ul class="hits" id="m-hits" hidden></ul>
+			<ul class="mlist">
+				{opening.map((entry) => (
+					<li>
+						<a href={`/names/${entry.slug}/`}>
+							<span class="n">{entry.position}</span>
+							<span>
+								<span class="w" lang="sa">{entry.devanagari}</span>
+								<span class="i">{entry.iast}</span>
+							</span>
+						</a>
+					</li>
+				))}
+			</ul>
+			<p class="mfoot"><a class="u" href="/names/">All 1,000 names →</a></p>
+		</div>
+
+		<div class="spread">
+			<div class="leaf-left">
+				<div class="leaf-head">
+					<h2>Names</h2>
+					<span>Opening eleven</span>
+				</div>
+				<label class="find">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+					<span class="sr-only">Find any of the 1,000 names</span>
+					<input id="jump" type="search" placeholder="Find any name…" autocomplete="off" spellcheck="false" enterkeyhint="search" aria-describedby="jump-status" />
+					<span class="count" id="jump-count" aria-hidden="true">1,000</span>
+				</label>
+				<ul class="hits" id="hits" hidden></ul>
+				<ol class="toc" id="set-list">
+					{opening.map((entry) => (
+						<li>
+							<a href={`/names/${entry.slug}/`} class="toc-row">
+								<span class="n">{entry.position}</span>
+								<span>
+									<span class="w" lang="sa">{entry.devanagari}</span>
+									<span class="i">{entry.iast}</span>
+								</span>
+							</a>
+						</li>
+					))}
+				</ol>
+				<p class="foot"><span>Opening eleven of 1,000</span><a href="/names/">All names →</a></p>
+			</div>
+
+			<div class="leaf-right">
+				<div class="page-eyebrow">
+					<span>Name {specimen.positions[0]}</span>
+					<span>{specimen.meaning ? 'A specimen page' : ''}</span>
+				</div>
+				<h2 class="page-name" lang="sa">{specimenEntry.devanagari}</h2>
+				<p class="page-iast">{specimenEntry.iast}</p>
+				<p class="page-one">{specimenEntry.meaning}</p>
+				<div class="page-rule"></div>
+				<div class="page-elab" set:html={specimenEntry.elaboration[0]?.html ?? ''}></div>
+				<div class="page-foot">
+					<span class="src">Source form: {specimenEntry.source}</span>
+					<span class="folio" aria-hidden="true">{String(specimen.positions[0]).padStart(2, '0')}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="turn">
+			<a class="turn-link" href={`/names/${specimen.slug}/`}>Read the full page →</a>
+			<span class="mid">Every name opens like this</span>
+		</div>
+	</section>
+
+	<section class="essay">
+		<div class="essay-inner">
+			<div>
+				<h2 lang="sa">क्यों</h2>
+				<p class="h-sub">Why readers return</p>
+			</div>
+			<div class="essay-body">
+				<p>
+					The Kakar Adi Kali Sahasranama is a <strong>thousand-name hymn</strong> to Maa Kali. Each
+					name is a facet: a sound, an attribute, a form of the one reality the text calls Mother.
+					The names are not definitions. They are handles for attention, and the text expects to be
+					read slowly, a hundred at a time.
+				</p>
+				<p>
+					Every page here keeps three things together — the <strong>Devanagari</strong>, the
+					<strong>IAST transliteration</strong>, and the <strong>English meaning</strong> — because
+					Sanskrit reaches English through several romanizations. Whichever spelling you arrived
+					with, the page for that name lists it.
+				</p>
+				<p>
+					There is nothing to sign up for and nothing to install. The whole book is here, in HTML,
+					readable on a phone, printable, and free to copy.
+				</p>
+				<ul class="reasons">
+					<li>
+						<h3>Attention</h3>
+						<p>A fixed sequence of names is easier to stay with than a page that keeps changing.</p>
+					</li>
+					<li>
+						<h3>Meaning</h3>
+						<p>Each name carries a one-line meaning and a longer reading, so the words do not stay opaque.</p>
+					</li>
+					<li>
+						<h3>Steadiness</h3>
+						<p>Reading a set of a hundred is a measurable, finishable act.</p>
+					</li>
+					<li>
+						<h3>Discovery</h3>
+						<p>Names repeat and echo. The index shows every position a name occupies.</p>
+					</li>
+					<li>
+						<h3>Availability</h3>
+						<p>No network after first load, no account, no app. Print it if you prefer paper.</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="contents">
+		<h2 lang="sa">मार्ग</h2>
+		<p class="h-sub">Contents of the book — ten sets of one hundred</p>
+		<div class="toc-lines">
+			{ranges.map((range) => (
+				<p class="tl">
+					<a class="u" href={`/names/${range.slug}/`}>
+						Names {range.start}–{range.end}
+					</a>
+					<span class="tl-sub"> · {range.first.title} … {range.last.title}</span>
+				</p>
+			))}
+		</div>
+	</section>
+
+	<script>
+		import { wireSearch } from '../scripts/search.js';
+		wireSearch(document.getElementById('jump'), document.getElementById('hits'), document.getElementById('jump-count'), 8);
+		wireSearch(document.getElementById('m-jump'), document.getElementById('m-hits'), document.getElementById('m-count'), 8);
+	</script>
+</ReferenceLayout>

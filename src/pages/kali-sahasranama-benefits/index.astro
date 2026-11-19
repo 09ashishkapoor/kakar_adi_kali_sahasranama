@@ -1,0 +1,88 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { SITE_URL } from '../../lib/site.js';
+
+const title = 'Reading the Kakar Adi Kali Sahasranama — what the practice is for';
+const description =
+	'What a sahasranama reading is traditionally held to do, how readers use the Kakar Adi Kali Sahasranama today, and how to start without ceremony or obligation.';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	headline: title,
+	url: `${SITE_URL}/kali-sahasranama-benefits/`,
+	inLanguage: 'en',
+};
+---
+
+<ReferenceLayout title={`${title} | Kakar Adi Kali Sahasranama`} description={description} canonical="/kali-sahasranama-benefits/" schema={schema} colophonLabel="Practice">
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">Practice</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">Why readers keep a sahasranama</p>
+			<h1>What the reading is for</h1>
+
+			<section class="landing-section" aria-labelledby="claim">
+				<h2 class="sec" id="claim"><span lang="sa">फल</span> The traditional claim</h2>
+				<div class="prose">
+					<p class="drop">
+						A <em>sahasranama</em> is a devotional list, and the tradition around it is simple: the
+						repetition of names is a form of attention. Nothing in the practice depends on the reader
+						understanding every Sanskrit word. What it asks for is steadiness — a voice, a pace, and a
+						hundred names at a time.
+					</p>
+					<p>
+						Traditions describe recitation as a support for <strong>calm</strong>, for
+						<strong>steadiness of mind</strong>, and for keeping a difficult day in proportion. This site
+						takes no position beyond that. It makes no medical claim, promises no outcome, and does not
+						require any initiation, fee or membership.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="how">
+				<h2 class="sec" id="how"><span lang="sa">विधि</span> What a reading actually looks like</h2>
+				<div class="prose">
+					<p>
+						<strong>Pick a set.</strong> The text divides into ten sets of one hundred. Reading one set
+						takes a few minutes and finishes — that matters more than reading a thousand names badly.
+					</p>
+					<p>
+						<strong>Read the name, then the meaning.</strong> The meaning is commentary, not scripture.
+						Reading it is optional, but it keeps the Sanskrit from staying opaque.
+					</p>
+					<p>
+						<strong>Repeat what you can.</strong> Many readers return to one name that stays with them
+						rather than completing the set. The pages are stable URLs, so a name can be bookmarked and
+						returned to.
+					</p>
+				</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="faq">
+				<h2 class="sec" id="faq"><span lang="sa">प्रश्न</span> Questions readers ask</h2>
+				<div class="faq-list">
+<div class="faq-item"><h3>Do I need a guru or initiation?</h3><p>Not to read the text. This edition is a reading copy; nothing here is a ritual instruction.</p></div>
+<div class="faq-item"><h3>Does it have to be done at a particular time?</h3><p>No time is prescribed on this site. Read when you will actually finish a set.</p></div>
+<div class="faq-item"><h3>Can I read it silently?</h3><p>The tradition is oral, but silent reading is what many visitors do on a phone. The text is
+						the same either way.</p></div>
+<div class="faq-item"><h3>Is there an audio version?</h3><p>Not here. There is no recording, and the site makes no third-party requests.</p></div>
+</div>
+			</section>
+
+			<section class="landing-section" aria-labelledby="start">
+				<h2 class="sec" id="start"><span lang="sa">आरम्भ</span> Start</h2>
+				<p class="promo-lede">
+					<a class="u" href="/names/1-100/">Names 1–100</a> is the first set. The
+					<a class="u" href="/names/">index</a> lists all ten.
+				</p>
+			</section>
+		</div>
+	</div>
+</ReferenceLayout>

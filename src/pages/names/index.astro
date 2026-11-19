@@ -1,0 +1,85 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { getContent } from '../../lib/names.js';
+import { SITE_URL } from '../../lib/site.js';
+
+const { ranges, total, uniqueCount } = getContent();
+
+const title = 'All 1,000 names — Kakar Adi Kali Sahasranama index';
+const description =
+	'Every name in the Kakar Adi Kali Sahasranama, in order: 1,000 names in ten sets of one hundred, each with Devanagari, IAST, alternate spellings and a meaning.';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: title,
+	url: `${SITE_URL}/names/`,
+	description,
+	hasPart: ranges.map((range) => ({
+		'@type': 'ItemList',
+		name: `Names ${range.start}–${range.end}`,
+		url: `${SITE_URL}/names/${range.slug}/`,
+		numberOfItems: range.entries.length,
+	})),
+};
+---
+
+<ReferenceLayout title={title} description={description} canonical="/names/" schema={schema} colophonLabel="The index">
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">Names</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">The whole index · {total.toLocaleString('en-US')} names · {uniqueCount} pages</p>
+			<h1 class="dev-title" lang="sa" style="font-size: clamp(40px, 6.4vw, 84px);">सहस्रनाम</h1>
+			<p class="iast-title">The thousand names</p>
+
+			<div class="hub-search">
+				<label class="find">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+					<span class="sr-only">Search all 1,000 names</span>
+					<input id="jump" type="search" placeholder="Search by name, spelling or meaning…" autocomplete="off" spellcheck="false" enterkeyhint="search" aria-describedby="jump-status" />
+					<span class="count" id="jump-count" aria-hidden="true">1,000</span>
+				</label>
+				<ul class="hits" id="hits" hidden></ul>
+			</div>
+
+			<h2 class="sec" style="margin-top: 34px;"><span lang="sa">मार्ग</span> Ten sets of one hundred</h2>
+			<ul class="range-list">
+				{ranges.map((range) => (
+					<li>
+						<a class="tl" href={`/names/${range.slug}/`}>
+							<span class="t" lang="sa">{range.start}–{range.end}</span>
+							<span class="d"></span>
+							<span class="p">{range.first.title} … {range.last.title}</span>
+						</a>
+					</li>
+				))}
+			</ul>
+
+			<section aria-labelledby="about-index" style="margin-top: clamp(30px, 4vw, 48px);">
+				<h2 class="sec" id="about-index"><span lang="sa">परिचय</span> About these pages</h2>
+				<div class="prose">
+					<p>
+						Each name has its own page with the Devanagari, the IAST transliteration, the source
+						form, a one-line meaning and a longer reading. Names repeat: the same name can occupy
+						more than one position, and its page lists every position it holds.
+					</p>
+					<p>
+						The text is 1,000 names long, arranged in ten sets of one hundred. Start anywhere —
+						the index preserves the order of the original.
+					</p>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<script>
+		import { wireSearch } from '../../scripts/search.js';
+		wireSearch(document.getElementById('jump'), document.getElementById('hits'), document.getElementById('jump-count'), 10);
+	</script>
+</ReferenceLayout>
