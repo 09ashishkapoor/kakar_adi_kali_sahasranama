@@ -20,8 +20,6 @@ const lastUpdated = new Intl.DateTimeFormat('en-US', {
 
 const { ranges, total } = getContent();
 
-const { label = 'The Pothi' } = Astro.props;
-
 const links = [
 	{ label: 'The reader', href: '/' },
 	{ label: 'Names hub', href: '/names/' },
@@ -69,7 +67,7 @@ const links = [
 		))}
 	</p>
 
-	<p class="fine">Kakar Adi Kali Sahasranama · {total.toLocaleString('en-US')} names · {label}</p>
+	<p class="fine">Kakar Adi Kali Sahasranama · {total.toLocaleString('en-US')} names</p>
 	<p class="fine">
 		&copy; <span data-current-year>2026</span> KaliPutra-Ashish. All knowledge is forever free to share.
 	</p>

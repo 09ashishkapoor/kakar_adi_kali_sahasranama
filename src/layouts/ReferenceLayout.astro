@@ -14,7 +14,6 @@ const {
 	ogType = 'article',
 	prevUrl = null,
 	nextUrl = null,
-	colophonLabel = 'The Pothi',
 	bodyClass = '',
 } = Astro.props;
 
@@ -80,7 +79,7 @@ const ogImage = `${SITE_URL}${OG_IMAGE}`;
 			<slot />
 		</main>
 
-		<Colophon label={colophonLabel} />
+		<Colophon />
 
 		<script is:inline>
 			(function () {
