@@ -63,7 +63,7 @@ be found through search.
 | | |
 |---|---|
 | Owner | `09ashishkapoor` (personal GitHub account) |
-| Local path | This checkout. **`git init` has not been run** — there is no `.git` yet |
+| Remote | `github.com/09ashishkapoor/kakar_adi_kali_sahasranama` — private; `main` tracks `origin/main` |
 | Live site | Not deployed |
 
 ## 2. Content and private data
