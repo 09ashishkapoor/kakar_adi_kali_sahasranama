@@ -201,7 +201,7 @@ SPELLING / SOURCE FORM. Labels in caps left, values right, 1px hairlines between
 **Prose** — 62–66ch, `--ink-2`, paragraph spacing `1.1em`, no indent.
 
 **Section head** — Devanagari label in cinnabar, Latin head in `--ink`, hairline
-under the pair (`विवरण · Meaning and elaboration`).
+under the pair (`विवरण · Elaboration`).
 
 **Folio** — the position number, `--gold`, bottom-centre of the content column on
 scroll; doubles as the page's index in the book.

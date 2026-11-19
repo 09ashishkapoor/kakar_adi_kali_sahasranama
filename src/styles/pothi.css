@@ -275,10 +275,6 @@ article,
 .source-notes { margin-top: clamp(30px, 4vw, 52px); scroll-margin-top: 24px; }
 
 /* ---------- 8. name page ---------- */
-.entry-meaning {
-	font-size: 16.5px; color: var(--ash); font-variant: all-small-caps;
-	letter-spacing: .12em; margin-bottom: 18px;
-}
 .entry-meta { font-size: 14px; color: var(--ash); font-style: italic; margin-top: 14px; }
 .entry-meta a { color: var(--ink-2); }
 .spellings { display: grid; grid-template-columns: 180px 1fr; gap: 6px 26px; font-size: 15px; }

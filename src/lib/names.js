@@ -4,6 +4,8 @@ import { inline, fold, slugify, displayName } from './text.js';
 
 export { inline, fold, slugify, displayName };
 
+const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 /**
  * Parses the Markdown source in output_names/ into the structures every page
  * needs. This is the only module that knows the Markdown shape; a malformed
@@ -33,7 +35,14 @@ function parseFile(file) {
 		.filter((v) => v && !/^\*\*Source transliteration:\*\*/.test(v));
 
 	const whatBlock = raw.split(/^### What .+? means\s*$/m)[1]?.split(/^### /m)[0]?.trim() ?? '';
+	// Every source intro opens with the same positional boilerplate. Strip it so
+	// the panel starts with the meaning itself; the title and kicker carry position.
+	const boilerplate = new RegExp(
+		`^${escapeRegExp(title)} is name ${position} in the Kakaradi Kali Sahasranama, the 1,000-name devotional text to Maa Kali\\.\\s*`,
+	);
 	const intro = whatBlock
+		.replace(boilerplate, '')
+		.trim()
 		.split(/\n{2,}/)
 		.map((p) => `<p>${displayName(inline(p.trim()))}</p>`)
 		.join('');
