@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { inline, fold, slugify, displayName } from './text.js';
 
@@ -13,6 +13,7 @@ const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
  */
 
 const SOURCE_DIR = join(process.cwd(), 'output_names');
+const DATA_FILE = join(process.cwd(), 'src', 'data', 'names.json');
 
 function fail(file, what) {
 	throw new Error(`output_names/${file}: missing ${what}`);
@@ -91,18 +92,31 @@ export function rangeSlugFor(position) {
 
 let cache = null;
 
-export function getContent() {
-	if (cache) return cache;
-
-	const files = readdirSync(SOURCE_DIR).filter((f) => f.endsWith('.md')).sort();
-	const entries = files.map(parseFile);
-
+function validateEntries(entries) {
 	const seen = new Set();
 	for (const e of entries) {
 		if (seen.has(e.position)) throw new Error(`duplicate position ${e.position}`);
 		seen.add(e.position);
 	}
 	if (entries.length !== 1000) throw new Error(`expected 1000 entries, found ${entries.length}`);
+	return entries;
+}
+
+/** Parse the local Markdown source. Used only by scripts/build-data.mjs. */
+export function readSourceEntries() {
+	const files = readdirSync(SOURCE_DIR).filter((f) => f.endsWith('.md')).sort();
+	return validateEntries(files.map(parseFile));
+}
+
+export function getContent() {
+	if (cache) return cache;
+
+	if (!existsSync(DATA_FILE)) {
+		throw new Error('src/data/names.json is missing — run: npm run data:build');
+	}
+	const entries = validateEntries(JSON.parse(readFileSync(DATA_FILE, 'utf8'))).sort(
+		(a, b) => a.position - b.position,
+	);
 
 	// One page per position: 1,000 pages. Repeated English titles can differ in
 	// Sanskrit form or meaning, so they are not merged; each page cross-links the

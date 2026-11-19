@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro build && node scripts/check-links.mjs"
+    "data:build": "node scripts/build-data.mjs",
+    "data:check": "node scripts/check-data.mjs",
+    "check": "node scripts/check-data.mjs && astro build && node scripts/check-links.mjs"
   },
   "dependencies": {
     "astro": "^6.1.4"

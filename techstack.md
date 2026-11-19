@@ -55,7 +55,7 @@ Slug = `NNNN-slugify(title)`, ASCII, lowercase, collision-checked at build.
 
 ## 3. Data pipeline
 
-`output_names/NNNN-slug.md` → parsed once at build into:
+`output_names/NNNN-slug.md` → `npm run data:build` → `src/data/names.json` → build:
 
 ```ts
 type Name = {
@@ -79,6 +79,12 @@ type Name = {
 Parsing lives in `src/lib/names.js` and is the only code that knows the Markdown
 shape. It fails the build — loudly — if an entry is missing `Devanagari:`,
 `IAST:`, `Meaning:`, or a `##` title.
+
+The build reads `src/data/names.json`; `readSourceEntries()` is used only by the
+data scripts. The JSON is committed and public while the Markdown is local-only.
+`npm run data:check` fails if the JSON drifts from the Markdown, so the two
+cannot silently diverge. `alsoAt` is computed when pages are built, not stored
+in the JSON.
 
 `output_names/` is **not** copied to `dist/`. Only rendered HTML ships. The build
 asserts that `dist/` contains no `.md`, no `.txt`, no `private/` (see §8).
