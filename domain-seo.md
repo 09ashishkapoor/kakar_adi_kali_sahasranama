@@ -187,10 +187,11 @@ When the canonical domain is live:
       `sitemap.xml`.
 - [ ] `public/robots.txt` → update the `Sitemap:` line by hand.
 - [ ] `public/llms.txt` → update its seven absolute URLs by hand.
-- [ ] Zone-level Redirect Rule (or Bulk Redirect): `www` → apex on the canonical
-      host; if the short domain is bought, `kakaradikali.com` → the long name,
-      path and query preserved.
-- [ ] Cloudflare: Always Use HTTPS on, HSTS enabled.
+- [x] Zone-level Redirect Rule: `www` → apex on the canonical host, 301, path
+      and query preserved (verified live 2026-11-19). If the short domain is
+      bought, `kakaradikali.com` → the long name the same way.
+- [x] Cloudflare: Always Use HTTPS on; HSTS `max-age=31536000; includeSubDomains`,
+      no preload (verified live 2026-11-19).
 - [ ] Search Console: verify the canonical property, submit `sitemap.xml` for it.
 - [ ] Rebuild and confirm every canonical and `og:url` is one clean absolute URL
       on the new host — not merely that the host string appears.

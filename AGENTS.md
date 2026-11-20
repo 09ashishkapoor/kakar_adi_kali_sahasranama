@@ -64,7 +64,7 @@ be found through search.
 |---|---|
 | Owner | `09ashishkapoor` (personal GitHub account) |
 | Remote | `github.com/09ashishkapoor/kakar_adi_kali_sahasranama` — public; `main` tracks `origin/main` |
-| Live site | [kakar-adi-kali-sahasranama.pages.dev](https://kakar-adi-kali-sahasranama.pages.dev) — custom domain pending |
+| Live site | [kakaradikalisahasranama.com](https://kakaradikalisahasranama.com) — live; `www` 301s to apex; HSTS enabled |
 
 ## 2. Content and private data
 
@@ -130,10 +130,11 @@ Every `TBD` must be replaced only with a verified fact.
 | Build | `npm run build` → `dist/`; 1,023 pages (1,022 routes + `404.html`) in ~5–10 s |
 | Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
 | Data | `src/data/names.json` — 1,000 entries, committed; regenerate with `npm run data:build` after manuscript edits |
+| License | Code MIT; site content, JSON and PDF CC BY-SA 4.0; photographs excluded |
 | Design | The Pothi system, in `design.md` |
 | Deploy target | Cloudflare Pages, Git integration — a push to `main` builds `dist/` |
 | Placeholders | `/the-book/` is a `noindex` "under construction" page. The PDF is real, at `public/downloads/` |
-| Custom domain | Registered at Cloudflare (2026-11-19) — canonical: `kakaradikalisahasranama.com`; pages.dev live; apex/www attachment pending; `kakaradikali.com` not purchased |
+| Custom domain | Registered at Cloudflare (2026-11-19) — canonical: `kakaradikalisahasranama.com`, live and verified; `www` 301s to apex (path and query preserved); Always Use HTTPS on; HSTS `max-age=31536000; includeSubDomains` (no preload); `kakaradikali.com` not purchased |
 
 ## 4. Commands
 
@@ -199,6 +200,8 @@ Append-only, newest last. Never rewrite past entries.
 | 2026-11-19 | The GitHub repository is public; Cloudflare stays Direct Upload | The 1,000 source Markdown files remain local-only, so a Git-integration build would have no data; publishing the repo does not publish the source corpus |
 | 2026-11-19 | Manuscript normalized to "Kakar Adi" and cleaned; `src/data/names.json` is the public build input | Owner authorized editing the book source; the JSON is public site data, the Markdown stays local-only. Supersedes the "no data for Git" rationale |
 | 2026-11-19 | Cloudflare Pages Git integration is live at `kakar-adi-kali-sahasranama.pages.dev`; custom domain pending | The JSON snapshot makes the build self-contained, so a push to `main` deploys without the Markdown source. Supersedes the Direct Upload target |
+| 2026-11-19 | Zone Redirect Rule sends `www` → apex with 301 (path and query preserved); Always Use HTTPS on; HSTS `max-age=31536000; includeSubDomains`, no preload | Verified live headers. Preload rejected: a hard-coded browser list would make the site unreachable if HTTPS ever breaks, and removal takes months. No `hstspreload.org` submission needed |
+| 2026-11-19 | Code is MIT; content, JSON and PDF are CC BY-SA 4.0; photographs excluded | The repository is public and the site says open source; explicit terms keep the code reusable and the text share-alike without claiming rights in credited images |
 
 ## 8. How to maintain this file
 

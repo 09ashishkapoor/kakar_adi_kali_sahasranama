@@ -25,12 +25,12 @@ elaboration.
 
 ## Status
 
-Built and live on Cloudflare Pages:
-[kakar-adi-kali-sahasranama.pages.dev](https://kakar-adi-kali-sahasranama.pages.dev)
-(custom domain pending). `npm run dev` serves it locally; `npm run build`
-produces 1,023 static pages in `dist/`; `npm run check` verifies the JSON
-snapshot, links and file types. The deploy is Git integration: a push to `main`
-builds `dist/`, and publishing still needs the owner's approval each time.
+Live at [kakaradikalisahasranama.com](https://kakaradikalisahasranama.com);
+`www` 301s to the apex and HSTS is enabled. `npm run dev` serves it locally;
+`npm run build` produces 1,023 static pages in `dist/`; `npm run check` verifies
+the JSON snapshot, links and file types. The deploy is Git integration: a push
+to `main` builds `dist/`, and publishing still needs the owner's approval each
+time.
 
 ## Private data
 
@@ -51,3 +51,11 @@ This repository is public, but **not everything local belongs in Git**. See
 Reminder: Git is not the only way files become public. A static site deploy
 publishes the *build output directory*, so keep private material out of that
 folder too — not merely out of Git.
+
+## License
+
+- **Code** — Astro templates, CSS, JavaScript and build scripts: **MIT**, see [`LICENSE`](LICENSE).
+- **Content** — the 1,000 name entries, meanings, elaborations, guide pages, JSON data and PDF: **CC BY-SA 4.0**, see [`CONTENT-LICENSE.md`](CONTENT-LICENSE.md).
+- **Photographs and third-party images** are excluded and remain with their credited owners; see the [Colophon](https://kakaradikalisahasranama.com/colophon/).
+
+The Markdown manuscript in `output_names/` is not part of this repository.
