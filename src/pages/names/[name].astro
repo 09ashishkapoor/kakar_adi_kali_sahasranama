@@ -20,6 +20,9 @@ export function getStaticPaths() {
 const { page, previous, next, range, siteUrl } = Astro.props;
 const position = page.position;
 const hasDescender = /[\u0941\u0942\u0943\u0944\u0962\u0963]/u.test(page.devanagari);
+const nameLength = [...page.devanagari].length;
+const isLongName = nameLength > 16;
+const isVeryLongName = nameLength > 30;
 
 const canonical = `/names/${page.slug}/`;
 const title = `${page.title} (${page.devanagari}) — Name ${position} of the Kakar Adi Kali Sahasranama`;
@@ -96,9 +99,16 @@ const nextUrl = next ? `/names/${next.slug}/` : null;
 
 			<p class="page-kicker">Position {position} of the 1,000 names</p>
 
-			<h1 class:list={['dev-title', hasDescender && 'has-descender']} lang="sa">{page.devanagari}</h1>
-			<p class="iast-title">{page.iast}</p>
-			<p class="common-title">Also written {page.title}</p>
+			<h1
+				class:list={[
+					'dev-title',
+					hasDescender && 'has-descender',
+					isLongName && 'is-long',
+					isVeryLongName && 'is-very-long',
+				]}
+				lang="sa">{page.devanagari}</h1>
+			<p class:list={['iast-title', isLongName && 'is-long', isVeryLongName && 'is-very-long']}>{page.iast}</p>
+			<p class:list={['common-title', isLongName && 'is-long']}>Also written {page.title}</p>
 
 			<article class="sheet" aria-labelledby="what-means">
 				<span class="folio" aria-hidden="true">{position}</span>

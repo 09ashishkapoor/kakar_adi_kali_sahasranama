@@ -15,7 +15,7 @@ constraint that forced it, so a later reviewer can overturn it knowingly.
 | Content | **Astro content collection** over `output_names/*.md` at build | Markdown stays the source of truth and stays out of the published output. |
 | Search | Custom normalized index, built at build time | A diacritic-insensitive match is a hard requirement; no off-the-shelf static search does it well. §4. |
 | Fonts | Self-hosted WOFF2, subset | Reference used Google Fonts; self-hosting removes a third-party round trip and the FOIT. |
-| Deploy | **Cloudflare Pages, Direct Upload** | Per `AGENTS.md` §6. Git never sits in the deploy path. |
+| Deploy | **Cloudflare Pages, Git integration** | A push to `main` builds `dist/` from the committed JSON. |
 | Node | 22 LTS | Astro 6 baseline. |
 
 **Rejected:** Next/Nuxt (client JS for a text site), Hugo (no content-collection
@@ -215,16 +215,16 @@ outside the allowlist, or any `private/`, `output_names/` or Markdown path that
 reached the output. Verified output: 1,017 files, 36,316 internal links, 0
 problems.
 
-No browser test suite yet. Visual checks were done by hand at 390 px and
-1440 px, in both themes.
+No browser test suite yet. Visual checks were done with Playwright at 320, 360,
+390, 414, 768 and 1440 px.
 
 ---
 
 ## 8. Publishing
 
-Output directory: `dist/`. Deployed with Cloudflare Pages **Direct Upload**,
-never through Git integration. `_headers` and `_redirects` ship from `public/`;
-the `www` redirect is commented out until the domain exists.
+Output directory: `dist/`. Deployed with Cloudflare Pages **Git integration**
+from `main`; a push triggers the build. `_headers` and `_redirects` ship from
+`public/`; the `www` redirect is commented out until the custom domain is attached.
 
 `dist/` must contain no Markdown, no `output_names/`, no `private/`, no
 `AGENTS.md`, no source text. The `npm run check` guard above enforces the file

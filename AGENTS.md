@@ -64,7 +64,7 @@ be found through search.
 |---|---|
 | Owner | `09ashishkapoor` (personal GitHub account) |
 | Remote | `github.com/09ashishkapoor/kakar_adi_kali_sahasranama` — public; `main` tracks `origin/main` |
-| Live site | Not deployed |
+| Live site | [kakar-adi-kali-sahasranama.pages.dev](https://kakar-adi-kali-sahasranama.pages.dev) — custom domain pending |
 
 ## 2. Content and private data
 
@@ -131,9 +131,9 @@ Every `TBD` must be replaced only with a verified fact.
 | Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
 | Data | `src/data/names.json` — 1,000 entries, committed; regenerate with `npm run data:build` after manuscript edits |
 | Design | The Pothi system, in `design.md` |
-| Deploy target | Cloudflare Pages, Direct Upload |
+| Deploy target | Cloudflare Pages, Git integration — a push to `main` builds `dist/` |
 | Placeholders | `/the-book/` is a `noindex` "under construction" page. The PDF is real, at `public/downloads/` |
-| Custom domain | Registered at Cloudflare (2026-11-19) — canonical: `kakaradikalisahasranama.com`; `kakaradikali.com` not purchased |
+| Custom domain | Registered at Cloudflare (2026-11-19) — canonical: `kakaradikalisahasranama.com`; pages.dev live; apex/www attachment pending; `kakaradikali.com` not purchased |
 
 ## 4. Commands
 
@@ -174,6 +174,8 @@ committed.
   `output_names/`, no `.txt` data files and no `AGENTS.md`.
 - Publication is a remote write in the sense of section 0. Deploying needs the
   owner's explicit approval for that deploy.
+- A push to `main` triggers the Pages build and deploy; the push approval covers
+  that deploy only, and the §0 report must say so.
 
 ## 7. Decision log
 
@@ -196,6 +198,7 @@ Append-only, newest last. Never rewrite past entries.
 | 2026-11-19 | One page per position: 1,000 name pages, not 965 | 32 English titles repeat, but 4 differ in Sanskrit form and 23 in meaning; only 5 are exact duplicates. Grouping by title dropped content |
 | 2026-11-19 | The GitHub repository is public; Cloudflare stays Direct Upload | The 1,000 source Markdown files remain local-only, so a Git-integration build would have no data; publishing the repo does not publish the source corpus |
 | 2026-11-19 | Manuscript normalized to "Kakar Adi" and cleaned; `src/data/names.json` is the public build input | Owner authorized editing the book source; the JSON is public site data, the Markdown stays local-only. Supersedes the "no data for Git" rationale |
+| 2026-11-19 | Cloudflare Pages Git integration is live at `kakar-adi-kali-sahasranama.pages.dev`; custom domain pending | The JSON snapshot makes the build self-contained, so a push to `main` deploys without the Markdown source. Supersedes the Direct Upload target |
 
 ## 8. How to maintain this file
 

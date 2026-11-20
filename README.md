@@ -25,10 +25,12 @@ elaboration.
 
 ## Status
 
-Built. `npm run dev` serves it locally; `npm run build` produces 1,023 static
-pages in `dist/`; `npm run check` verifies the JSON snapshot, links and file
-types. Cloudflare Pages is **not yet connected** — deploying is `dist/`, never
-the repository root, and needs the owner's approval each time.
+Built and live on Cloudflare Pages:
+[kakar-adi-kali-sahasranama.pages.dev](https://kakar-adi-kali-sahasranama.pages.dev)
+(custom domain pending). `npm run dev` serves it locally; `npm run build`
+produces 1,023 static pages in `dist/`; `npm run check` verifies the JSON
+snapshot, links and file types. The deploy is Git integration: a push to `main`
+builds `dist/`, and publishing still needs the owner's approval each time.
 
 ## Private data
 
