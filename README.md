@@ -20,7 +20,7 @@ elaboration.
 | `public/img/` | Deity plate, Open Graph card and icons |
 | `assets/source/` | Original deity photograph. Not shipped |
 | `output_names/` | 1,000 Markdown book-manuscript entries, `NNNN-slug.md`. Exported to `src/data/names.json`; local only — git-ignored, not in history. |
-| `all_1000_meanings.txt` | One-line meaning per name. Local only — see below. |
+| `all_1000_meanings.txt` | One-line meaning per name. Local-only; not committed. |
 | `AGENTS.md` | Project rules, current state and decision log for AI agents. |
 
 ## Status
@@ -31,26 +31,6 @@ Live at [kakaradikalisahasranama.com](https://kakaradikalisahasranama.com);
 the JSON snapshot, links and file types. The deploy is Git integration: a push
 to `main` builds `dist/`, and publishing still needs the owner's approval each
 time.
-
-## Private data
-
-This repository is public, but **not everything local belongs in Git**. See
-[`.gitignore`](.gitignore). In short:
-
-- Anything in `private/` is never committed, whatever the file type.
-- All `.txt` files are ignored by default, except the public web standards
-  (`robots.txt`, `ai.txt`, `llms.txt`, `security.txt`, ...).
-- Data exports (`.csv`, `.tsv`, `.dat`), secrets (`.env`, keys) and build
-  output are ignored.
-- `all_1000_meanings.txt` falls under the `.txt` rule and is therefore local
-  only.
-- `output_names/` is ignored outright: the 1,000 long-form entries are the book
-  manuscript and have never been committed. Their public build snapshot is
-  `src/data/names.json`.
-
-Reminder: Git is not the only way files become public. A static site deploy
-publishes the *build output directory*, so keep private material out of that
-folder too — not merely out of Git.
 
 ## License
 
