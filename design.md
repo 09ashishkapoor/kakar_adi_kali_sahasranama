@@ -141,7 +141,8 @@ Assets shipped in `public/img/`:
 | File | Use |
 |---|---|
 | `deity-480/800/1200.avif` + `.webp` | `srcset` ladder for the frontispiece |
-| `deity-og-1200x630.avif` + `.webp` | Open Graph / Twitter card |
+| `deity-og-1200x630.jpg` | Open Graph / Twitter card |
+| `deity-og-1200x630.avif` + `.webp` | Alternate social-card renditions |
 | `favicon-32.png`, `favicon-192.png`, `favicon-512.png` | icons (head crop) |
 | `apple-touch-icon.png` | iOS home screen |
 

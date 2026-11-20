@@ -11,7 +11,7 @@ export const SITE_TITLE = 'Kakar Adi Kali Sahasranama (Kakaradi) — 1,000 Names
 export const SITE_DESCRIPTION =
 	'The Kakar Adi Kali Sahasranama — also written Kakaradi Kali Sahasranama. All 1,000 names of Maa Kali with Devanagari, IAST, alternate spellings and a meaning for each, readable on a phone.';
 
-export const OG_IMAGE = '/img/deity-og-1200x630.webp';
+export const OG_IMAGE = '/img/deity-og-1200x630.jpg';
 export const THEME_COLOR_LIGHT = '#faf3e3';
 export const THEME_COLOR_DARK = '#1a1410';
 

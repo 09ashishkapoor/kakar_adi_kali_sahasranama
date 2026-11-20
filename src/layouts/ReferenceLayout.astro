@@ -20,6 +20,7 @@ const {
 const fullTitle = title;
 const canonicalUrl = /^https?:\/\//i.test(canonical) ? canonical : `${SITE_URL}${canonical}`;
 const ogImage = `${SITE_URL}${OG_IMAGE}`;
+const ogImageAlt = 'Four-armed murti of Maa Kali, red-lit against black';
 ---
 
 <!doctype html>
@@ -42,13 +43,17 @@ const ogImage = `${SITE_URL}${OG_IMAGE}`;
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:image" content={ogImage} />
-		<meta property="og:image:alt" content="Four-armed murti of Maa Kali, red-lit against black" />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={ogImageAlt} />
 		<meta property="og:site_name" content={SITE_NAME} />
 		<meta property="og:locale" content="en_US" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={fullTitle} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content={ogImageAlt} />
 
 		<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png" />

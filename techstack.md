@@ -140,7 +140,7 @@ Static HTML is the whole strategy; the rest is discipline.
 
 - `<title>` ≤ 60 chars, `<meta name="description">` ≤ 158, unique per page.
 - `<link rel="canonical">` — absolute, trailing slash, no query strings.
-- Open Graph + Twitter card, `deity-og-1200x630.avif`.
+- Open Graph + Twitter card, `deity-og-1200x630.jpg` (1200×630, JPEG for widest scraper support).
 - `robots` = `index,follow,max-image-preview:large,max-snippet:-1`.
 - One `h1`; headings descend in order.
 - Content — Devanagari, IAST, meaning, elaboration — present in the HTML source
