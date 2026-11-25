@@ -1,0 +1,248 @@
+---
+import ReferenceLayout from '../../layouts/ReferenceLayout.astro';
+import { SITE_URL } from '../../lib/site.js';
+
+const canonical = `${SITE_URL}/changelog/`;
+const title = 'Changelog | Kakar Adi Kali Sahasranama';
+const description =
+	'Every correction to the Kakar Adi Kali Sahasranama, dated: which names were merged or split, how the list renumbered, and where the old page addresses now lead.';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	'@id': `${canonical}#changelog`,
+	name: title,
+	description,
+	url: canonical,
+	inLanguage: 'en',
+};
+
+const repo = 'https://github.com/09ashishkapoor/kakar_adi_kali_sahasranama';
+
+// One entry per correction made in the second edition. Slugs are the pages the
+// name lives on today.
+const corrections = [
+	{
+		before: ['Karavalapriya', 'Gatih'],
+		after: [{ label: 'Karavalapriyagatih', href: '/names/0120-karavalapriyagatih/' }],
+		note: 'Two names merged into one',
+	},
+	{
+		before: ['Kahamalakanthabhusha'],
+		after: [
+			{ label: 'Kahamala', href: '/names/0292-kahamala/' },
+			{ label: 'Kanthabhusha', href: '/names/0293-kanthabhusha/' },
+		],
+		note: 'One name split in two',
+	},
+	{
+		before: ['Kartrika', 'Bhushakarini'],
+		after: [
+			{ label: 'Kartrikabhusha', href: '/names/0395-kartrikabhusha/' },
+			{ label: 'Karini', href: '/names/0396-karini/' },
+		],
+		note: 'Boundary moved between neighbours',
+	},
+	{
+		before: ['Kanchinupurabhushadhyakunkumabharamanvita'],
+		after: [
+			{ label: 'Kancinupurabhusadhya', href: '/names/0746-kancinupurabhusadhya/' },
+			{ label: 'Kunkumabharanaanvita', href: '/names/0747-kunkumabharanaanvita/' },
+		],
+		note: 'One name split in two',
+	},
+	{
+		before: ['Kulasiddhikara', 'Para'],
+		after: [{ label: 'Kulasiddhikarapara', href: '/names/0798-kulasiddhikarapara/' }],
+		note: 'Two names merged into one',
+	},
+	{
+		before: ['Kinnarikriya'],
+		after: [
+			{ label: 'Kinnari', href: '/names/0910-kinnari/' },
+			{ label: 'Kriya', href: '/names/0911-kriya/' },
+		],
+		note: 'One name split in two',
+	},
+	{
+		before: ['Krodha', 'Jvalabhasurarupini'],
+		after: [{ label: 'Krodhajvalabhasurarupini', href: '/names/0987-krodhajvalabhasurarupini/' }],
+		note: 'Two names merged into one',
+	},
+	{
+		before: ['Kasaturigandhasamsobhavirajitakalabhubh'],
+		after: [
+			{
+				label: 'Kasturigandhasamsobhavirajitakapalabhuh',
+				href: '/names/0267-kasturigandhasamsobhavirajitakapalabhuh/',
+			},
+		],
+		note: 'Spelling corrected',
+	},
+];
+---
+
+<ReferenceLayout title={title} description={description} canonical={canonical} schema={schema}>
+	<div class="page">
+		<div class="narrow">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li aria-current="page">Changelog</li>
+				</ol>
+			</nav>
+
+			<p class="page-kicker">Revision history</p>
+			<h1>Changelog</h1>
+
+			<section class="hero-panel">
+				<p class="intro">
+					Every change to the text is recorded here, with its date. Corrections are not folded in silently: if a
+					name was wrong, this page says what it was, what it became, and when it changed.
+				</p>
+			</section>
+
+			<section class="source-notes changelog-wide">
+				<h2>Second edition — 25 November 2026</h2>
+				<p>
+					The name list was checked against the corrected source and changed at eight places. Some compounds had
+					been divided where the source keeps them whole; others had been kept whole where the source divides
+					them. One spelling was wrong.
+				</p>
+
+				<ol class="changelog-list">
+					{
+						corrections.map((row) => (
+							<li>
+								<p class="chg-line">
+									<span class="chg-label">Before</span>{' '}
+									{row.before.join(' · ')}
+								</p>
+								<p class="chg-line">
+									<span class="chg-label">After</span>{' '}
+									{row.after.map((item, index) => (
+										<>
+											{index > 0 && ' · '}
+											<a href={item.href}>{item.label}</a>
+										</>
+									))}
+								</p>
+								<p class="chg-note">{row.note}</p>
+							</li>
+						))
+					}
+				</ol>
+
+				<p>
+					The list renumbered after these corrections, so 307 page addresses changed. Every old address answers
+					with a permanent redirect to the page that carries that name today, and the 693 pages whose name and
+					position were untouched keep their wording exactly as it was.
+				</p>
+				<p>
+					The three Kauśikī positions — <a href="/names/0939-kaushiki/">939</a>,
+					<a href="/names/0972-kaushiki/">972</a> and <a href="/names/0986-kaushiki/">986</a> — had each carried
+					the same one-line meaning. They now read distinctly: the lineage of the sage Kuśika, the owl's vigil
+					through the dark, and the emergence from the mother's sheath.
+				</p>
+				<p>
+					The printable booklet was reprinted as the second edition — <a href="/kali-sahasranama-pdf/">43 pages,
+					A4</a> — and now states its edition and print date on the cover.
+				</p>
+			</section>
+
+			<section class="source-notes">
+				<h2>First edition — 19 November 2026</h2>
+				<ul>
+					<li>
+						The 1,000 names published, one page per position, each with Devanagari, IAST, the source
+						transliteration, alternate spellings, a one-line meaning and a longer elaboration.
+					</li>
+					<li>The first edition of the printable booklet: 43 pages, A4, free to print and share.</li>
+					<li>The text standardised to “Kakar Adi” throughout.</li>
+					<li>
+						Code released under the MIT licence; the text, data and PDF under
+						<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>.
+					</li>
+				</ul>
+			</section>
+
+			<section class="source-notes">
+				<h2>How corrections are handled</h2>
+				<p>
+					Errors are corrected as soon as they are verified, and listed here on the day the correction goes
+					live. Earlier spellings stay in the record above; nothing is quietly deleted. If you find a mistake,
+					raise it in the <a href={repo} rel="noopener noreferrer">public repository</a> — naming the page
+					helps, and the <a href="/sources/">sources</a> page explains how the text was checked.
+				</p>
+			</section>
+		</div>
+	</div>
+
+	<style>
+		.changelog-wide {
+			max-width: 74ch;
+		}
+
+		.changelog-list {
+			list-style: none;
+			margin: 18px 0 20px;
+			padding: 0;
+			border-top: 1px solid var(--rule);
+		}
+
+		.changelog-list li {
+			padding: 12px 0 14px;
+			border-bottom: 1px solid var(--rule-soft);
+		}
+
+		.chg-line {
+			margin: 0;
+			font-size: 16px;
+			line-height: 1.55;
+			color: var(--ink-2);
+			overflow-wrap: anywhere;
+		}
+
+		.chg-label {
+			display: inline-block;
+			min-width: 5.6em;
+			font-family: var(--serif);
+			font-size: 12px;
+			font-variant: all-small-caps;
+			letter-spacing: 0.1em;
+			color: var(--ash);
+		}
+
+		.chg-line a {
+			color: var(--ink);
+			font-weight: 600;
+			text-decoration: none;
+			border-bottom: 1px solid rgba(156, 43, 28, 0.3);
+		}
+
+		.chg-line a:hover {
+			color: var(--cinnabar);
+			border-color: var(--cinnabar);
+		}
+
+		.chg-note {
+			margin: 5px 0 0;
+			padding-left: 5.6em;
+			font-size: 15px;
+			font-style: italic;
+			color: var(--ash);
+		}
+
+		@media (max-width: 560px) {
+			.chg-label {
+				display: block;
+				min-width: 0;
+				margin-bottom: 1px;
+			}
+
+			.chg-note {
+				padding-left: 0;
+			}
+		}
+	</style>
+</ReferenceLayout>

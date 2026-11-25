@@ -13,6 +13,7 @@
 - [Practice](https://kakaradikalisahasranama.com/kali-sahasranama-benefits/): what a reading is for.
 - [Print](https://kakaradikalisahasranama.com/kali-sahasranama-pdf/): printing from the browser.
 - [Sources](https://kakaradikalisahasranama.com/sources/): transliteration and editorial method.
+- [Changelog](https://kakaradikalisahasranama.com/changelog/): every correction to the text, dated.
 
 ## Structure
 

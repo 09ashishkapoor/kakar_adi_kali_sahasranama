@@ -127,7 +127,7 @@ Every `TBD` must be replaced only with a verified fact.
 | Item | Value |
 |---|---|
 | Stack | Astro 6.4.8, static output, hand-written CSS, no UI framework, no client framework |
-| Build | `npm run build` → `dist/`; 1,023 pages (1,022 routes + `404.html`) in ~5–10 s |
+| Build | `npm run build` → `dist/`; 1,024 pages (1,023 routes + `404.html`) in ~5–10 s |
 | Output directory | `dist/` — git-ignored and uploaded, never committed; never the repository root |
 | Data | `src/data/names.json` — 1,000 entries, committed; regenerate with `npm run data:build` after manuscript edits |
 | License | Code MIT; site content, JSON and PDF CC BY-SA 4.0; photographs excluded |
@@ -143,7 +143,7 @@ Every `TBD` must be replaced only with a verified fact.
 | `npm run dev` | Dev server with hot reload |
 | `npm run data:build` | Parse `output_names/` → `src/data/names.json` |
 | `npm run data:check` | Fail if the JSON snapshot is stale |
-| `npm run build` | Build `src/data/names.json` → 1,023 pages in `dist/` |
+| `npm run build` | Build `src/data/names.json` → 1,024 pages in `dist/` |
 | `npm run preview` | Serve the built `dist/` |
 | `npm run check` | Verify the data snapshot, build, then check file types and links |
 
@@ -204,7 +204,7 @@ Append-only, newest last. Never rewrite past entries.
 | 2026-11-19 | Code is MIT; content, JSON and PDF are CC BY-SA 4.0; photographs excluded | The repository is public and the site says open source; explicit terms keep the code reusable and the text share-alike without claiming rights in credited images |
 | 2026-11-25 | The manuscript is the corrected 1,000-name list: eight boundary corrections — three merges, three splits, one re-division, one spelling fix | Owner corrected the source list. 693 pages stay byte-identical and 307 renumber, so old URLs answer with 301s. The corrected corpus had drifted in two house conventions — a positional intro sentence and a rewritten "Also spelled" closing line — both reverted on all 1,000 entries |
 | 2026-11-25 | The three Kauśikī positions (939, 972, 986) get three distinct readings | The corrected source list repeated one gloss for all three, producing identical pages. Owner: they are three different names. Now the Kuśika lineage, the owl's night vigil and the emergence from the sheath, one per position |
-| 2026-11-25 | The PDF states its edition and print date; this reprint is the second edition (web build V1.2) | A reprint with corrected text must not look like the first. The cover reads "Second edition · 25 November 2026", the intro names what changed, and `public/version.json` moved to 1.2 so the colophon date matches the artifact |
+| 2026-11-25 | A public `/changelog/` page records every correction, linked in the footer | Owner: corrections made in time should be visible, not hidden. It lists the eight name corrections with before/after links, the 307 redirects, the Kauśikī split and the second edition. The internal decision log stays separate |
 
 ## 8. How to maintain this file
 
@@ -229,7 +229,7 @@ stale.
 Before any commit:
 
 - [ ] `git status` shows only intended files
-- [ ] `npm run check` passes (data snapshot current, 1,023 pages, no broken links, no forbidden files)
+- [ ] `npm run check` passes (data snapshot current, 1,024 pages, no broken links, no forbidden files)
 - [ ] hooks are active: `git config core.hooksPath` returns `.githooks`
 - [ ] nothing from `private/`, `output_names/` or any `.txt` data file is staged
 - [ ] `git check-ignore -v <file>` confirms new data files are ignored
