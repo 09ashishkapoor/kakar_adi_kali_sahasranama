@@ -13,6 +13,12 @@ const dig = (n) =>
 		.split('')
 		.map((d) => '०१२३४५६७८९'[Number(d)] ?? d)
 		.join('');
+
+// The printed edition is versioned apart from the web build: a reprint with
+// corrected text is a new edition, and the cover has to say which one it is.
+const EDITION = 'Second edition';
+const EDITION_DATE = '25 November 2026';
+const FIRST_EDITION_DATE = '19 November 2026';
 ---
 
 <!doctype html>
@@ -86,6 +92,10 @@ const dig = (n) =>
 			}
 			.cover .iast { font-style: italic; font-size: 15pt; color: var(--cinnabar); margin: 0 0 8mm; }
 			.cover .meta { font-size: 10pt; color: var(--ash); border-top: 1px solid var(--rule); padding-top: 4mm; }
+			.cover .meta .edition {
+				font-size: 8.5pt; letter-spacing: .16em; text-transform: uppercase;
+				color: var(--cinnabar); margin: 0 0 2.5mm;
+			}
 			.cover .foot { margin-top: auto; padding: 0 18mm 14mm; font-size: 8.5pt; color: var(--ash); font-style: italic; }
 
 			.intro { break-after: page; }
@@ -143,6 +153,7 @@ const dig = (n) =>
 				<h1 lang="sa">ककार आदि काली<br />सहस्रनाम</h1>
 				<p class="iast">Kakar Adi Kali Sahasranama</p>
 				<div class="meta">
+					<p class="edition">{EDITION} · {EDITION_DATE}</p>
 					{total.toLocaleString('en-US')} names · ten sets of one hundred · Devanagari, IAST and a
 					one-line meaning for each
 				</div>
@@ -178,6 +189,10 @@ const dig = (n) =>
 				them if they help, skip them if they interrupt.
 			</p>
 			<p class="note">The full text, searchable and in both themes, is at {host}.</p>
+			<p class="note">
+				{EDITION} · {EDITION_DATE}. Twelve names were corrected against the source list and the three
+				Kauśikī positions now read distinctly; the first edition was printed on {FIRST_EDITION_DATE}.
+			</p>
 		</section>
 
 		{ranges.map((range, index) => (
@@ -203,6 +218,7 @@ const dig = (n) =>
 			<div class="om" lang="sa">ॐ</div>
 			<p class="mono" lang="sa">Jai Ma Krishna<br />Jai Mā Ādya Mahākālī<br />Jai Kālabhairava</p>
 			<p class="fine">Om Shri Gurubhyo Namaha | Jai Khyapa Parampara</p>
+			<p class="fine">{EDITION} · {EDITION_DATE}</p>
 			<p class="fine">May every word read here bring you closer to Ma Adya Mahakali.</p>
 			<p class="fine">Kakar Adi Kali Sahasranama · 1,000 names · daily reading edition · {host}</p>
 			<p class="fine">Free to read, print and share. All knowledge is forever free to share.</p>
