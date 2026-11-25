@@ -3,7 +3,7 @@
 Project instructions for AI coding agents. Loaded automatically at the start of
 every session. Keep it accurate, short, and free of private data.
 
-**Last updated:** 2026-11-19
+**Last updated:** 2026-11-25
 
 ---
 
@@ -86,9 +86,9 @@ which is committed and public; the website is generated from that JSON into
   directory verbatim, not Git history, and not `.gitignore` rules.
 - Copying by readers is expected and accepted: the text is public once the site
   is. Do not add right-click blocking, text selection tricks or image-only text.
-- **1,000 positions, 1,000 pages.** 32 English titles repeat across 35 extra
-  positions (`kali` at 2, 551, 588); only 5 are exact duplicates — 4 differ in
-  Sanskrit form and 23 in meaning. Every position has its own `NNNN-slug` page
+- **1,000 positions, 1,000 pages.** 31 English titles repeat across 34 extra
+  positions (`kali` at 2, 551, 588); 6 are exact duplicates — 4 differ in
+  Sanskrit form and 21 in meaning. Every position has its own `NNNN-slug` page
   and cross-links the other positions of the same title.
 - **The Markdown is the book manuscript; `src/data/names.json` is the public
   build input.** `output_names/` is local-only and never committed; the generated
@@ -202,6 +202,7 @@ Append-only, newest last. Never rewrite past entries.
 | 2026-11-19 | Cloudflare Pages Git integration is live at `kakar-adi-kali-sahasranama.pages.dev`; custom domain pending | The JSON snapshot makes the build self-contained, so a push to `main` deploys without the Markdown source. Supersedes the Direct Upload target |
 | 2026-11-19 | Zone Redirect Rule sends `www` → apex with 301 (path and query preserved); Always Use HTTPS on; HSTS `max-age=31536000; includeSubDomains`, no preload | Verified live headers. Preload rejected: a hard-coded browser list would make the site unreachable if HTTPS ever breaks, and removal takes months. No `hstspreload.org` submission needed |
 | 2026-11-19 | Code is MIT; content, JSON and PDF are CC BY-SA 4.0; photographs excluded | The repository is public and the site says open source; explicit terms keep the code reusable and the text share-alike without claiming rights in credited images |
+| 2026-11-25 | The manuscript is the corrected 1,000-name list: eight boundary corrections turn twelve names into four merges and four splits | Owner corrected the source list; 693 pages stay byte-identical, 307 renumber, so the old URLs are answered with 301s rather than 404s. The corrected corpus had drifted in two house conventions — a positional intro sentence and a rewritten "Also spelled" closing line — both reverted on all 1,000 entries |
 
 ## 8. How to maintain this file
 
